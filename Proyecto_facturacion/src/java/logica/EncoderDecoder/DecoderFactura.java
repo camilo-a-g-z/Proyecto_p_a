@@ -1,4 +1,4 @@
-package EncoderDecoder;
+package logica.EncoderDecoder;
 
 import java.io.IOException;
 import java.io.Reader;

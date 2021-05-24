@@ -1,4 +1,4 @@
-package EncoderDecoder;
+package logica.EncoderDecoder;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -8,23 +8,23 @@ import javax.json.JsonReader;
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
-import logica.Ciudad;
+import logica.Categoria;
 
 /**
- *
  * @author Camilo Garcia
  */
-public class DecoderCiudad implements Decoder.TextStream<Ciudad>{
+public class DecoderCategoria implements Decoder.TextStream<Categoria>{
 
     @Override
-    public Ciudad decode(Reader reader) throws DecodeException, IOException {
-        Ciudad ciudad = new Ciudad();
+    public Categoria decode(Reader reader) throws DecodeException, IOException {
+        Categoria categoria = new Categoria();
         try(JsonReader jsonReader = Json.createReader(reader)){
             JsonObject json = jsonReader.readObject();
-            ciudad.setId_ciudad(Integer.parseInt("id_ciudad"));
-            ciudad.setNobre(json.getString("nombre"));
+            categoria.setId_categoria(Integer.parseInt(json.getString("id_categoria")));
+            categoria.setNombre(json.getString("nombre"));
+            categoria.setDescripcion(json.getString("descripcion"));
         }
-        return ciudad;
+        return categoria;
     }
 
     @Override
