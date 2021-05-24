@@ -6,7 +6,7 @@ package logica;
  */
 public class Articulo {
     private int id_articulo;
-    private Double nombre;
+    private String nombre;
     private Double cant_stock;
     private String descripcion;
     private int id_categoria;
@@ -17,10 +17,10 @@ public class Articulo {
     public void setId_articulo(int id_articulo) {
         this.id_articulo = id_articulo;
     }
-    public Double getNombre() {
+    public String getNombre() {
         return nombre;
     }
-    public void setNombre(Double nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
     public Double getCant_stock() {
