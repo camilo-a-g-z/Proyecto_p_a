@@ -9,17 +9,16 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import logica.Articulo;
-import logica.EncoderDecoder.DecoderArticulo;
-import logica.EncoderDecoder.EncoderArticulo;
+import logica.Categoria;
+import logica.EncoderDecoder.DecoderCategoria;
+import logica.EncoderDecoder.EncoderCategoria;
 
 /**
  *
  * @author Camilo Garcia
  */
-
-@ServerEndpoint(value="/articulo", encoders = {EncoderArticulo.class}, decoders = {DecoderArticulo.class})
-public class ArticuloServer {
+@ServerEndpoint (value="/categoria", encoders ={EncoderCategoria.class}, decoders = {DecoderCategoria.class})
+public class CategoriaServer {
     private static final List<Session> conectados = new ArrayList<>();
     int i;
     
@@ -35,7 +34,7 @@ public class ArticuloServer {
     }
     
     @OnMessage
-    public void mensaje(Articulo articulo) throws IOException, EncodeException{
-        conectados.get(i).getBasicRemote().sendObject(articulo);
+    public void mensaje(Categoria categoria) throws IOException, EncodeException{
+        conectados.get(i).getBasicRemote().sendObject(categoria);
     }
 }
