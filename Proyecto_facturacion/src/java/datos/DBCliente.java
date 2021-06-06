@@ -3,6 +3,7 @@ package datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import logica.Cliente;
 
 /**
  *
@@ -44,21 +45,37 @@ public class DBCliente {
         return res;
     }
     public ResultSet getClientes() throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_categoria, "
+        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_cliente, "
                 + "nombre, "
-                + "descripcion "
-                + "FROM categoria "
+                + "apellido, "
+                + "correo, "
+                + "direccion, "
+                + "celular, "
+                + "cedula, "
+                + "id_ciudad "
+                + "FROM cliente "
                 + "ORDER BY nombre ");
         ResultSet res = pstm.executeQuery();
         return res;
     }
-    public void insertarArticulo(Categoria c){
+    public void insertarCliente(Cliente c){
         try{
-            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into categoria(nombre, "
-                    + "descripcion) "
-                    + "values(?,?)");
+            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into cliente(nombre, "
+                + "apellido, "
+                + "correo, "
+                + "direccion, "
+                + "celular, "
+                + "cedula, "
+                + "id_ciudad) "
+                + "values(?,?,?,?,?,?,?)");
             pstm.setString(1, c.getNombre());
-            pstm.setString(2, c.getDescripcion());
+            pstm.setString(2, c.getApellido());
+            pstm.setString(3, c.getCorreo());
+            pstm.setString(4, c.getDireccion());
+            pstm.setString(5, String.valueOf(c.getCelular()));
+            pstm.setString(6, c.getCedula());
+            pstm.setString(7, String.valueOf(c.getId_ciudad()));
+            
             
             pstm.executeUpdate();
         }catch (SQLException e){

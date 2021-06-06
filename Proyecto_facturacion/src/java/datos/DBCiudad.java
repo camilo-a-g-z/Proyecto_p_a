@@ -42,7 +42,7 @@ public class DBCiudad {
     }
     public void insertarCiudad(Ciudad c){
         try{
-            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into categoria(nombre) "
+            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into ciudad (nombre) "
                     + "values(?)");
             pstm.setString(1, c.getNombre());
             
