@@ -6,7 +6,7 @@ package logica;
  */
 public class Ciudad {
     private int id_ciudad;
-    private String nobre;
+    private String nombre;
     //getters y setters
     public int getId_ciudad() {
         return id_ciudad;
@@ -14,10 +14,10 @@ public class Ciudad {
     public void setId_ciudad(int id_ciudad) {
         this.id_ciudad = id_ciudad;
     }
-    public String getNobre() {
-        return nobre;
+    public String getNombre() {
+        return nombre;
     }
-    public void setNobre(String nobre) {
-        this.nobre = nobre;
+    public void setNombre(String nobre) {
+        this.nombre = nobre;
     }
 }

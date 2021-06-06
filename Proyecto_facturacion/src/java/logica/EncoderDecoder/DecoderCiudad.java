@@ -22,7 +22,7 @@ public class DecoderCiudad implements Decoder.TextStream<Ciudad>{
         try(JsonReader jsonReader = Json.createReader(reader)){
             JsonObject json = jsonReader.readObject();
             ciudad.setId_ciudad(Integer.parseInt("id_ciudad"));
-            ciudad.setNobre(json.getString("nombre"));
+            ciudad.setNombre(json.getString("nombre"));
         }
         return ciudad;
     }

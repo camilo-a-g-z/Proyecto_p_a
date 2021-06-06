@@ -3,6 +3,7 @@ package datos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import logica.Articulo;
 
 /**
  *
@@ -47,5 +48,23 @@ public class DBArticulo {
                 + "ORDER BY nombre ");
         ResultSet res = pstm.executeQuery();
         return res;
+    }
+    public void insertarArticulo(Articulo a){
+        try{
+            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into articulo(nombre, "
+                    + "cant_stock, "
+                    + "descripccion, "
+                    + "id_categoria) "
+                    + "values(?,?,?,?)");
+            pstm.setString(1, a.getNombre());
+            pstm.setString(2, String.valueOf(a.getCant_stock()));
+            pstm.setString(3, a.getDescripcion());
+            pstm.setString(4, String.valueOf(a.getId_categoria()));
+            
+            
+            pstm.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
     }
 }
