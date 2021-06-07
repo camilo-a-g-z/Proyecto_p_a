@@ -51,4 +51,7 @@ public class DBMetodo_pago {
             System.out.println(e);
         }
     }
+    public String getMensaje() {
+        return cn.getMensaje();
+    }
 }
