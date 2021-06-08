@@ -13,15 +13,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agenda web</title>
-        <script src='validar.jsp' language='JavaScript1.2'></script>
-        <link href='diseno.css' rel='stylesheet' type='text/css'>
+        <title>Facturacion</title>
     </head>
     <body>
-        <h1>Contactos</h1>
+        <h1>Facturacion</h1>
         <table>
             <tr>
-                <th>codigo</th><th>nombre</th><th>apellido</th><th>correo</th><th>Celular</th><th>acciones</th>
             </tr>
                 <% while (metodos.next()){ %>
                     <tr>
@@ -32,5 +29,14 @@
                 <tr>
             </tr>
         </table>
+        <div>
+            <label>ID</label>
+            <input type="text" id="id_metodo" placeholder="Ingrese id del metodo para testear"/>
+        </div>
+        <div>
+            <button id="boton" name="boton">Enviar</button>
+        </div>
+        <div id="obtenido"></div>
+        <script src="js/codigo.js"></script>
     </body>
 </html>
