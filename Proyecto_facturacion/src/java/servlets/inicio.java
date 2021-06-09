@@ -39,14 +39,6 @@ public class inicio extends HttpServlet {
             "    <body>\n" +
             "        <h1>Prueba</h1>\n "+
                     "<table>\n" +
-"        <tr>\n" +
-"            <td>\n" +
-"                <form method=\"get\" action=\"index.jsp\">\n" +
-"                    <button type=\"submit\">Continue\n" +
-"                </form>\n" +
-"            </td>\n" +
-"        </tr>\n" +
-"    </table>" +
             "    </body>\n" +
             "</html>");
         /*try {

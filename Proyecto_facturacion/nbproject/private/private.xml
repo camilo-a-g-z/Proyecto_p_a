@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/CategoriaServer.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/web/index.jsp</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/web/js/codigo.js</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/EncoderDecoder/EncoderMetodo_pago.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/EncoderDecoder/EncoderNumero.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/servlets/inicio.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/EncoderDecoder/DecoderNumero.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/EncoderDecoder/DecoderMetodo_pago.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBMetodo_pago.java</file>
-            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/Metodo_pagoServer.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/ArticuloServer.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/Metodo_pago.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/Metodo_pagoServer.java</file>
         </group>
     </open-files>
 </project-private>
