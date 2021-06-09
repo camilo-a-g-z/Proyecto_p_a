@@ -56,4 +56,7 @@ public class DBCategoria {
             System.out.println(e);
         }
     }
+    public String getMensaje() {
+        return cn.getMensaje();
+    }
 }

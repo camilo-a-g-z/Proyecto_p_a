@@ -67,4 +67,7 @@ public class DBArticulo {
             System.out.println(e);
         }
     }
+    public String getMensaje() {
+        return cn.getMensaje();
+    }
 }

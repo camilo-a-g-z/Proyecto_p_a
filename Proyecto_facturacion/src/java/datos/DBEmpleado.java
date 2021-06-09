@@ -61,4 +61,7 @@ public class DBEmpleado {
             System.out.println(err);
         }
     }
+    public String getMensaje() {
+        return cn.getMensaje();
+    }
 }

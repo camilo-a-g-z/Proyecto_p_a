@@ -4,14 +4,21 @@
         <servlet-name>inicio</servlet-name>
         <servlet-class>servlets.inicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Empleado</servlet-name>
+        <servlet-class>servlets.Empleado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Empleado</servlet-name>
+        <url-pattern>/Empleado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>

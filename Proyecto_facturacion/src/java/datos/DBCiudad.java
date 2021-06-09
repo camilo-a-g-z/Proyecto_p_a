@@ -51,4 +51,7 @@ public class DBCiudad {
             System.out.println(e);
         }
     }
+    public String getMensaje() {
+        return cn.getMensaje();
+    }
 }
