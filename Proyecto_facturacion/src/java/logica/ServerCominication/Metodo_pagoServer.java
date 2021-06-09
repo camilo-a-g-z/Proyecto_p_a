@@ -44,10 +44,9 @@ public class Metodo_pagoServer {
         ResultSet res;
         try{
             res = metDB.getMetodo_pagoById(meto.getId_metodo_pago());
-            while(res.next()){
-                met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
-                met.setTipo(res.getString("tipo"));
-            }
+            res.next();
+            met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
+            met.setTipo(res.getString("tipo"));
         }catch(Exception e){
             System.out.println("Error en: "+e.getMessage());
         }finally{

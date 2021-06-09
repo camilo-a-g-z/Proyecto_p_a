@@ -19,7 +19,7 @@
     }
     function enviar(){
         var msg = {
-            id_metodo_pago:"1",
+            id_metodo_pago:id_metodo.value,
             tipo:"contado" 
         };
         ws.send(JSON.stringify(msg));

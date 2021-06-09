@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import datos.DBMetodo_pago;
@@ -34,7 +29,27 @@ public class inicio extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         DBMetodo_pago metDB = new DBMetodo_pago();
-        try {
+        out.print("<!DOCTYPE html>\n" +
+            "<html>\n" +
+            "    <head>\n" +
+            "        <title>Bienbenida</title>\n" +
+            "        <meta charset=\"UTF-8\">\n" +
+            "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+            "    </head>\n" +
+            "    <body>\n" +
+            "        <h1>Prueba</h1>\n "+
+                    "<table>\n" +
+"        <tr>\n" +
+"            <td>\n" +
+"                <form method=\"get\" action=\"index.jsp\">\n" +
+"                    <button type=\"submit\">Continue\n" +
+"                </form>\n" +
+"            </td>\n" +
+"        </tr>\n" +
+"    </table>" +
+            "    </body>\n" +
+            "</html>");
+        /*try {
             ResultSet res = metDB.getMetodos_pago();
             //se sube a la sesion los datos encontrados
             request.getSession().setAttribute("metodos", res);
@@ -54,7 +69,7 @@ public class inicio extends HttpServlet {
             
         }finally {            
             out.close();
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
