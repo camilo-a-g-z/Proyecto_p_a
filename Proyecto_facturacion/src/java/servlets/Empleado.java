@@ -35,18 +35,13 @@ public class Empleado extends HttpServlet {
             out.println("<html>");
             out.println("<body>");
             if(!res.next()){
-                out.println("<h1>Empleado no existe</h1>");
+                out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
+                out.println("<p style='color:red;'>Usuario inexistente!</p>");
             }else{
-                while(res.next()){
-                    out.println("<h1>Bienvenido"+request.getParameter("Nombre")+"</h1>");
-                }
+                out.println("<h1>Bienvenido"+request.getParameter("Nombre")+"</h1>");
             }
-            
             out.println("</body>");
             out.println("</html>");
-            //request.getSession().setAttribute("empleados", res);
-            //se envia al usuario al index
-            //response.sendRedirect("Empleado.jsp");
         }catch(Exception e){
             //en caso de que no se pueda establecer coneccion se muestra el error
             out.println("<html>");
@@ -55,34 +50,9 @@ public class Empleado extends HttpServlet {
             out.println("<h1>El error esta: "+empDB.getMensaje()+"</h1>");
             out.println("</body>");
             out.println("</html>");
-        }
-        /*try{
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Facturacion web</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Seleccione empleado: </h1>");
-            while (res.next()){
-                out.println(res.getString("nombre"));
-                out.println("<br>");
-            }
-            out.println("</body>");
-            out.println("</html>");
-        }catch(Exception e){
-            //en caso de que no se pueda establecer coneccion se muestra el error
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Inicio</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Error en esta parte " + e.toString() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            
         }finally {            
             out.close();
-        }*/
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
