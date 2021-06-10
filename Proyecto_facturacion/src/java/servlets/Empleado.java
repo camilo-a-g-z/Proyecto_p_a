@@ -31,20 +31,32 @@ public class Empleado extends HttpServlet {
         PrintWriter out = response.getWriter();
         ResultSet res = null;
         try {
-            res = empDB.getEmpleados();
+            res = empDB.geEmpleadoByNombre(request.getParameter("Nombre"));
+            out.println("<html>");
+            out.println("<body>");
+            if(!res.next()){
+                out.println("<h1>Empleado no existe</h1>");
+            }else{
+                while(res.next()){
+                    out.println("<h1>Bienvenido"+request.getParameter("Nombre")+"</h1>");
+                }
+            }
+            
+            out.println("</body>");
+            out.println("</html>");
+            //request.getSession().setAttribute("empleados", res);
+            //se envia al usuario al index
+            //response.sendRedirect("Empleado.jsp");
         }catch(Exception e){
             //en caso de que no se pueda establecer coneccion se muestra el error
             out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Error</title>");  
-            out.println("</head>");
             out.println("<body>");
             out.println("<h1>Error en esta parte " + e.toString() + "</h1>");
             out.println("<h1>El error esta: "+empDB.getMensaje()+"</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-        try{
+        /*try{
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Facturacion web</title>");            
@@ -70,7 +82,7 @@ public class Empleado extends HttpServlet {
             
         }finally {            
             out.close();
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
