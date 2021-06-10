@@ -38,7 +38,8 @@ public class Empleado extends HttpServlet {
                 out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
                 out.println("<p style='color:red;'>Usuario inexistente!</p>");
             }else{
-                out.println("<h1>Bienvenido"+request.getParameter("Nombre")+"</h1>");
+                out.println("<meta http-equiv='refresh' content='3;URL=Edit_admin.html'>");//redirects after 3 seconds
+                out.println("<p style='color:red;'>Bienvenido"+request.getParameter("Nombre")+"</p>");
             }
             out.println("</body>");
             out.println("</html>");
