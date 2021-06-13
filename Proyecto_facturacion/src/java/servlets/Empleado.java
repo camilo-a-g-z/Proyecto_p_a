@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author Camilo Garcia
  */
 public class Empleado extends HttpServlet {
@@ -27,13 +26,16 @@ public class Empleado extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //se crea conexion a base de datos de empleados
         DBEmpleado empDB = new DBEmpleado();
         PrintWriter out = response.getWriter();
         ResultSet res = null;
         try {
+            //se llama y guardan los datos recividos segun el parametro recivido
             res = empDB.geEmpleadoByNombre(request.getParameter("Nombre"));
             out.println("<html>");
             out.println("<body>");
+            //se consulta si la respuesta esta vacia
             if(!res.next()){
                 out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
                 out.println("<p style='color:red;'>Usuario inexistente!</p>");

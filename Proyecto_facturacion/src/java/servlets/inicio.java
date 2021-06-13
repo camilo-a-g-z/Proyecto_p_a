@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author Camilo Garcia
+ * Este servlet es empleado para diferentes testeos en las bases de datos y en el servidor
  */
 public class inicio extends HttpServlet {
 
@@ -28,6 +28,7 @@ public class inicio extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        //se crea conexion con base de datos
         DBMetodo_pago metDB = new DBMetodo_pago();
         out.print("<!DOCTYPE html>\n" +
             "<html>\n" +
