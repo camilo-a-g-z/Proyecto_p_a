@@ -1,6 +1,8 @@
 package logica.ServerCominication;
 
+import datos.DBArticulo;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.EncodeException;
@@ -36,6 +38,22 @@ public class ArticuloServer {
     
     @OnMessage
     public void mensaje(Articulo articulo) throws IOException, EncodeException{
-        conectados.get(i).getBasicRemote().sendObject(articulo);
+        DBArticulo artDB = new DBArticulo();
+        Articulo art = new Articulo();
+        try{
+            ResultSet res = artDB.getArticuloByNombre(articulo.getNombre());
+            if(!res.next()){
+                //conectados.get(i).getBasicRemote().sendObject(null);
+            }else{
+                art.setNombre(res.getString("nombre"));
+                art.setCant_stock(Double.parseDouble(res.getString("cant_stock")));
+                art.setDescripcion(res.getString("descripccion"));
+                art.setId_articulo(Integer.parseInt(res.getString("id_articulo")));
+                art.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
+                conectados.get(i).getBasicRemote().sendObject(art);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
