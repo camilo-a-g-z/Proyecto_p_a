@@ -43,7 +43,12 @@ public class ArticuloServer {
         try{
             ResultSet res = artDB.getArticuloByNombre(articulo.getNombre());
             if(!res.next()){
-                //conectados.get(i).getBasicRemote().sendObject(null);
+                art.setNombre("NE");
+                art.setCant_stock(0.0);
+                art.setDescripcion("NE");
+                art.setId_articulo(0);
+                art.setId_categoria(0);
+                conectados.get(i).getBasicRemote().sendObject(art);
             }else{
                 art.setNombre(res.getString("nombre"));
                 art.setCant_stock(Double.parseDouble(res.getString("cant_stock")));

@@ -20,7 +20,7 @@
         console.log('Desonectado..');
     }
     function enviar(){
-        info.innerHTML += 'Se esta buscando en base de datos';
+        info.innerHTML ='<br>'+ 'Se esta buscando en base de datos'+'<br>';
         //se crea variable para enviar a websocket
         var msg = {
             nombre:nombre.value,
@@ -36,6 +36,9 @@
     function onMessage(evt){
         var obj = JSON.parse(evt.data),
                 msg = 'El articulo: '+obj.nombre;
-        mensajes.innerHTML += '</br>'+msg;
+        if(obj.nombre === 'NE'){
+            msg = 'No existe elemento';
+        }
+        mensajes.innerHTML = '</br>'+ msg;
     }
 })(window, document, JSON);
