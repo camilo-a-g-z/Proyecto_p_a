@@ -21,16 +21,8 @@
     }
     function enviar(){
         info.innerHTML ='<br>'+ 'Se esta buscando en base de datos'+'<br>';
-        //se crea variable para enviar a websocket
-        var msg = {
-            nombre:nombre.value,
-            cant_stock:'0',
-            descripcion:' ',
-            id_articulo:'1',
-            id_categoria:'1'
-        };
-        //se parsea a un archivo JSON y se envia
-        ws.send(JSON.stringify(msg));
+
+        ws.send(nombre.value);
     }
     //funcion que recibe el mensaje por parte del servidor
     function onMessage(evt){

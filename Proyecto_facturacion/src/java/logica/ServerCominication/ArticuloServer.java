@@ -37,11 +37,11 @@ public class ArticuloServer {
     }
     
     @OnMessage
-    public void mensaje(Articulo articulo) throws IOException, EncodeException{
+    public void mensaje(String mens) throws IOException, EncodeException{
         DBArticulo artDB = new DBArticulo();
         Articulo art = new Articulo();
         try{
-            ResultSet res = artDB.getArticuloByNombre(articulo.getNombre());
+            ResultSet res = artDB.getArticuloByNombre(mens);
             if(!res.next()){
                 art.setNombre("NE");
                 art.setCant_stock(0.0);
