@@ -82,6 +82,15 @@ public class DBCliente {
             System.out.println(e);
         }
     }
+    public void eliminarCliente(int i) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from cliente where id_cliente="+i);
+            pstm.executeUpdate();
+    }
+    public void modifyCliente(Cliente c){
+        /*PreparedStatement pstm = cn.getConexion().prepareStatement("update cliente"
+                + "set  nombre='"+c.getNombre()+"', cant_stock="+a.getCant_stock()+", descripccion='"+a.getDescripcion()+"', id_categoria="+a.getId_categoria()+" where id_articulo="+a.getId_articulo());
+            pstm.executeUpdate();*/
+    }
     public String getMensaje() {
         return cn.getMensaje();
     }

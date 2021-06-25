@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBMetodo_pago;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -33,17 +34,17 @@ public class EditMetodo_pagoServer {
     }
     
     @OnMessage
-    public void mensaje(Metodo_pago met,String inst){
+    public void mensaje(Metodo_pago met,String inst) throws SQLException{
         DBMetodo_pago metDB = new DBMetodo_pago();
         switch(Integer.parseInt(inst)){
             case 1:
-                
+                metDB.modifyMetodo_pago(met);
                 break;
             case 2:
-                
+                metDB.insertarMetodo_pago(met);
                 break;
             case 3:
-                
+                metDB.eliminarMetodo_pago(met.getId_metodo_pago());
                 break;
         }
             
