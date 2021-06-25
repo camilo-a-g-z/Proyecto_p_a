@@ -16,10 +16,8 @@ import logica.EncoderDecoder.DecoderArticulo;
 import logica.EncoderDecoder.EncoderArticulo;
 
 /**
- *
  * @author Camilo Garcia
  */
-
 @ServerEndpoint(value="/articulo", encoders = {EncoderArticulo.class}, decoders = {DecoderArticulo.class})
 public class ArticuloServer {
     private static final List<Session> conectados = new ArrayList<>();
