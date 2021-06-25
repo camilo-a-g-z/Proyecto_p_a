@@ -38,10 +38,15 @@ public class Empleado extends HttpServlet {
             //se consulta si la respuesta esta vacia
             if(!res.next()){
                 out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
-                out.println("<p style='color:red;'>Usuario inexistente!</p>");
+                    out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
             }else{
-                out.println("<meta http-equiv='refresh' content='3;URL=Edit_admin.html'>");//redirects after 3 seconds
-                out.println("<p style='color:red;'>Bienvenido"+request.getParameter("Nombre")+"</p>");
+                if(res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))){
+                    out.println("<meta http-equiv='refresh' content='3;URL=Edit_admin.html'>");//redirects after 3 seconds
+                    out.println("<p style='color:red;'>Bienvenido"+request.getParameter("Nombre")+"</p>");
+                }else{
+                    out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
+                    out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
+                }
             }
             out.println("</body>");
             out.println("</html>");

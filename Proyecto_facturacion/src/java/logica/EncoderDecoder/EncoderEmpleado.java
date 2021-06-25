@@ -23,6 +23,7 @@ public class EncoderEmpleado implements Encoder.TextStream<Empleado>{
                 .add("nombre", object.getNombre())
                 .add("cedula", object.getCedula())
                 .add("id_ciudad", object.getId_ciudad())
+                .add("password", object.getPassword())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

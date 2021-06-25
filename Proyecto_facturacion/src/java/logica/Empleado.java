@@ -9,7 +9,14 @@ public class Empleado {
     private String nombre;
     private String cedula;
     private int id_ciudad;
+    private String password;
     //getters y seters
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public int getId_empleado() {
         return id_empleado;
     }
