@@ -21,7 +21,6 @@
     }
     function enviar(){
         info.innerHTML ='<br>'+ 'Se esta buscando en base de datos'+'<br>';
-
         ws.send(nombre.value);
     }
     //funcion que recibe el mensaje por parte del servidor

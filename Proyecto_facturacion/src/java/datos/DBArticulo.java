@@ -60,12 +60,20 @@ public class DBArticulo {
             pstm.setString(2, String.valueOf(a.getCant_stock()));
             pstm.setString(3, a.getDescripcion());
             pstm.setString(4, String.valueOf(a.getId_categoria()));
-            
-            
+ 
             pstm.executeUpdate();
         }catch (SQLException e){
             System.out.println(e);
         }
+    }
+    public void eliminarArticulo(int i) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from articulo where id_articulo="+i);
+            pstm.executeUpdate();
+    }
+    public void modifyArticulo(Articulo a) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update articulo"
+                + "set  nombre='"+a.getNombre()+"', cant_stock="+a.getCant_stock()+", descripccion='"+a.getDescripcion()+"', id_categoria="+a.getId_categoria()+" where id_articulo="+a.getId_articulo());
+            pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

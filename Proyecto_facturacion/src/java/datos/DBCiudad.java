@@ -51,6 +51,15 @@ public class DBCiudad {
             System.out.println(e);
         }
     }
+    public void eliminarCiudad(int i) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from ciudad where id_ciudad="+i);
+            pstm.executeUpdate();
+    }
+    public void modifyCiudad(Ciudad c) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update ciudad"
+                + "set  nombre='"+c.getNombre()+" where id_ciudad="+c.getId_ciudad());
+            pstm.executeUpdate();
+    }
     public String getMensaje() {
         return cn.getMensaje();
     }
