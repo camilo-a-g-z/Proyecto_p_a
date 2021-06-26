@@ -55,11 +55,11 @@ public class DBDetalle_fac {
             pstm.executeUpdate();
     }
     public void modifyDetalle_fac(Detalle_fac d) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement(d.getId_articulo()+
-                " where id_detalle_fac="+d.getId_detalle_fac()+"update detalle_fac"
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update detalle_fac"
                 + "set  cantidad="+d.getCantidad()+", total="+d.getTotal()+
                 ", descuento="+d.getDescuento()+", val_descuento="+d.getVal_descuento()+
-                ", id_factura="+d.getId_factura()+", id_articulo=");
+                ", id_factura="+d.getId_factura()+", id_articulo="+d.getId_articulo()+
+                " where id_detalle_fac="+d.getId_detalle_fac());
             pstm.executeUpdate();
     }
     public String getMensaje() {
