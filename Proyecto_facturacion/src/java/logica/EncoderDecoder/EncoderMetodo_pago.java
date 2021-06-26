@@ -21,6 +21,7 @@ public class EncoderMetodo_pago implements Encoder.TextStream<Metodo_pago>{
         JsonObject json = Json.createObjectBuilder()
                 .add("id_metodo_pago", object.getId_metodo_pago())
                 .add("tipo", object.getTipo())
+                .add("mensaje", object.getMensaje())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

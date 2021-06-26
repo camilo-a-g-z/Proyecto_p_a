@@ -28,6 +28,7 @@ public class DecoderFactura implements Decoder.TextStream<Factura>{
             factura.setTotal(Double.parseDouble(json.getString("total")));
             factura.setId_cliente(Integer.parseInt(json.getString("id_cliente")));
             factura.setId_metodo_pago(Integer.parseInt(json.getString("id_metodo_pago")));
+            factura.setMensaje(json.getString("mensaje"));
         }
         return factura;
     }

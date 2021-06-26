@@ -26,6 +26,7 @@ public class EncoderFactura implements Encoder.TextStream<Factura>{
                 .add("total", object.getTotal())
                 .add("id_cliente", object.getId_cliente())
                 .add("id_metodo_pago", object.getId_metodo_pago())
+                .add("mensaje", object.getMensaje())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

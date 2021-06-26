@@ -26,6 +26,7 @@ public class DecoderArticulo implements Decoder.TextStream<Articulo>{
             articulo.setCant_stock(Double.parseDouble(json.getString("cant_stock")));
             articulo.setDescripcion(json.getString("descripcion"));
             articulo.setId_categoria(Integer.parseInt(json.getString("id_categoria")));
+            articulo.setMensaje(json.getString("mensaje"));
         }
         return articulo;
     }

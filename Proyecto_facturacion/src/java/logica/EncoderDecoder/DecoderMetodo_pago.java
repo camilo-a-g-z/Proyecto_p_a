@@ -23,6 +23,7 @@ public class DecoderMetodo_pago implements Decoder.TextStream<Metodo_pago>{
             JsonObject json = jsonReader.readObject();
             metodo_pago.setId_metodo_pago(Integer.parseInt(json.getString("id_metodo_pago")));
             metodo_pago.setTipo(json.getString("tipo"));
+            metodo_pago.setMensaje(json.getString("mensaje"));
         }
         return metodo_pago;
     }

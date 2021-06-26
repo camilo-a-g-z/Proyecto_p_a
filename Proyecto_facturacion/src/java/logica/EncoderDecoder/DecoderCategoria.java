@@ -23,6 +23,7 @@ public class DecoderCategoria implements Decoder.TextStream<Categoria>{
             categoria.setId_categoria(Integer.parseInt(json.getString("id_categoria")));
             categoria.setNombre(json.getString("nombre"));
             categoria.setDescripcion(json.getString("descripcion"));
+            categoria.setMensaje(json.getString("mensaje"));
         }
         return categoria;
     }

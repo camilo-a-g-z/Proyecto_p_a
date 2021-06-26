@@ -26,6 +26,7 @@ public class EncoderDetalle_fac implements Encoder.TextStream<Detalle_fac>{
                 .add("val_descuento", object.getVal_descuento())
                 .add("id_factura", object.getId_factura())
                 .add("id_articulo", object.getId_articulo())
+                .add("mensaje", object.getMensaje())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

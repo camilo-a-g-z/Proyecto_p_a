@@ -21,6 +21,7 @@ public class EncoderCiudad implements Encoder.TextStream<Ciudad>{
         JsonObject json = Json.createObjectBuilder()
                 .add("id_ciudad", object.getId_ciudad())
                 .add("nombre", object.getId_ciudad())
+                .add("mensaje", object.getMensaje())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

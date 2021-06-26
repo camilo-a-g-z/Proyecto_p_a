@@ -28,6 +28,7 @@ public class DecoderDetalle_fac implements Decoder.TextStream<Detalle_fac>{
             detalle_fac.setVal_descuento(Double.parseDouble(json.getString("val_descuento")));
             detalle_fac.setId_factura(Integer.parseInt(json.getString("id_factura")));
             detalle_fac.setId_articulo(Integer.parseInt(json.getString("id_articulo")));
+            detalle_fac.setMensaje(json.getString("mensaje"));
         }
         return detalle_fac;
     }

@@ -24,6 +24,7 @@ public class EncoderArticulo implements Encoder.TextStream<Articulo>{
                 .add("cant_stock", object.getCant_stock())
                 .add("descripcion", object.getDescripcion())
                 .add("id_categoria", object.getId_categoria())
+                .add("mensaje", object.getMensaje())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

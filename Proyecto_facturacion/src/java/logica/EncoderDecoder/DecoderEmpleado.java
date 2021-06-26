@@ -26,6 +26,7 @@ public class DecoderEmpleado implements Decoder.TextStream<Empleado>{
             empleado.setCedula(json.getString("cedula"));
             empleado.setId_ciudad(Integer.parseInt(json.getString("id_ciudad")));
             empleado.setPassword(json.getString("password"));
+            empleado.setMensaje(json.getString("mensaje"));
         }
         return empleado;
     }
