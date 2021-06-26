@@ -19,7 +19,7 @@ import logica.EncoderDecoder.EncoderArticulo;
  */
 @ServerEndpoint(value="/modifyArticulo", encoders= {EncoderArticulo.class}, decoders ={DecoderArticulo.class})
 public class EditArticuloServer {
-    private static final List<Session> conectados = new ArrayList<>();
+    /*private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -50,5 +50,5 @@ public class EditArticuloServer {
                 artDB.eliminarArticulo(art.getId_articulo());
                 break;
         }
-    }
+    }*/
 }

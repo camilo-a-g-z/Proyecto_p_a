@@ -19,7 +19,7 @@ import logica.EncoderDecoder.EncoderCiudad;
  */
 @ServerEndpoint(value="/modifyCiudad", encoders= {EncoderCiudad.class}, decoders = {DecoderCiudad.class})
 public class EditCiudadServer {
-    private static final List<Session> conectados = new ArrayList<>();
+    /*private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -47,5 +47,5 @@ public class EditCiudadServer {
                 ciuDB.eliminarCiudad(ciu.getId_ciudad());
                 break;
         }
-    }
+    }*/
 }

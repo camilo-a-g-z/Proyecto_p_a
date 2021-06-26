@@ -66,6 +66,19 @@ public class DBEmpleado {
             System.out.println(err);
         }
     }
+    public void eliminarEmpleado(int i) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from empleado where id_empleado="+i);
+            pstm.executeUpdate();
+    }
+    public void modifyEmpleado(Empleado e) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update empleado"
+                + "set  nombre='"+e.getNombre()
+                +"', cedula="+e.getCedula()
+                +", id_ciudad="+e.getId_ciudad()
+                +", password='"+e.getPassword()
+                +"' where id_empleado="+e.getId_empleado());
+            pstm.executeUpdate();
+    }
     public String getMensaje() {
         return cn.getMensaje();
     }

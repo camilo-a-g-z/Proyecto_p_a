@@ -19,7 +19,7 @@ import logica.EncoderDecoder.EncoderCategoria;
  */
 @ServerEndpoint(value="/modifyCategoria", encoders = {EncoderCategoria.class}, decoders = {DecoderCategoria.class})
 public class EditCategoriaServer {
-    private static final List<Session> conectados = new ArrayList<>();
+    /*private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -47,5 +47,5 @@ public class EditCategoriaServer {
                 catDB.eliminarCategoria(cat.getId_categoria());
                 break;
         }
-    }
+    }*/
 }

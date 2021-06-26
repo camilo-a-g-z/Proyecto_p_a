@@ -19,7 +19,7 @@ import logica.Metodo_pago;
  */
 @ServerEndpoint(value="/modifyMP", encoders= {EncoderMetodo_pago.class}, decoders = {DecoderMetodo_pago.class})
 public class EditMetodo_pagoServer {
-    private static final List<Session> conectados = new ArrayList<>();
+    /*private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -48,5 +48,5 @@ public class EditMetodo_pagoServer {
                 break;
         }
             
-    }
+    }*/
 }

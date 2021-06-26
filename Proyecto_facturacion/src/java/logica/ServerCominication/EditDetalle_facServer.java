@@ -17,9 +17,9 @@ import logica.EncoderDecoder.EncoderDetalle_fac;
  *
  * @author Camilo Garcia
  */
-@ServerEndpoint(value="/modifyDetalle_fac", encoders= {EncoderDetalle_fac.class}, decoders={DecoderDetalle_fac.class})
+//@ServerEndpoint(value="/modifyDetalle_fac", encoders= {EncoderDetalle_fac.class}, decoders={DecoderDetalle_fac.class})
 public class EditDetalle_facServer {
-    private static final List<Session> conectados = new ArrayList<>();
+    /*private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -47,5 +47,5 @@ public class EditDetalle_facServer {
                 detDB.eliminarDetalle_fac(det.getId_detalle_fac());
                 break;
         }
-    }
+    }*/
 }

@@ -19,7 +19,7 @@ import logica.EncoderDecoder.EncoderCliente;
  */
 @ServerEndpoint(value="/modifyCliente", encoders= {EncoderCliente.class}, decoders= {DecoderCliente.class})
 public class EditClienteServer {
-    private static final List<Session> conectados = new ArrayList<>();
+    /*private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -47,6 +47,6 @@ public class EditClienteServer {
                 cliDB.eliminarCliente(cli.getId_cliente());
                 break;
         }
-    }
+    }*/
     
 }
