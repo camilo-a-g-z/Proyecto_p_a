@@ -12,7 +12,19 @@ public class Detalle_fac {
     private Double val_descuento;
     private int id_factura;
     private int id_articulo;
+    private String mensaje;
+
+    public Detalle_fac() {
+        mensaje="0";
+    }
+    
     //setters y getters
+    public String getMensaje() {
+        return mensaje;
+    }
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     public int getId_detalle_fac() {
         return id_detalle_fac;
     }

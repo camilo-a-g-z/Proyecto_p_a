@@ -10,7 +10,19 @@ public class Articulo {
     private Double cant_stock;
     private String descripcion;
     private int id_categoria;
+    private String mensaje;
+
+    public Articulo() {
+        mensaje="0";
+    }
+    
     //setters y getters
+    public String getMensaje() {
+        return mensaje;
+    }
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     public int getId_articulo() {
         return id_articulo;
     }

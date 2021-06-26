@@ -13,16 +13,25 @@ public class Cliente {
     private String cedula;
     private int id_ciudad;
     private String password;
-    //setters y getters
+    private String mensaje;
 
+    public Cliente() {
+        mensaje="0";
+    }
+    
+    //setters y getters
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-    
+    public String getMensaje() {
+        return mensaje;
+    }
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     public int getId_cliente() {
         return id_cliente;
     }

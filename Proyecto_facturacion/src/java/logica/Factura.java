@@ -12,7 +12,19 @@ public class Factura {
     private Double total;
     private int id_cliente;
     private int id_metodo_pago;
+    private String mensaje;
+
+    public Factura() {
+        mensaje="0";
+    }
+    
     //getters y setters
+    public String getMensaje() {
+        return mensaje;
+    }
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     public int getId_factura() {
         return id_factura;
     }

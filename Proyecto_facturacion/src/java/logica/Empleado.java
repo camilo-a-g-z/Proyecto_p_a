@@ -10,7 +10,19 @@ public class Empleado {
     private String cedula;
     private int id_ciudad;
     private String password;
+    private String mensaje;
+
+    public Empleado() {
+        mensaje = "0";
+    }
+    
     //getters y seters
+    public String getMensaje() {
+        return mensaje;
+    }
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     public String getPassword() {
         return password;
     }

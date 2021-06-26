@@ -19,7 +19,7 @@ import logica.EncoderDecoder.EncoderArticulo;
  */
 @ServerEndpoint(value="/modifyArticulo", encoders= {EncoderArticulo.class}, decoders ={DecoderArticulo.class})
 public class EditArticuloServer {
-    /*private static final List<Session> conectados = new ArrayList<>();
+    private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -33,9 +33,9 @@ public class EditArticuloServer {
         conectados.remove(sesion);
     }
     
-    @OnMessage
-    public void mensaje(Articulo art, String inst) throws SQLException{
-        DBArticulo artDB = new DBArticulo();
+   @OnMessage
+    public void mensaje(Articulo art) throws SQLException{
+        /*DBArticulo artDB = new DBArticulo();
         switch(Integer.parseInt(inst)){
             case 1:
                 //en caso de editar
@@ -49,6 +49,6 @@ public class EditArticuloServer {
                 //en caso de eliminar
                 artDB.eliminarArticulo(art.getId_articulo());
                 break;
-        }
-    }*/
+        }*/
+    }
 }

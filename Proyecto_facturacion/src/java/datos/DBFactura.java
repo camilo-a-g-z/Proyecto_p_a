@@ -64,6 +64,21 @@ public class DBFactura {
             System.out.println(e);
         }
     }
+    public void eliminarFactura(int i) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from factura where id_factura="+i);
+            pstm.executeUpdate();
+    }
+    public void modifyFactura(Factura f) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update factura"
+                + "set  fecha_fac='"+f.getFecha_fac()
+                +"', val_iva="+f.getVal_iva()
+                +", val_sub_total="+f.getVal_sub_total()
+                +"', total="+f.getTotal()
+                +", id_cliente="+f.getId_cliente()
+                +", id_metodo_pago="+f.getId_metodo_pago()
+                +" where id_factura="+f.getId_factura());
+            pstm.executeUpdate();
+    }
     public String getMensaje() {
         return cn.getMensaje();
     }

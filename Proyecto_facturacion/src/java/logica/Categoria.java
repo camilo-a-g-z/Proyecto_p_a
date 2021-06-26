@@ -8,7 +8,19 @@ public class Categoria {
     private int id_categoria;
     private String nombre;
     private String descripcion;
+    private String mensaje;
+
+    public Categoria() {
+    mensaje = "0";
+    }
+    
     //getters y setters
+    public String getMensaje() {
+        return mensaje;
+    }
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     public int getId_categoria() {
         return id_categoria;
     }
