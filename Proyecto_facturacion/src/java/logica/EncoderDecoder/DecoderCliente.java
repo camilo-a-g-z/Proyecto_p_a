@@ -29,6 +29,7 @@ public class DecoderCliente implements Decoder.TextStream<Cliente>{
             cliente.setCelular(Double.parseDouble(json.getString("celular")));
             cliente.setCedula(json.getString("cedula"));
             cliente.setId_ciudad(Integer.parseInt(json.getString("id_ciudad")));
+            cliente.setPassword(json.getString("password"));
         }
         return cliente;
     }

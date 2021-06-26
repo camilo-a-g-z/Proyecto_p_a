@@ -23,7 +23,8 @@ public class DBCliente {
                 + "direccion, "
                 + "celular, "
                 + "cedula, "
-                + "id_ciudad "
+                + "id_ciudad,"
+                + "password "
                 + "FROM cliente "
                 + "WHERE id_cliente = "+id);
         ResultSet res = pstm.executeQuery();
@@ -38,7 +39,8 @@ public class DBCliente {
                 + "direccion, "
                 + "celular, "
                 + "cedula, "
-                + "id_ciudad "
+                + "id_ciudad,"
+                + "password "
                 + "FROM cliente "
                 + "WHERE nombre = "+"\""+nombre+"\"");
         ResultSet res = pstm.executeQuery();
@@ -52,7 +54,8 @@ public class DBCliente {
                 + "direccion, "
                 + "celular, "
                 + "cedula, "
-                + "id_ciudad "
+                + "id_ciudad,"
+                + "password "
                 + "FROM cliente "
                 + "ORDER BY nombre ");
         ResultSet res = pstm.executeQuery();
@@ -66,8 +69,9 @@ public class DBCliente {
                 + "direccion, "
                 + "celular, "
                 + "cedula, "
-                + "id_ciudad) "
-                + "values(?,?,?,?,?,?,?)");
+                + "id_ciudad,"
+                    + "password) "
+                + "values(?,?,?,?,?,?,?,?)");
             pstm.setString(1, c.getNombre());
             pstm.setString(2, c.getApellido());
             pstm.setString(3, c.getCorreo());
@@ -75,8 +79,8 @@ public class DBCliente {
             pstm.setString(5, String.valueOf(c.getCelular()));
             pstm.setString(6, c.getCedula());
             pstm.setString(7, String.valueOf(c.getId_ciudad()));
-            
-            
+            pstm.setString(8, c.getPassword());
+
             pstm.executeUpdate();
         }catch (SQLException e){
             System.out.println(e);
@@ -86,10 +90,12 @@ public class DBCliente {
         PreparedStatement pstm = cn.getConexion().prepareStatement("delete from cliente where id_cliente="+i);
             pstm.executeUpdate();
     }
-    public void modifyCliente(Cliente c){
-        /*PreparedStatement pstm = cn.getConexion().prepareStatement("update cliente"
-                + "set  nombre='"+c.getNombre()+"', cant_stock="+a.getCant_stock()+", descripccion='"+a.getDescripcion()+"', id_categoria="+a.getId_categoria()+" where id_articulo="+a.getId_articulo());
-            pstm.executeUpdate();*/
+    public void modifyCliente(Cliente c) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update cliente"
+                + "set  nombre= '"+c.getNombre()+"', apellido= '"+c.getApellido()+"' ,"
+                + "correo='"+c.getCorreo()+"', direccion= '"+c.getDireccion()+"', celular="+c.getCelular()+""
+                + ", cedula="+c.getCedula()+", id_ciudad="+c.getId_ciudad()+", password= '"+c.getPassword()+"' where id_articulo="+c.getId_cliente());
+            pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

@@ -27,6 +27,7 @@ public class EncoderCliente implements Encoder.TextStream<Cliente>{
                 .add("celular", object.getCelular())
                 .add("cedula", object.getCedula())
                 .add("id_ciudad", object.getId_ciudad())
+                .add("password", object.getPassword())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){
             jsonWriter.writeObject(json);

@@ -12,7 +12,17 @@ public class Cliente {
     private Double celular;
     private String cedula;
     private int id_ciudad;
+    private String password;
     //setters y getters
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public int getId_cliente() {
         return id_cliente;
     }

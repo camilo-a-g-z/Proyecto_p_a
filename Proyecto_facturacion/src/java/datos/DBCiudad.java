@@ -57,7 +57,7 @@ public class DBCiudad {
     }
     public void modifyCiudad(Ciudad c) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("update ciudad"
-                + "set  nombre='"+c.getNombre()+" where id_ciudad="+c.getId_ciudad());
+                + "set  nombre='"+c.getNombre()+"' where id_ciudad="+c.getId_ciudad());
             pstm.executeUpdate();
     }
     public String getMensaje() {

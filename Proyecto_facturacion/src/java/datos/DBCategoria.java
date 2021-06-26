@@ -62,7 +62,7 @@ public class DBCategoria {
     }
     public void modifyCategoria(Categoria c) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("update categoria"
-                + "set  nombre='"+c.getNombre()+", descripcion='"+c.getDescripcion()+" where id_categoria="+c.getId_categoria());
+                + "set  nombre='"+c.getNombre()+", descripcion='"+c.getDescripcion()+"' where id_categoria="+c.getId_categoria());
             pstm.executeUpdate();
     }
     public String getMensaje() {
