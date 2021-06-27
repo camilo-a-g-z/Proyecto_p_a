@@ -20,7 +20,7 @@ public class EncoderCiudad implements Encoder.TextStream<Ciudad>{
     public void encode(Ciudad object, Writer writer) throws EncodeException, IOException {
         JsonObject json = Json.createObjectBuilder()
                 .add("id_ciudad", object.getId_ciudad())
-                .add("nombre", object.getId_ciudad())
+                .add("nombre", object.getNombre())
                 .add("mensaje", object.getMensaje())
                 .build();
         try (JsonWriter jsonWriter = Json.createWriter(writer)){

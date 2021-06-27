@@ -37,7 +37,7 @@ public class CiudadServer {
     public void mensaje(String mens){
         DBCiudad ciuDB = new DBCiudad();
         Ciudad ciu = new Ciudad();
-        try{
+        /*try{
             ResultSet res = ciuDB.getCiudadByNombre(mens);
             if(!res.next()){
                 ciu.setNombre("NE");
@@ -49,6 +49,6 @@ public class CiudadServer {
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }

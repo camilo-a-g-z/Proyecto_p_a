@@ -1,11 +1,9 @@
 package logica.ServerCominication;
 
 import datos.DBCiudad;
-import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -19,8 +17,8 @@ import logica.EncoderDecoder.EncoderCiudad;
  *
  * @author Camilo Garcia
  */
-@ServerEndpoint(value="/modifyCiudad", encoders= {EncoderCiudad.class}, decoders = {DecoderCiudad.class})
-public class EditCiudadServer {
+@ServerEndpoint(value="/testeo", encoders = {EncoderCiudad.class}, decoders = {DecoderCiudad.class})
+public class TesteoServer {
     private static final List<Session> conectados = new ArrayList<>();
     int i;
     
@@ -36,7 +34,7 @@ public class EditCiudadServer {
     }
     
     @OnMessage
-    public void mensaje(Ciudad ciu) {
+    public void mensaje(Ciudad ciu){
         DBCiudad ciuDB = new DBCiudad();
         try{
             switch(Integer.parseInt(ciu.getMensaje())){

@@ -21,7 +21,7 @@ public class DecoderCiudad implements Decoder.TextStream<Ciudad>{
         Ciudad ciudad = new Ciudad();
         try(JsonReader jsonReader = Json.createReader(reader)){
             JsonObject json = jsonReader.readObject();
-            ciudad.setId_ciudad(Integer.parseInt("id_ciudad"));
+            ciudad.setId_ciudad(Integer.parseInt(json.getString("id_ciudad")));
             ciudad.setNombre(json.getString("nombre"));
             ciudad.setMensaje(json.getString("mensaje"));
         }

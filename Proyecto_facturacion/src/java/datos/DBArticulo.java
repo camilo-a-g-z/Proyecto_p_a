@@ -56,11 +56,12 @@ public class DBArticulo {
                     + "descripccion, "
                     + "id_categoria) "
                     + "values(?,?,?,?)");
-            pstm.setString(1, a.getNombre());
-            pstm.setDouble(2, a.getCant_stock());
-            pstm.setString(3, a.getDescripcion());
-            pstm.setInt(4, a.getId_categoria());
- 
+            //pstm.setString(1, a.getNombre());
+            //pstm.setDouble(2, a.getCant_stock());
+            //pstm.setString(3, a.getDescripcion());
+            //pstm.setInt(4, a.getId_categoria());
+            System.out.println(a.getId_categoria());
+            //se envia a base de datos
             pstm.executeUpdate();
         }catch (SQLException e){
             System.out.println(e);

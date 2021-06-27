@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBArticulo;
+import datos.DBCiudad;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import logica.Articulo;
+import logica.Ciudad;
 import logica.EncoderDecoder.DecoderArticulo;
 import logica.EncoderDecoder.EncoderArticulo;
 
@@ -34,10 +36,14 @@ public class EditArticuloServer {
     }
     
    @OnMessage
-    public void mensaje(Articulo art) throws SQLException{
-        //DBArticulo artDB = new DBArticulo();
-        //artDB.insertarArticulo(art);
-        /*switch(Integer.parseInt(art.getMensaje())){
+    public void mensaje(Articulo art) {
+        Ciudad ciu = new Ciudad();
+        DBCiudad ciuDB = new DBCiudad();
+        ciu.setNombre("Socorro");
+        ciuDB.insertarCiudad(ciu);
+        /*DBArticulo artDB = new DBArticulo();
+        artDB.insertarArticulo(art);
+        switch(Integer.parseInt(art.getMensaje())){
             case 1:
                 //en caso de editar
                 artDB.modifyArticulo(art);
