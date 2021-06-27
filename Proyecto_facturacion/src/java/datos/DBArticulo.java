@@ -51,15 +51,15 @@ public class DBArticulo {
     }
     public void insertarArticulo(Articulo a){
         try{
-            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into articulo(nombre, "
+            PreparedStatement pstm = cn.getConexion().prepareStatement("insert into articulo (nombre, "
                     + "cant_stock, "
                     + "descripccion, "
                     + "id_categoria) "
                     + "values(?,?,?,?)");
             pstm.setString(1, a.getNombre());
-            pstm.setString(2, String.valueOf(a.getCant_stock()));
+            pstm.setDouble(2, a.getCant_stock());
             pstm.setString(3, a.getDescripcion());
-            pstm.setString(4, String.valueOf(a.getId_categoria()));
+            pstm.setInt(4, a.getId_categoria());
  
             pstm.executeUpdate();
         }catch (SQLException e){

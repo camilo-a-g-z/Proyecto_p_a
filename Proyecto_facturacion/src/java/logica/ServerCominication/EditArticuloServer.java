@@ -35,8 +35,9 @@ public class EditArticuloServer {
     
    @OnMessage
     public void mensaje(Articulo art) throws SQLException{
-        DBArticulo artDB = new DBArticulo();
-        switch(Integer.parseInt(art.getMensaje())){
+        //DBArticulo artDB = new DBArticulo();
+        //artDB.insertarArticulo(art);
+        /*switch(Integer.parseInt(art.getMensaje())){
             case 1:
                 //en caso de editar
                 artDB.modifyArticulo(art);
@@ -49,6 +50,6 @@ public class EditArticuloServer {
                 //en caso de eliminar
                 artDB.eliminarArticulo(art.getId_articulo());
                 break;
-        }
+        }*/
     }
 }
