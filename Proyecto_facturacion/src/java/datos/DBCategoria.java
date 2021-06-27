@@ -57,13 +57,16 @@ public class DBCategoria {
         }
     }
     public void eliminarCategoria(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from categoria where id_categoria="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from categoria where id_categoria = "+i);
             pstm.executeUpdate();
     }
     public void modifyCategoria(Categoria c) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update categoria"
-                + "set  nombre='"+c.getNombre()+", descripcion='"+c.getDescripcion()+"' where id_categoria="+c.getId_categoria());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update categoria "
+                + "set  nombre = ? , descripcion = ? where id_categoria = ?");
+        pstm.setString(1, c.getNombre());
+        pstm.setString(2, c.getDescripcion());
+        pstm.setInt(3, c.getId_categoria());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

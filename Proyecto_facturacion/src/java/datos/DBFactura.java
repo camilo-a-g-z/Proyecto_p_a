@@ -65,19 +65,21 @@ public class DBFactura {
         }
     }
     public void eliminarFactura(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from factura where id_factura="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from factura where id_factura = "+i);
             pstm.executeUpdate();
     }
     public void modifyFactura(Factura f) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update factura"
-                + "set  fecha_fac='"+f.getFecha_fac()
-                +"', val_iva="+f.getVal_iva()
-                +", val_sub_total="+f.getVal_sub_total()
-                +"', total="+f.getTotal()
-                +", id_cliente="+f.getId_cliente()
-                +", id_metodo_pago="+f.getId_metodo_pago()
-                +" where id_factura="+f.getId_factura());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update factura "
+                +"set  fecha_fac = ? , val_iva = ? , val_sub_total = ? , total = ? , id_cliente = ? "
+                + ", id_metodo_pago = ? where id_factura = ?");
+        pstm.setString(1, f.getFecha_fac());
+        pstm.setDouble(2, f.getVal_iva());
+        pstm.setDouble(3, f.getVal_sub_total());
+        pstm.setDouble(4, f.getTotal());
+        pstm.setInt(5, f.getId_cliente());
+        pstm.setInt(6, f.getId_metodo_pago());
+        pstm.setInt(7, f.getId_factura());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

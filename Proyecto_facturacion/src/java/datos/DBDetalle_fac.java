@@ -51,16 +51,21 @@ public class DBDetalle_fac {
         }
     }
     public void eliminarDetalle_fac(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from detalle_fac where id_detalle_fac="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from detalle_fac where id_detalle_fac = "+i);
             pstm.executeUpdate();
     }
     public void modifyDetalle_fac(Detalle_fac d) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update detalle_fac"
-                + "set  cantidad="+d.getCantidad()+", total="+d.getTotal()+
-                ", descuento="+d.getDescuento()+", val_descuento="+d.getVal_descuento()+
-                ", id_factura="+d.getId_factura()+", id_articulo="+d.getId_articulo()+
-                " where id_detalle_fac="+d.getId_detalle_fac());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update detalle_fac "
+                + "set  cantidad = ? , total = ? , descuento = ? , val_descuento = ? "
+                + ", id_factura = ? , id_articulo = ?  where id_detalle_fac = ?");
+        pstm.setInt(1, d.getCantidad());
+        pstm.setDouble(2, d.getTotal());
+        pstm.setFloat(3, d.getDescuento());
+        pstm.setDouble(4, d.getVal_descuento());
+        pstm.setInt(5, d.getId_factura());
+        pstm.setInt(6, d.getId_articulo());
+        pstm.setInt(7, d.getId_detalle_fac());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

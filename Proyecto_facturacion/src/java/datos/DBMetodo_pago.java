@@ -52,13 +52,15 @@ public class DBMetodo_pago {
         }
     }
     public void eliminarMetodo_pago(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from metodo_pago where id_metodo_pago="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from metodo_pago where id_metodo_pago = "+i);
             pstm.executeUpdate();
     }
     public void modifyMetodo_pago(Metodo_pago m) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update metodo_pago"
-                + "set  tipo='"+m.getTipo()+"' where id_metodo_pago="+m.getId_metodo_pago());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update metodo_pago "
+                + "set  tipo = ? where id_metodo_pago = ");
+        pstm.setString(1, m.getTipo());
+        pstm.setInt(2, m.getId_metodo_pago());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

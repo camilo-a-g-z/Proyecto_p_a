@@ -52,13 +52,15 @@ public class DBCiudad {
         }
     }
     public void eliminarCiudad(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from ciudad where id_ciudad="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from ciudad where id_ciudad = "+i);
             pstm.executeUpdate();
     }
     public void modifyCiudad(Ciudad c) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update ciudad"
-                + "set  nombre='"+c.getNombre()+"' where id_ciudad="+c.getId_ciudad());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update ciudad "
+                + "set  nombre = ? where id_ciudad = ?");
+        pstm.setString(1, c.getNombre());
+        pstm.setInt(2, c.getId_ciudad());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

@@ -67,17 +67,18 @@ public class DBEmpleado {
         }
     }
     public void eliminarEmpleado(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from empleado where id_empleado="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from empleado where id_empleado = "+i);
             pstm.executeUpdate();
     }
     public void modifyEmpleado(Empleado e) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update empleado"
-                + "set  nombre='"+e.getNombre()
-                +"', cedula="+e.getCedula()
-                +", id_ciudad="+e.getId_ciudad()
-                +", password='"+e.getPassword()
-                +"' where id_empleado="+e.getId_empleado());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update empleado "
+                + "set  nombre = ? , cedula = ? , id_ciudad = ? , password = ? where id_empleado = ?");
+        pstm.setString(1, e.getNombre());
+        pstm.setString(2, e.getCedula());
+        pstm.setInt(3, e.getId_ciudad());
+        pstm.setString(4, e.getPassword());
+        pstm.setInt(5, e.getId_empleado());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

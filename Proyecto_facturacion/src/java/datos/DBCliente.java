@@ -70,7 +70,7 @@ public class DBCliente {
                 + "celular, "
                 + "cedula, "
                 + "id_ciudad,"
-                    + "password) "
+                + "password) "
                 + "values(?,?,?,?,?,?,?,?)");
             pstm.setString(1, c.getNombre());
             pstm.setString(2, c.getApellido());
@@ -87,15 +87,24 @@ public class DBCliente {
         }
     }
     public void eliminarCliente(int i) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from cliente where id_cliente="+i);
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from cliente where id_cliente = "+i);
             pstm.executeUpdate();
     }
     public void modifyCliente(Cliente c) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update cliente"
-                + "set  nombre= '"+c.getNombre()+"', apellido= '"+c.getApellido()+"' ,"
-                + "correo='"+c.getCorreo()+"', direccion= '"+c.getDireccion()+"', celular="+c.getCelular()+""
-                + ", cedula="+c.getCedula()+", id_ciudad="+c.getId_ciudad()+", password= '"+c.getPassword()+"' where id_cliente="+c.getId_cliente());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update cliente "
+                + "set  nombre = ? , apellido = ? ,"
+                + "correo = ? , direccion= ? , celular = ? "
+                + ", cedula = ? , id_ciudad = ? , password = ? where id_cliente = ?");
+        pstm.setString(1, c.getNombre());
+        pstm.setString(2, c.getApellido());
+        pstm.setString(3, c.getCorreo());
+        pstm.setString(4, c.getDireccion());
+        pstm.setDouble(5, c.getCelular());
+        pstm.setString(6, c.getCedula());
+        pstm.setInt(7, c.getId_ciudad());
+        pstm.setString(8, c.getPassword());
+        pstm.setInt(9, c.getId_cliente());
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();
