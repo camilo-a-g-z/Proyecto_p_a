@@ -1,5 +1,6 @@
 package logica.ServerCominication;
 
+import datos.DBArticulo;
 import datos.DBCiudad;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -9,15 +10,18 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import logica.Articulo;
 import logica.Ciudad;
+import logica.EncoderDecoder.DecoderArticulo;
 import logica.EncoderDecoder.DecoderCiudad;
+import logica.EncoderDecoder.EncoderArticulo;
 import logica.EncoderDecoder.EncoderCiudad;
 
 /**
  *
  * @author Camilo Garcia
  */
-@ServerEndpoint(value="/testeo", encoders = {EncoderCiudad.class}, decoders = {DecoderCiudad.class})
+@ServerEndpoint(value="/testeo", encoders = {EncoderArticulo.class}, decoders = {DecoderArticulo.class})
 public class TesteoServer {
     private static final List<Session> conectados = new ArrayList<>();
     int i;
@@ -34,18 +38,18 @@ public class TesteoServer {
     }
     
     @OnMessage
-    public void mensaje(Ciudad ciu){
-        DBCiudad ciuDB = new DBCiudad();
+    public void mensaje(Articulo art){
+        DBArticulo artDB = new DBArticulo();
         try{
-            switch(Integer.parseInt(ciu.getMensaje())){
+            switch(Integer.parseInt(art.getMensaje())){
                 case 1:
-                    ciuDB.modifyCiudad(ciu);
+                    artDB.modifyArticulo(art);
                     break;
                 case 2:
-                    ciuDB.insertarCiudad(ciu);
+                    artDB.insertarArticulo(art);
                     break;
                 case 3:
-                    ciuDB.eliminarCiudad(ciu.getId_ciudad());
+                    artDB.eliminarArticulo(art.getId_articulo());
                     break;
             }
         }catch(Exception e){

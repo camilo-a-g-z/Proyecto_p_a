@@ -56,10 +56,10 @@ public class DBArticulo {
                     + "descripccion, "
                     + "id_categoria) "
                     + "values(?,?,?,?)");
-            //pstm.setString(1, a.getNombre());
-            //pstm.setDouble(2, a.getCant_stock());
-            //pstm.setString(3, a.getDescripcion());
-            //pstm.setInt(4, a.getId_categoria());
+            pstm.setString(1, a.getNombre());
+            pstm.setDouble(2, a.getCant_stock());
+            pstm.setString(3, a.getDescripcion());
+            pstm.setInt(4, a.getId_categoria());
             System.out.println(a.getId_categoria());
             //se envia a base de datos
             pstm.executeUpdate();
@@ -72,9 +72,15 @@ public class DBArticulo {
             pstm.executeUpdate();
     }
     public void modifyArticulo(Articulo a) throws SQLException{
-        PreparedStatement pstm = cn.getConexion().prepareStatement("update articulo"
-                + "set  nombre='"+a.getNombre()+"', cant_stock="+a.getCant_stock()+", descripccion='"+a.getDescripcion()+"', id_categoria="+a.getId_categoria()+" where id_articulo="+a.getId_articulo());
-            pstm.executeUpdate();
+        PreparedStatement pstm = cn.getConexion().prepareStatement("update articulo "
+                + "set  nombre = ? , cant_stock = ? , descripccion = ? , id_categoria = ? where id_articulo = ?");
+        pstm.setString(1, a.getNombre());
+        pstm.setDouble(2, a.getCant_stock());
+        pstm.setString(3, a.getDescripcion());
+        pstm.setInt(4, a.getId_categoria());
+        pstm.setInt(5, a.getId_articulo());
+        
+        pstm.executeUpdate();
     }
     public String getMensaje() {
         return cn.getMensaje();

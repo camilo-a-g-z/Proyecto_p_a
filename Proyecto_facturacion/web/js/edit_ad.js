@@ -1,16 +1,21 @@
 (function(window, document, JSON){
     'use strict';
-    var url = 'ws://localhost:8080/Proyecto_facturacion/modifyCiudad',
+    var url = 'ws://localhost:8080/Proyecto_facturacion/testeo',
         ws = new WebSocket(url);
     var mensajes = document.getElementById('obtenido'),
         nombre_2 =document.getElementById('Nombre');
     var boton = document.getElementById('boton');
     var info = document.getElementById('informacion');
+    var boton_2 = document.getElementById('boton_2');
+    var nombre_3 = document.getElementById('n_nombre'),
+        cant = document.getElementById('cant'),
+        desc = document.getElementById('desc'),
+        cat = document.getElementById('cat');
     ws.onopen = onOpen;
     ws.onclose = onClose;
     ws.onmessage = onMessage;
     
-    boton.addEventListener('click', enviar);
+    boton_2.addEventListener('click', enviar);
     
     function onOpen(){
         console.log('Conectado..');
@@ -21,9 +26,12 @@
     function enviar(){
         info.innerHTML ='<br>'+ 'Se esta buscando en base de datos'+'<br>';
         var msg={
-            id_ciudad:'1',
-            nombre:nombre_2.value,
-            mensaje:"2"
+            id_articulo:'6',
+            nombre:nombre_3.value,
+            cant_stock:cant.value,
+            descripcion:desc.value,
+            id_categoria:cat.value,
+            mensaje:"3"
         };
         ws.send(JSON.stringify(msg));
     }
@@ -41,11 +49,7 @@
     var url_2 = 'ws://localhost:8080/Proyecto_facturacion/modifyArticulo',
         ws_2 = new WebSocket(url);
     
-    var boton_2 = document.getElementById('boton_2');
-    var nombre_2 = document.getElementById('n_nombre'),
-        cant = document.getElementById('cant'),
-        desc = document.getElementById('desc'),
-        cat = document.getElementById('cat');
+    
     //creacion de metodos propios del websocket
     
     ws_2.onopen = onOpen;
