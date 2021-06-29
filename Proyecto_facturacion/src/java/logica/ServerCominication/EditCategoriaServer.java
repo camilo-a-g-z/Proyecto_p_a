@@ -1,7 +1,6 @@
 package logica.ServerCominication;
 
 import datos.DBCategoria;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -19,7 +18,7 @@ import logica.EncoderDecoder.EncoderCategoria;
  */
 @ServerEndpoint(value="/modifyCategoria", encoders = {EncoderCategoria.class}, decoders = {DecoderCategoria.class})
 public class EditCategoriaServer {
-    /*private static final List<Session> conectados = new ArrayList<>();
+    private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -34,18 +33,22 @@ public class EditCategoriaServer {
     }
     
     @OnMessage
-    public void mensaje(Categoria cat, String inst) throws SQLException{
+    public void mensaje(Categoria cat){
         DBCategoria catDB = new DBCategoria();
-        switch(Integer.parseInt(inst)){
-            case 1:
-                catDB.modifyCategoria(cat);
-                break;
-            case 2:
-                catDB.insertarCategoria(cat);
-                break;
-            case 3:
-                catDB.eliminarCategoria(cat.getId_categoria());
-                break;
+        try{
+            switch(Integer.parseInt(cat.getMensaje())){
+                case 1:
+                    catDB.modifyCategoria(cat);
+                    break;
+                case 2:
+                    catDB.insertarCategoria(cat);
+                    break;
+                case 3:
+                    catDB.eliminarCategoria(cat.getId_categoria());
+                    break;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
-    }*/
+    }
 }

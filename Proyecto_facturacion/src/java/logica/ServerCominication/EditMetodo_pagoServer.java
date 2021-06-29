@@ -19,7 +19,7 @@ import logica.Metodo_pago;
  */
 @ServerEndpoint(value="/modifyMP", encoders= {EncoderMetodo_pago.class}, decoders = {DecoderMetodo_pago.class})
 public class EditMetodo_pagoServer {
-    /*private static final List<Session> conectados = new ArrayList<>();
+    private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -34,19 +34,23 @@ public class EditMetodo_pagoServer {
     }
     
     @OnMessage
-    public void mensaje(Metodo_pago met,String inst) throws SQLException{
+    public void mensaje(Metodo_pago met){
         DBMetodo_pago metDB = new DBMetodo_pago();
-        switch(Integer.parseInt(inst)){
-            case 1:
-                metDB.modifyMetodo_pago(met);
-                break;
-            case 2:
-                metDB.insertarMetodo_pago(met);
-                break;
-            case 3:
-                metDB.eliminarMetodo_pago(met.getId_metodo_pago());
-                break;
+        try{
+            switch(Integer.parseInt(met.getMensaje())){
+                case 1:
+                    metDB.modifyMetodo_pago(met);
+                    break;
+                case 2:
+                    metDB.insertarMetodo_pago(met);
+                    break;
+                case 3:
+                    metDB.eliminarMetodo_pago(met.getId_metodo_pago());
+                    break;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
             
-    }*/
+    }
 }

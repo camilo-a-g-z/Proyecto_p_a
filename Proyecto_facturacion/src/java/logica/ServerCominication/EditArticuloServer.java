@@ -36,26 +36,22 @@ public class EditArticuloServer {
     }
     
    @OnMessage
-    public void mensaje(Articulo art) {
-        Ciudad ciu = new Ciudad();
-        DBCiudad ciuDB = new DBCiudad();
-        ciu.setNombre("Socorro");
-        ciuDB.insertarCiudad(ciu);
-        /*DBArticulo artDB = new DBArticulo();
-        artDB.insertarArticulo(art);
-        switch(Integer.parseInt(art.getMensaje())){
-            case 1:
-                //en caso de editar
-                artDB.modifyArticulo(art);
-                break;
-            case 2:
-                //en caso de agregar
-                artDB.insertarArticulo(art);
-                break;
-            case 3:
-                //en caso de eliminar
-                artDB.eliminarArticulo(art.getId_articulo());
-                break;
-        }*/
+    public void mensaje(Articulo art){
+        DBArticulo artDB = new DBArticulo();
+        try{
+            switch(Integer.parseInt(art.getMensaje())){
+                case 1:
+                    artDB.modifyArticulo(art);
+                    break;
+                case 2:
+                    artDB.insertarArticulo(art);
+                    break;
+                case 3:
+                    artDB.eliminarArticulo(art.getId_articulo());
+                    break;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

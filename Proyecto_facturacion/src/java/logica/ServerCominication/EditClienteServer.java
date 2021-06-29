@@ -19,7 +19,7 @@ import logica.EncoderDecoder.EncoderCliente;
  */
 @ServerEndpoint(value="/modifyCliente", encoders= {EncoderCliente.class}, decoders= {DecoderCliente.class})
 public class EditClienteServer {
-    /*private static final List<Session> conectados = new ArrayList<>();
+    private static final List<Session> conectados = new ArrayList<>();
     int i;
     
     @OnOpen
@@ -34,19 +34,23 @@ public class EditClienteServer {
     }
     
     @OnMessage
-    public void mensaje(Cliente cli, String inst) throws SQLException{
+    public void mensaje(Cliente cli){
         DBCliente cliDB = new DBCliente();
-        switch(Integer.parseInt(inst)){
-            case 1:
-                cliDB.modifyCliente(cli);
-                break;
-            case 2:
-                cliDB.insertarCliente(cli);
-                break;
-            case 3:
-                cliDB.eliminarCliente(cli.getId_cliente());
-                break;
+        try{
+            switch(Integer.parseInt(cli.getMensaje())){
+                case 1:
+                    cliDB.modifyCliente(cli);
+                    break;
+                case 2:
+                    cliDB.insertarCliente(cli);
+                    break;
+                case 3:
+                    cliDB.eliminarCliente(cli.getId_cliente());
+                    break;
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
-    }*/
+    }
     
 }

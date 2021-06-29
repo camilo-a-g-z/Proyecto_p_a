@@ -1,8 +1,10 @@
 package logica.ServerCominication;
 
 import datos.DBArticulo;
+import datos.DBCategoria;
 import datos.DBCiudad;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -11,17 +13,20 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import logica.Articulo;
+import logica.Categoria;
 import logica.Ciudad;
 import logica.EncoderDecoder.DecoderArticulo;
+import logica.EncoderDecoder.DecoderCategoria;
 import logica.EncoderDecoder.DecoderCiudad;
 import logica.EncoderDecoder.EncoderArticulo;
+import logica.EncoderDecoder.EncoderCategoria;
 import logica.EncoderDecoder.EncoderCiudad;
 
 /**
  *
  * @author Camilo Garcia
  */
-@ServerEndpoint(value="/testeo", encoders = {EncoderArticulo.class}, decoders = {DecoderArticulo.class})
+@ServerEndpoint(value="/testeo", encoders = {EncoderCategoria.class}, decoders = {DecoderCategoria.class})
 public class TesteoServer {
     private static final List<Session> conectados = new ArrayList<>();
     int i;
@@ -38,18 +43,18 @@ public class TesteoServer {
     }
     
     @OnMessage
-    public void mensaje(Articulo art){
-        DBArticulo artDB = new DBArticulo();
+    public void mensaje(Categoria cat){
+        DBCategoria catDB = new DBCategoria();
         try{
-            switch(Integer.parseInt(art.getMensaje())){
+            switch(Integer.parseInt(cat.getMensaje())){
                 case 1:
-                    artDB.modifyArticulo(art);
+                    catDB.modifyCategoria(cat);
                     break;
                 case 2:
-                    artDB.insertarArticulo(art);
+                    catDB.insertarCategoria(cat);
                     break;
                 case 3:
-                    artDB.eliminarArticulo(art.getId_articulo());
+                    catDB.eliminarCategoria(cat.getId_categoria());
                     break;
             }
         }catch(Exception e){

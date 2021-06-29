@@ -1,6 +1,6 @@
 (function(window, document, JSON){
     'use strict';
-    var url = 'ws://localhost:8080/Proyecto_facturacion/testeo',
+    var url = 'ws://localhost:8080/Proyecto_facturacion/modifyMP',
         ws = new WebSocket(url);
     var mensajes = document.getElementById('obtenido'),
         nombre_2 =document.getElementById('Nombre');
@@ -26,12 +26,9 @@
     function enviar(){
         info.innerHTML ='<br>'+ 'Se esta buscando en base de datos'+'<br>';
         var msg={
-            id_articulo:'6',
-            nombre:nombre_3.value,
-            cant_stock:cant.value,
-            descripcion:desc.value,
-            id_categoria:cat.value,
-            mensaje:"3"
+            id_metodo_pago:'1',
+            tipo:nombre_3.value,
+            mensaje:"2"
         };
         ws.send(JSON.stringify(msg));
     }

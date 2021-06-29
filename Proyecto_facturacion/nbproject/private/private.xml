@@ -3,15 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EditArticuloServer.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBFactura.java</file>
-            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EmpleadoServer.java</file>
-            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBArticulo.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/web/Edit_admin.html</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/web/js/codigo.js</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBArticulo.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EditCiudadServer.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBCategoria.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBMetodo_pago.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/Articulo.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBDetalle_fac.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EditArticuloServer.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/web/js/edit_ad.js</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBCiudad.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EmpleadoServer.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBCliente.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/TesteoServer.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EditMetodo_pagoServer.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/datos/DBEmpleado.java</file>
             <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/EditCategoriaServer.java</file>
-            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/ServerCominication/ArticuloServer.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/Ciudad.java</file>
+            <file>file:/D:/CAMILO/Universidad/Tercer%20semestre/Proyecto%20programacion%20avanzada/Proyecto_facturacion/src/java/logica/EncoderDecoder/DecoderArticulo.java</file>
         </group>
     </open-files>
 </project-private>
