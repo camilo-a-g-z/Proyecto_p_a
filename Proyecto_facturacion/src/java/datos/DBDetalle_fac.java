@@ -38,12 +38,12 @@ public class DBDetalle_fac {
                 + "id_factura, "
                 + "id_articulo) "
                 + "values(?,?,?,?,?,?)");
-            pstm.setString(1, String.valueOf(d.getCantidad()));
-            pstm.setString(2, String.valueOf(d.getTotal()));
-            pstm.setString(3, String.valueOf(d.getDescuento()));
-            pstm.setString(4, String.valueOf(d.getVal_descuento()));
-            pstm.setString(5, String.valueOf(d.getId_factura()));
-            pstm.setString(6, String.valueOf(d.getId_articulo()));
+            pstm.setInt(1, d.getCantidad());
+            pstm.setDouble(2, d.getTotal());
+            pstm.setFloat(3, d.getDescuento());
+            pstm.setDouble(4, d.getVal_descuento());
+            pstm.setInt(5, d.getId_factura());
+            pstm.setInt(6, d.getId_articulo());
             
             pstm.executeUpdate();
         }catch (SQLException e){

@@ -48,6 +48,7 @@ public class EmpleadoServer {
                 emp.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
                 emp.setId_empleado(Integer.parseInt(res.getString("id_empleado")));
                 emp.setPassword(res.getString("password"));
+                conectados.get(i).getBasicRemote().sendObject(emp);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());

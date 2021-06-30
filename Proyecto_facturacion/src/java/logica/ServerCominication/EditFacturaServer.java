@@ -1,7 +1,6 @@
 package logica.ServerCominication;
 
-import datos.DBDetalle_fac;
-import java.sql.SQLException;
+import datos.DBFactura;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -9,16 +8,16 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import logica.Detalle_fac;
-import logica.EncoderDecoder.DecoderDetalle_fac;
-import logica.EncoderDecoder.EncoderDetalle_fac;
+import logica.EncoderDecoder.DecoderFactura;
+import logica.EncoderDecoder.EncoderFactura;
+import logica.Factura;
 
 /**
  *
  * @author Camilo Garcia
  */
-@ServerEndpoint(value="/modifyDetalle_fac", encoders= {EncoderDetalle_fac.class}, decoders={DecoderDetalle_fac.class})
-public class EditDetalle_facServer {
+@ServerEndpoint(value="/modifyFactura", encoders= {EncoderFactura.class}, decoders={DecoderFactura.class})
+public class EditFacturaServer {
     private static final List<Session> conectados = new ArrayList<>();
     int i;
     
@@ -34,21 +33,21 @@ public class EditDetalle_facServer {
     }
     
     @OnMessage
-    public void mensaje(Detalle_fac det) {
-        DBDetalle_fac detDB = new DBDetalle_fac();
+    public void mensaje(Factura fac){
+        DBFactura facDB = new DBFactura();
         try{
-            switch(Integer.parseInt(det.getMensaje())){
+            switch(Integer.parseInt(fac.getMensaje())){
                 case 1:
-                    detDB.modifyDetalle_fac(det);
+                    facDB.modifyFactura(fac);
                     break;
                 case 2:
-                    detDB.insertarDetalle_fac(det);
+                    facDB.insertarFactura(fac);
                     break;
                 case 3:
-                    detDB.eliminarDetalle_fac(det.getId_detalle_fac());
+                    facDB.eliminarFactura(fac.getId_factura());
                     break;
             }
-        }catch(NumberFormatException | SQLException e){
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }

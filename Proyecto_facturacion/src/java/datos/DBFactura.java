@@ -53,11 +53,11 @@ public class DBFactura {
                     + "id_metodo_pago) "
                     + "values(?,?,?,?,?,?)");
             pstm.setString(1, f.getFecha_fac());
-            pstm.setString(2, String.valueOf(f.getVal_iva()));
-            pstm.setString(3, String.valueOf(f.getVal_sub_total()));
-            pstm.setString(4, String.valueOf(f.getTotal()));
-            pstm.setString(5, String.valueOf(f.getId_cliente()));
-            pstm.setString(6, String.valueOf(f.getId_metodo_pago()));
+            pstm.setDouble(2, f.getVal_iva());
+            pstm.setDouble(3, f.getVal_sub_total());
+            pstm.setDouble(4, f.getTotal());
+            pstm.setInt(5, f.getId_cliente());
+            pstm.setInt(6, f.getId_metodo_pago());
             
             pstm.executeUpdate();
         }catch (SQLException e){

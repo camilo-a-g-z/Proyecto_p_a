@@ -1,6 +1,6 @@
 (function(window, document, JSON){
     'use strict';
-    var url = 'ws://localhost:8080/Proyecto_facturacion/modifyMP',
+    var url = 'ws://localhost:8080/Proyecto_facturacion/modifyDetalle_fac',
         ws = new WebSocket(url);
     var mensajes = document.getElementById('obtenido'),
         nombre_2 =document.getElementById('Nombre');
@@ -26,9 +26,14 @@
     function enviar(){
         info.innerHTML ='<br>'+ 'Se esta buscando en base de datos'+'<br>';
         var msg={
-            id_metodo_pago:'1',
-            tipo:nombre_3.value,
-            mensaje:"2"
+            id_detalle_fac:'1',
+            cantidad:'15',
+            total:'75000',
+            descuento:'8.5',
+            val_descuento:'9800',
+            id_factura:'1',
+            id_articulo:'1',
+            mensaje:"3"
         };
         ws.send(JSON.stringify(msg));
     }
