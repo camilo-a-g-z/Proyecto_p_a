@@ -4,8 +4,19 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/edit_ad.js"></script>
     </head>
-    <body>
+    <body onload="select()">
+        <center>
+            <select name="opcion" id="opcion">
+               <option value="" selected=""></option>
+                <option value="Articulo">Articulo</option>
+                <option value="Categoria">Categoria</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Factura">Factura</option>
+                <option value="Metodo_pago">Metodo de pago</option>
+            </select>
+         </center>
         <input type="checkbox" name="Editar" id="Editar" value="Editar">Editar
         <br>
         <input type="checkbox" name="Crear" id="Crear" value="Crear">Crear

@@ -1,7 +1,32 @@
-(function(window, document, JSON){
+var ws;
+var url = 'ws://localhost:8080/Proyecto_facturacion/articulo';
+select = function(){
+    
+    var input = document.getElementById('opcion');
+    input.addEventListener('input',function(){
+		if (this.value == "Articulo") {
+         url = 'ws://localhost:8080/Proyecto_facturacion/articulo';
+			console.log("Articulo");
+		}else if(this.value == "Categoria"){
+          url = 'ws://localhost:8080/Proyecto_facturacion/categoria';
+          console.log("Categoria");
+      }else if(this.value == "Cliente"){
+          url = 'ws://localhost:8080/Proyecto_facturacion/cliente';
+          console.log("Cliente");
+      }else if(this.value == "Factura"){
+          url = 'ws://localhost:8080/Proyecto_facturacion/factura';
+          console.log("Factura");
+      }else if(this.value == "Metodo_pago"){
+          url = 'ws://localhost:8080/Proyecto_facturacion/metodo_pago';
+          console.log("Metodo de pago");
+      }
+      procedimiento();
+	});
+};
+procedimiento = function(){
+    select();
     'use strict';
-    var url = 'ws://localhost:8080/Proyecto_facturacion/modifyDetalle_fac',
-        ws = new WebSocket(url);
+    ws = new WebSocket(url);
     var mensajes = document.getElementById('obtenido'),
         nombre_2 =document.getElementById('Nombre');
     var boton = document.getElementById('boton');
@@ -76,4 +101,5 @@
     }
     //funcion que recibe el mensaje por parte del servidor
     */
-})(window, document, JSON);
+}
+    
