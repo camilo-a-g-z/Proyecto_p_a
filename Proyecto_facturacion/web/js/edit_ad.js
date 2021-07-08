@@ -30,6 +30,9 @@ select = function () {
             } else if (this.value == "Metodo_pago") {
                 url = 'ws://localhost:8080/Proyecto_facturacion/metodo_pago';
                 console.log("Metodo de pago");
+            } else if (this.value == "Ciudad") {
+                url = 'ws://localhost:8080/Proyecto_facturacion/ciudad';
+                console.log("Ciudad");
             }
             procedimiento();
         }
@@ -74,6 +77,8 @@ procedimiento = function () {
             console.log("Se recivio una factura");
         }else if(v_selected == "Metodo_pago"){
             console.log("Se recivio un metodo de pago");
+        }else if(v_selected == "Ciudad"){
+            console.log("Se recivio una ciudad");
         }
         /*if(obj.nombre === 'NE'){
          msg = 'No existe elemento';
@@ -87,7 +92,6 @@ enviar = function(){
             console.log("No se ingreso nombre:");
         }else{
             ws.send(nombre.value);
-            
         }
 }
     
