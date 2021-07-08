@@ -69,6 +69,11 @@ procedimiento = function () {
         var obj = JSON.parse(evt.data);
         if(v_selected == "Articulo"){
             console.log("Se recivio un articulo");
+            if(obj.nombre === 'NE'){
+                info.innerHTML = 'No existe elemento';
+            }else{
+               document.getElementById("n_nombre").value = obj.nombre;
+            }
         }else if(v_selected == "Categoria"){
             console.log("Se recivio una categoria");
         }else if(v_selected == "Cliente"){
