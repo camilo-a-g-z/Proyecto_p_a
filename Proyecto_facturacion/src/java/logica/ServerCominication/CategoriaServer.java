@@ -44,6 +44,9 @@ public class CategoriaServer {
             ResultSet res = catDB.getCategoriaByNombre(mens);
             if(!res.next()){
                 cat.setNombre("NE");
+                cat.setDescripcion("NE");
+                cat.setId_categoria(0);
+                cat.setMensaje("NE");
                 conectados.get(i).getBasicRemote().sendObject(cat);
             }else{
                 cat.setNombre(res.getString("nombre"));

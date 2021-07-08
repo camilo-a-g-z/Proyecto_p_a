@@ -63,9 +63,18 @@ procedimiento = function () {
     
     function onMessage(evt) {
         console.log("recivido");
-        //var obj = JSON.parse(evt.data);
-        
-       // ws.close();
+        var obj = JSON.parse(evt.data);
+        if(v_selected == "Articulo"){
+            console.log("Se recivio un articulo");
+        }else if(v_selected == "Categoria"){
+            console.log("Se recivio una categoria");
+        }else if(v_selected == "Cliente"){
+            console.log("Se recivio un cliente");
+        }else if(v_selected == "Factura"){
+            console.log("Se recivio una factura");
+        }else if(v_selected == "Metodo_pago"){
+            console.log("Se recivio un metodo de pago");
+        }
         /*if(obj.nombre === 'NE'){
          msg = 'No existe elemento';
          }*/
@@ -80,5 +89,5 @@ enviar = function(){
             ws.send(nombre.value);
             
         }
-    }
+}
     

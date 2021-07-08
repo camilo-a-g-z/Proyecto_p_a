@@ -1,5 +1,6 @@
 package logica.ServerCominication;
 
+import datos.DBCliente;
 import datos.DBMetodo_pago;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import logica.Cliente;
 import logica.EncoderDecoder.DecoderCliente;
 import logica.EncoderDecoder.EncoderCliente;
 import logica.Metodo_pago;
@@ -35,17 +37,24 @@ public class ClienteServer {
     
     @OnMessage
     public void mensaje(String mens){
-        DBMetodo_pago metDB = new DBMetodo_pago();
-        Metodo_pago met = new Metodo_pago();
+        DBCliente cliDB = new DBCliente();
+        Cliente cli = new Cliente();
         try{
-            ResultSet res = metDB.getCiudadByTipo(mens);
+            ResultSet res = cliDB.getClienteByNombre(mens);
             if(!res.next()){
-                met.setTipo("NE");
-                conectados.get(i).getBasicRemote().sendObject(met);
+                cli.setNombre("NE");
+                conectados.get(i).getBasicRemote().sendObject(cli);
             }else{
-                met.setTipo(res.getString("tipo"));
-                met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
-                conectados.get(i).getBasicRemote().sendObject(met);
+                cli.setApellido(res.getString("apellido"));
+                cli.setCedula(res.getString("cedula"));
+                cli.setCelular(Double.parseDouble(res.getString("celular")));
+                cli.setCorreo(res.getString("correo"));
+                cli.setDireccion(res.getString("direccion"));
+                cli.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
+                cli.setId_cliente(Integer.parseInt(res.getString("id_cliente")));
+                cli.setNombre(res.getString("nombre"));
+                cli.setPassword(res.getString("password"));
+                conectados.get(i).getBasicRemote().sendObject(cli);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
