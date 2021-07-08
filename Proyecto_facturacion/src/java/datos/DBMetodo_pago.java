@@ -15,6 +15,15 @@ public class DBMetodo_pago {
     public DBMetodo_pago(){
         cn = new DBConexion();
     }
+    public ResultSet getMPByNombre(String nombre) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_metodo_pago, "
+                + "tipo "
+                + "FROM metodo_pago "
+                + "WHERE tipo = ?");
+        pstm.setString(1, nombre);
+        ResultSet res = pstm.executeQuery();
+        return res;
+    }
     public ResultSet getMetodo_pagoById(int id) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_metodo_pago, "
                 + "tipo "

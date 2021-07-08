@@ -38,24 +38,27 @@ public class Metodo_pagoServer {
     }
     
     @OnMessage
-    public void mensaje(Metodo_pago meto) throws IOException, EncodeException{
+    public void mensaje(String mens){
         //se crea conexion a base de datos 
         DBMetodo_pago metDB = new DBMetodo_pago();
         Metodo_pago met = new Metodo_pago();
-        ResultSet res;
         try{
             //se carga de la base de datos segun requerimiento de websocket
-            res = metDB.getMetodo_pagoById(meto.getId_metodo_pago());
+            ResultSet res = metDB.getMPByNombre(mens);
             //se carga resultado
-            res.next();
-            //se carga a onjeto el resultado obtenido en la base de datos
-            met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
-            met.setTipo(res.getString("tipo"));
+            if(!res.next()){
+                met.setTipo("NE");
+                conectados.get(i).getBasicRemote().sendObject(met);
+            }else{
+                //se carga a onjeto el resultado obtenido en la base de datos
+                met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
+                met.setTipo(res.getString("tipo"));
+                // se envia a la sesion que solicito la informacion por medio del websocket
+                conectados.get(i).getBasicRemote().sendObject(met);
+            }
         }catch(Exception e){
-            System.out.println("Error en: "+e.getMessage());
+            System.out.println(e.getMessage());
         }finally{
         }
-        // se envia a la sesion que solicito la informacion por medio del websocket
-        conectados.get(i).getBasicRemote().sendObject(met);
     }
 }
