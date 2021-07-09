@@ -73,22 +73,49 @@ procedimiento = function () {
                 info.innerHTML = 'No existe elemento';
             }else{
                document.getElementById("n_nombre").value = obj.nombre;
+               document.getElementById("cant").value = obj.cant_stock;
+               document.getElementById("desc").value = obj.descripcion;
+               document.getElementById("cat").value = obj.id_categoria;
             }
         }else if(v_selected == "Categoria"){
+            if(obj.nombre === 'NE'){
+                info.innerHTML = 'No existe elemento';
+            }else{
+                document.getElementById("n_nombre").value = obj.nombre;
+                document.getElementById("desc").value = obj.descripcion;
+            }
             console.log("Se recivio una categoria");
         }else if(v_selected == "Cliente"){
+            if(obj.nombre === 'NE'){
+                info.innerHTML = 'No existe elemento';
+            }else{
+                document.getElementById("n_nombre").value = obj.nombre;
+                document.getElementById("descripcion").innerHTML = "Apellido";
+                document.getElementById("desc").value = obj.apellido;
+                document.getElementById("categoria").innerHTML = "Correo:";
+                document.getElementById("cat").value = obj.correo;
+                document.getElementById("cantidad").innerHTML = "Direccion:";
+                document.getElementById("cant").value = obj.direccion;
+            }
             console.log("Se recivio un cliente");
         }else if(v_selected == "Factura"){
             console.log("Se recivio una factura");
         }else if(v_selected == "Metodo_pago"){
+            if(obj.tipo === 'NE'){
+                info.innerHTML = 'No existe elemento';
+            }else{
+                document.getElementById("nombre_p").innerHTML = "Tipo:";
+                document.getElementById("n_nombre").value = obj.tipo;
+            }
             console.log("Se recivio un metodo de pago");
         }else if(v_selected == "Ciudad"){
+            if(obj.nombre === 'NE'){
+                info.innerHTML = 'No existe elemento';
+            }else{
+                document.getElementById("n_nombre").value = obj.nombre;
+            }
             console.log("Se recivio una ciudad");
         }
-        /*if(obj.nombre === 'NE'){
-         msg = 'No existe elemento';
-         }*/
-        //mensajes.innerHTML = '</br>' + msg;
     }
 };
 enviar = function(){
