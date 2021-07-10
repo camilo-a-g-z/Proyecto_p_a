@@ -51,6 +51,7 @@ public class Detalle_facServer {
                     det.setId_factura(Integer.parseInt(res.getString("id_factura")));
                     det.setTotal(Double.parseDouble(res.getString("total")));
                     det.setVal_descuento(Double.parseDouble(res.getString("val_descuento")));
+                    conectados.get(i).getBasicRemote().sendObject(det);
                 }while(!res.next());
             }
         }catch(Exception e){

@@ -10,9 +10,9 @@ select = function () {
         if (this.value == "") {
             console.log("no hace conexion");
         } else {
-            if(!band){
+            if (!band) {
                 ws.close();
-            }else{
+            } else {
                 band = false;
             }
             if (this.value == "Articulo") {
@@ -44,86 +44,81 @@ procedimiento = function () {
     ws.onopen = onOpen;
     ws.onclose = onClose;
     ws.onmessage = onMessage;
-    
+
     var mensajes = document.getElementById('obtenido');
-            nombre = document.getElementById('Nombre');
+    nombre = document.getElementById('Nombre');
     var boton = document.getElementById('boton');
     var info = document.getElementById('informacion');
     var boton_2 = document.getElementById('boton');
-    var nombre_3 = document.getElementById('n_nombre'),
-            cant = document.getElementById('cant'),
-            desc = document.getElementById('desc'),
-            cat = document.getElementById('cat');
-    
+
     function onOpen() {
         console.log('Conectado..');
     }
     function onClose() {
         console.log('Desonectado..');
     }
-    //boton_2.addEventListener('click', enviar);
-    
-    
     function onMessage(evt) {
         console.log("recivido");
         var obj = JSON.parse(evt.data);
-        if(v_selected == "Articulo"){
+        if (v_selected == "Articulo") {
             console.log("Se recivio un articulo");
-            if(obj.nombre === 'NE'){
+            if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
-            }else{
-               document.getElementById("n_nombre").value = obj.nombre;
-               document.getElementById("cant").value = obj.cant_stock;
-               document.getElementById("desc").value = obj.descripcion;
-               document.getElementById("cat").value = obj.id_categoria;
+            } else {
+                document.getElementById("input_1").value = obj.nombre;
+                document.getElementById("input_2").value = obj.cant_stock;
+                document.getElementById("input_3").value = obj.descripcion;
+                document.getElementById("input_4").value = obj.id_categoria;
             }
-        }else if(v_selected == "Categoria"){
-            if(obj.nombre === 'NE'){
+        } else if (v_selected == "Categoria") {
+            if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
-            }else{
-                document.getElementById("n_nombre").value = obj.nombre;
-                document.getElementById("desc").value = obj.descripcion;
+            } else {
+                document.getElementById("input_1").value = obj.nombre;
+                document.getElementById("input_2").value = obj.descripcion;
             }
             console.log("Se recivio una categoria");
-        }else if(v_selected == "Cliente"){
-            if(obj.nombre === 'NE'){
+        } else if (v_selected == "Cliente") {
+            if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
-            }else{
-                document.getElementById("n_nombre").value = obj.nombre;
-                document.getElementById("descripcion").innerHTML = "Apellido";
-                document.getElementById("desc").value = obj.apellido;
-                document.getElementById("categoria").innerHTML = "Correo:";
-                document.getElementById("cat").value = obj.correo;
-                document.getElementById("cantidad").innerHTML = "Direccion:";
-                document.getElementById("cant").value = obj.direccion;
+            } else {
+                document.getElementById("input_1").value = obj.nombre;
+                document.getElementById("label_2").innerHTML = "Apellido";
+                document.getElementById("input_2").value = obj.apellido;
+                document.getElementById("label_3").innerHTML = "Correo:";
+                document.getElementById("input_3").value = obj.correo;
+                document.getElementById("label_4").innerHTML = "Direccion:";
+                document.getElementById("input_4").value = obj.direccion;
+                document.getElementById("input_5").value = obj.celular;
+                document.getElementById("input_6").value = obj.cedula;
+                document.getElementById("input_7").value = obj.id_ciudad;
             }
             console.log("Se recivio un cliente");
-        }else if(v_selected == "Factura"){
+        } else if (v_selected == "Factura") {
             console.log("Se recivio una factura");
-        }else if(v_selected == "Metodo_pago"){
-            if(obj.tipo === 'NE'){
+        } else if (v_selected == "Metodo_pago") {
+            if (obj.tipo === 'NE') {
                 info.innerHTML = 'No existe elemento';
-            }else{
-                document.getElementById("nombre_p").innerHTML = "Tipo:";
-                document.getElementById("n_nombre").value = obj.tipo;
+            } else {
+                document.getElementById("label_1").innerHTML = "Tipo:";
+                document.getElementById("input_1").value = obj.tipo;
             }
             console.log("Se recivio un metodo de pago");
-        }else if(v_selected == "Ciudad"){
-            if(obj.nombre === 'NE'){
+        } else if (v_selected == "Ciudad") {
+            if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
-            }else{
-                document.getElementById("n_nombre").value = obj.nombre;
+            } else {
+                document.getElementById("input_1").value = obj.nombre;
             }
             console.log("Se recivio una ciudad");
         }
     }
 };
-enviar = function(){
-        //info.innerHTML += '<br>' + 'Se esta buscando en base de datos' + '<br>';
-        if(nombre.value == ""){
-            console.log("No se ingreso nombre:");
-        }else{
-            ws.send(nombre.value);
-        }
+enviar = function () {
+    if (nombre.value == "") {
+        console.log("No se ingreso nombre:");
+    } else {
+        ws.send(nombre.value);
+    }
 }
     
