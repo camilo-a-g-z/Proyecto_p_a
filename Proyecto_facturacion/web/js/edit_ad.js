@@ -33,7 +33,7 @@ selecionar_url = function () {
     } else if (v_selected == "Categoria") {
         url = 'ws://localhost:8080/Proyecto_facturacion/categoria';
         console.log("Categoria");
-    } else if (v_selectede == "Cliente") {
+    } else if (v_selected == "Cliente") {
         url = 'ws://localhost:8080/Proyecto_facturacion/cliente';
         console.log("Cliente");
     } else if (v_selected == "Factura") {
@@ -54,7 +54,7 @@ selecionar_url_modify = function () {
     } else if (v_selected == "Categoria") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCategoria';
         console.log("Categoria");
-    } else if (v_selectede == "Cliente") {
+    } else if (v_selected == "Cliente") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCliente';
         console.log("Cliente");
     } else if (v_selected == "Factura") {
@@ -165,7 +165,7 @@ enviar_edit = function () {
             cant_stock: document.getElementById("input_2").value,
             descripcion: document.getElementById("input_3").value,
             id_categoria: document.getElementById("input_4").value,
-            mensaje: '2'
+            mensaje: '1'
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Categoria") {
@@ -173,16 +173,38 @@ enviar_edit = function () {
             id_categoria: "1",
             nombre: document.getElementById("input_1").value,
             descripcion: document.getElementById("input_2").value,
-            mensaje: '2'
+            mensaje: '1'
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Cliente") {
-
+        var msg = {
+            id_cliente: "1",
+            nombre: document.getElementById("input_1").value,
+            apellido: document.getElementById("input_2").value,
+            correo: document.getElementById("input_3").value,
+            direccion: document.getElementById("input_4").value,
+            celular: document.getElementById("input_5").value,
+            cedula: document.getElementById("input_6").value,
+            id_ciudad: document.getElementById("input_7").value,
+            password: "1234",
+            mensaje: '1'
+        };
+        ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
 
     } else if (v_selected == "Metodo_pago") {
-
+        var msg = {
+            id_metodo_pago: "2",
+            tipo: document.getElementById("input_1").value,
+            mensaje: '1'
+        };
+        ws.send(JSON.stringify(msg));
     } else if (v_selected == "Ciudad") {
-
+        var msg = {
+            id_ciudad: "1",
+            nombre: document.getElementById("input_1").value,
+            mensaje: '1'
+        };
+        ws.send(JSON.stringify(msg));
     }
 };

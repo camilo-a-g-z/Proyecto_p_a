@@ -66,7 +66,7 @@ public class DBMetodo_pago {
     }
     public void modifyMetodo_pago(Metodo_pago m) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("update metodo_pago "
-                + "set  tipo = ? where id_metodo_pago = ");
+                + "set  tipo = ? where id_metodo_pago = ?");
         pstm.setString(1, m.getTipo());
         pstm.setInt(2, m.getId_metodo_pago());
         pstm.executeUpdate();

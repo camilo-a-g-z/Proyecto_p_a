@@ -94,7 +94,7 @@ public class DBCliente {
         PreparedStatement pstm = cn.getConexion().prepareStatement("update cliente "
                 + "set  nombre = ? , apellido = ? ,"
                 + "correo = ? , direccion= ? , celular = ? "
-                + ", cedula = ? , id_ciudad = ? , password = ? where id_cliente = ?");
+                + ", cedula = ? , id_ciudad = ?  where id_cliente = ?");
         pstm.setString(1, c.getNombre());
         pstm.setString(2, c.getApellido());
         pstm.setString(3, c.getCorreo());
@@ -102,8 +102,7 @@ public class DBCliente {
         pstm.setDouble(5, c.getCelular());
         pstm.setString(6, c.getCedula());
         pstm.setInt(7, c.getId_ciudad());
-        pstm.setString(8, c.getPassword());
-        pstm.setInt(9, c.getId_cliente());
+        pstm.setInt(8, c.getId_cliente());
         pstm.executeUpdate();
     }
     public String getMensaje() {
