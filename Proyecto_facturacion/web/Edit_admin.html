@@ -18,40 +18,63 @@
                 <option value="Ciudad">Ciudad</option>
             </select>
          </center>
-        <input type="checkbox" name="Editar" id="Editar" value="Editar">Editar
+        <center>
+            <select name="Select" id="Select">
+               <option value="" selected=""></option>
+                <option value="Editar">Editar</option>
+                <option value="Crear">Crear</option>
+                <option value="Eliminar">Eliminar</option>
+            </select>
+         </center>
         <br>
-        <input type="checkbox" name="Crear" id="Crear" value="Crear">Crear
+        <div style="display:none" id="div_1">
+            <label>Ingrese nombre del articulo: </label>
+            <input type="text" id="Nombre" name="Nombre" placeholder="Escriba el nombre del articulo">
+            <button id="boton" name="boton" onclick="enviar()" >Buscar</button>
+        </div>
         <br>
-        <input type="checkbox" name="Eliminar" id="Eliminar" value="Eliminar">Eliminar
+        <div style="display:none" id="div_2">
+            <label id="informacion" ></label>
+            <label id="obtenido"></label>
+        </div>
         <br>
-        <label>Ingrese nombre del articulo: </label>
-        <input type="text" id="Nombre" name="Nombre" placeholder="Escriba el nombre del articulo">
-        <button id="boton" name="boton" onclick="enviar()" >Enviar</button>
+        <div style="display:none" id="div_3">
+            <label id="label_1">Nombre:</label>
+            <input type="text" id="input_1" name="input_1" placeholder="Escriba nuevo nombre articulo">
+        </div>
         <br>
-        <label id="informacion"></label>
-        <label id="obtenido"></label>
+        <div style="display:none" id="div_4">
+            <label id="label_2">Cantidad en stock:</label>
+            <input type="text" id="input_2" name="input_2" placeholder="Escriba cantidad">
+        </div>
         <br>
-        <label id="label_1">Nombre:</label>
-        <input type="text" id="input_1" name="input_1" placeholder="Escriba nuevo nombre articulo">
+        <div style="display:none" id="div_5">
+            <label id="label_3">Descripcion del producto:</label>
+            <input type="text" id="input_3" name="input_3" placeholder="Escriba la descripcion del producto">
+        </div>
         <br>
-        <label id="label_2">Cantidad en stock:</label>
-        <input type="text" id="input_2" name="input_2" placeholder="Escriba cantidad">
+        <div style="display:none" id="div_6">
+            <label id="label_4">Categoria del producto:</label>
+            <input type="text" id="input_4" name="input_4" placeholder="Escriba id categoria">
+        </div>
         <br>
-        <label id="label_3">Descripcion del producto:</label>
-        <input type="text" id="input_3" name="input_3" placeholder="Escriba la descripcion del producto">
+        <div style="display:none" id="div_7">
+            <label id="label_5">Nuemero de celular:</label>
+            <input type="text" id="input_5" name="input_5" placeholder="Escriba id categoria">
+        </div>        
         <br>
-        <label id="label_4">Categoria del producto:</label>
-        <input type="text" id="input_4" name="input_4" placeholder="Escriba id categoria">
+        <div style="display:none" id="div_8">
+            <label id="label_6">Numero de cedulo:</label>
+            <input type="text" id="input_6" name="input_6" placeholder="Escriba id categoria">
+        </div>
         <br>
-        <label id="label_5">Nuemero de celular:</label>
-        <input type="text" id="input_5" name="input_5" placeholder="Escriba id categoria">
+        <div style="display:none" id="div_9">
+           <label id="label_7">ID ciudad:</label>
+            <input type="text" id="input_7" name="input_7" placeholder="Escriba id categoria"> 
+        </div>
         <br>
-        <label id="label_6">Numero de cedulo:</label>
-        <input type="text" id="input_6" name="input_6" placeholder="Escriba id categoria">
-        <br>
-        <label id="label_7">ID ciudad:</label>
-        <input type="text" id="input_7" name="input_7" placeholder="Escriba id categoria">
-        <br>
-        <button id="boton_2" name="boton_2" onclick="close_conexion()">Enviar</button>
+        <div style="display:none" id="div_10">
+            <button id="boton_2" name="boton_2" onclick="close_conexion()">Enviar</button>
+        </div>
     </body>
 </html>

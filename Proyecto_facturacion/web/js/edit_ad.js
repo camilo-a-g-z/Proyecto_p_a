@@ -3,6 +3,9 @@ var url;
 var v_selected;
 var band = true;
 var nombre;
+var o_selected;
+var id_selected = "0";
+
 function onOpen() {
     console.log('Conectado..');
 }
@@ -10,7 +13,37 @@ function onClose() {
     console.log('Desonectado..');
 }
 select = function () {
-    var input = document.getElementById('opcion');
+    var input;
+    input = document.getElementById("Select");
+    input.addEventListener('input', function(){
+        if(this.value == "Editar"){
+            o_selected = "1";
+            edit_divs();
+            document.getElementById("div_1").style.display = "inline";
+            document.getElementById("div_2").style.display = "inline";
+            document.getElementById("div_10").style.display = "inline";
+            document.getElementById("boton_2").innerHTML = "Editar";
+        }else if(this.value == "Eliminar"){
+            o_selected = "3";
+            edit_divs();
+            document.getElementById("div_1").style.display = "inline";
+            document.getElementById("div_2").style.display = "inline";
+            document.getElementById("div_10").style.display = "inline";
+            document.getElementById("boton_2").innerHTML = "Eliminar";
+        }else if(this.value == "Crear"){
+            o_selected = "2";
+            edit_divs();
+            document.getElementById("div_1").style.display = "none";
+            document.getElementById("div_2").style.display = "none";
+            document.getElementById("div_10").style.display = "inline";
+            document.getElementById("boton_2").innerHTML = "Crear";
+        }else{
+            document.getElementById("div_1").style.display = "none";
+            document.getElementById("div_2").style.display = "none";
+            document.getElementById("div_10").style.display = "none";
+        }
+    });
+    input = document.getElementById('opcion');
     input.addEventListener('input', function () {
         v_selected = this.value;
         if (v_selected == "") {
@@ -22,6 +55,7 @@ select = function () {
                 band = false;
             }
             selecionar_url();
+            edit_divs();
             procedimiento();
         }
     });
@@ -74,14 +108,8 @@ procedimiento = function () {
     ws.onopen = onOpen;
     ws.onclose = onClose;
     ws.onmessage = onMessage;
-
-    var mensajes = document.getElementById('obtenido');
     nombre = document.getElementById('Nombre');
-    var boton = document.getElementById('boton');
     var info = document.getElementById('informacion');
-    var boton_2 = document.getElementById('boton');
-
-
     function onMessage(evt) {
         console.log("recivido");
         var obj = JSON.parse(evt.data);
@@ -90,6 +118,7 @@ procedimiento = function () {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
+                id_selected = obj.id_articulo+"";
                 document.getElementById("input_1").value = obj.nombre;
                 document.getElementById("input_2").value = obj.cant_stock;
                 document.getElementById("input_3").value = obj.descripcion;
@@ -99,6 +128,7 @@ procedimiento = function () {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
+                id_selected = obj.id_vategoria+"";
                 document.getElementById("input_1").value = obj.nombre;
                 document.getElementById("input_2").value = obj.descripcion;
             }
@@ -107,12 +137,10 @@ procedimiento = function () {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
+                id_selected = obj.cliente+"";
                 document.getElementById("input_1").value = obj.nombre;
-                document.getElementById("label_2").innerHTML = "Apellido";
                 document.getElementById("input_2").value = obj.apellido;
-                document.getElementById("label_3").innerHTML = "Correo:";
                 document.getElementById("input_3").value = obj.correo;
-                document.getElementById("label_4").innerHTML = "Direccion:";
                 document.getElementById("input_4").value = obj.direccion;
                 document.getElementById("input_5").value = obj.celular;
                 document.getElementById("input_6").value = obj.cedula;
@@ -125,7 +153,7 @@ procedimiento = function () {
             if (obj.tipo === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
-                document.getElementById("label_1").innerHTML = "Tipo:";
+                id_selected = obj.id_cliente+"";
                 document.getElementById("input_1").value = obj.tipo;
             }
             console.log("Se recivio un metodo de pago");
@@ -133,6 +161,7 @@ procedimiento = function () {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
+                id_selected = obj.id_ciudad+"";
                 document.getElementById("input_1").value = obj.nombre;
             }
             console.log("Se recivio una ciudad");
@@ -160,25 +189,25 @@ enviar_edit = function () {
 
     if (v_selected == "Articulo") {
         var msg = {
-            id_articulo: "1",
+            id_articulo: id_selected,
             nombre: document.getElementById("input_1").value,
             cant_stock: document.getElementById("input_2").value,
             descripcion: document.getElementById("input_3").value,
             id_categoria: document.getElementById("input_4").value,
-            mensaje: '1'
+            mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Categoria") {
         var msg = {
-            id_categoria: "1",
+            id_categoria: id_selected,
             nombre: document.getElementById("input_1").value,
             descripcion: document.getElementById("input_2").value,
-            mensaje: '1'
+            mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Cliente") {
         var msg = {
-            id_cliente: "1",
+            id_cliente: id_selected,
             nombre: document.getElementById("input_1").value,
             apellido: document.getElementById("input_2").value,
             correo: document.getElementById("input_3").value,
@@ -187,24 +216,76 @@ enviar_edit = function () {
             cedula: document.getElementById("input_6").value,
             id_ciudad: document.getElementById("input_7").value,
             password: "1234",
-            mensaje: '1'
+            mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
 
     } else if (v_selected == "Metodo_pago") {
         var msg = {
-            id_metodo_pago: "2",
+            id_metodo_pago: id_selected,
             tipo: document.getElementById("input_1").value,
-            mensaje: '1'
+            mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Ciudad") {
         var msg = {
-            id_ciudad: "1",
+            id_ciudad: id_selected,
             nombre: document.getElementById("input_1").value,
-            mensaje: '1'
+            mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
     }
+};
+edit_divs = function(){
+    hide_divs();
+    if (v_selected == "Articulo") {
+        document.getElementById("label_1").innerHTML = "Nombre:";
+        document.getElementById("label_2").innerHTML = "Cantidad en stock:";
+        document.getElementById("label_3").innerHTML = "Descripcion:";
+        document.getElementById("label_4").innerHTML = "ID de la categoria:";
+        document.getElementById("div_3").style.display = "inline";
+        document.getElementById("div_4").style.display = "inline";
+        document.getElementById("div_5").style.display = "inline";
+        document.getElementById("div_6").style.display = "inline";
+        
+    } else if (v_selected == "Categoria") {
+        document.getElementById("label_1").innerHTML = "Nombre:";
+        document.getElementById("label_2").innerHTML = "Descripcion:";
+        document.getElementById("div_3").style.display = "inline";
+        document.getElementById("div_4").style.display = "inline";
+    } else if (v_selected == "Cliente") {
+        document.getElementById("label_1").innerHTML = "Nombre:";
+        document.getElementById("label_2").innerHTML = "Apellido:";
+        document.getElementById("label_3").innerHTML = "Correo:";
+        document.getElementById("label_4").innerHTML = "Direccion:";
+        document.getElementById("label_5").innerHTML = "Celular:";
+        document.getElementById("label_6").innerHTML = "Cedula:";
+        document.getElementById("label_7").innerHTML = "ID ciudad:";
+        document.getElementById("div_3").style.display = "inline";
+        document.getElementById("div_4").style.display = "inline";
+        document.getElementById("div_5").style.display = "inline";
+        document.getElementById("div_6").style.display = "inline";
+        document.getElementById("div_7").style.display = "inline";
+        document.getElementById("div_8").style.display = "inline";
+        document.getElementById("div_9").style.display = "inline";
+    } else if (v_selected == "Factura") {
+        
+    } else if (v_selected == "Metodo_pago") {
+        document.getElementById("label_1").innerHTML = "Tipo:";
+        document.getElementById("div_3").style.display = "inline";
+    } else if (v_selected == "Ciudad") {
+        document.getElementById("label_1").innerHTML = "Nombre:";
+        document.getElementById("div_3").style.display = "inline";
+    }
+};
+hide_divs = function(){
+    document.getElementById("div_3").style.display = "none";
+    document.getElementById("div_4").style.display = "none";
+    document.getElementById("div_5").style.display = "none";
+    document.getElementById("div_6").style.display = "none";
+    document.getElementById("div_7").style.display = "none";
+    document.getElementById("div_8").style.display = "none";
+    document.getElementById("div_9").style.display = "none";
+    
 };
