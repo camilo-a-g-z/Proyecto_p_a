@@ -38,7 +38,7 @@ public class FacturaServer {
         DBFactura facDB = new DBFactura();
         Factura fac = new Factura();
         try{
-            ResultSet res = facDB.getFacturaById_usuario(Integer.parseInt(mens));
+            ResultSet res = facDB.getFacturaById(Integer.parseInt(mens));
             if(!res.next()){
                 fac.setFecha_fac("NE");
                 conectados.get(i).getBasicRemote().sendObject(fac);
