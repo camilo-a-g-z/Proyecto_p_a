@@ -1,4 +1,4 @@
-
+var arrayid = [];
 var ws;
 var url;
 var v_selected;
@@ -379,6 +379,7 @@ create_tabla = function () {
         if(obj.total == "0"){
             console.log("No existe ningun registro");
         }else{
+            arrayid.push(obj.id_detalle_fac);
             var hilera = document.createElement("tr");
             //se agrega cantidad a tabla
             var celda = document.createElement("td");
