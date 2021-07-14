@@ -7,7 +7,7 @@ function cerrar_ws(){
     setTimeout('edit_table()', 3000);
 }
 function edit_table(){
-    for (var i=0;i<1;i++){
+    for (var i=0;i<window.iterator;i++){
         console.log(window.arrayid[i]);
         var msg = {
             id_detalle_fac:window.arrayid[i]+"",
