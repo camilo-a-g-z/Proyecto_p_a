@@ -327,6 +327,28 @@ create_tabla = function () {
     var tabla = document.createElement("table");
     var tblBody = document.createElement("tbody");
     ws.send(id_selected+"");
+    
+    var hilera = document.createElement("tr");
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Cantidad";
+    celda.appendChild(text);
+    var text = document.createElement("label");
+    text.innerHTML = "Total";
+    celda.appendChild(text);
+    var text = document.createElement("label");
+    text.innerHTML = "Descuento";
+    celda.appendChild(text);
+    var text = document.createElement("label");
+    text.innerHTML = "Valor del descuento";
+    celda.appendChild(text);
+    var text = document.createElement("label");
+    text.innerHTML = "ID del articulo";
+    celda.appendChild(text);
+    
+    hilera.appendChild(celda);
+    tblBody.appendChild(hilera);
+    
     function seetear(evt){
         var obj = JSON.parse(evt.data);
         if(obj.total == "0"){
