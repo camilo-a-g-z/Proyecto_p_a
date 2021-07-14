@@ -39,21 +39,44 @@ public class ArticuloServer {
         DBArticulo artDB = new DBArticulo();
         Articulo art = new Articulo();
         try{
-            ResultSet res = artDB.getArticuloByNombre(mens);
-            if(!res.next()){
-                art.setNombre("NE");
-                art.setCant_stock(0.0);
-                art.setDescripcion("NE");
-                art.setId_articulo(0);
-                art.setId_categoria(0);
-                conectados.get(i).getBasicRemote().sendObject(art);
+            if("Todo".equals(mens)){
+                ResultSet res = artDB.getArticulos();
+                if(!res.next()){
+                    art.setNombre("NE");
+                    art.setCant_stock(0.0);
+                    art.setDescripcion("NE");
+                    art.setId_articulo(0);
+                    art.setId_categoria(0);
+                    conectados.get(i).getBasicRemote().sendObject(art);
+                }else{
+                    do{
+                        art.setNombre(res.getString("nombre"));
+                        art.setCant_stock(Double.parseDouble(res.getString("cant_stock")));
+                        art.setDescripcion(res.getString("descripccion"));
+                        art.setId_articulo(Integer.parseInt(res.getString("id_articulo")));
+                        art.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
+                        conectados.get(i).getBasicRemote().sendObject(art);
+                    }while(res.next());
+                }
             }else{
-                art.setNombre(res.getString("nombre"));
-                art.setCant_stock(Double.parseDouble(res.getString("cant_stock")));
-                art.setDescripcion(res.getString("descripccion"));
-                art.setId_articulo(Integer.parseInt(res.getString("id_articulo")));
-                art.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
-                conectados.get(i).getBasicRemote().sendObject(art);
+                ResultSet res = artDB.getArticuloByNombre(mens);
+                if(!res.next()){
+                    art.setNombre("NE");
+                    art.setCant_stock(0.0);
+                    art.setDescripcion("NE");
+                    art.setId_articulo(0);
+                    art.setId_categoria(0);
+                    conectados.get(i).getBasicRemote().sendObject(art);
+                }else{
+                    do{
+                        art.setNombre(res.getString("nombre"));
+                        art.setCant_stock(Double.parseDouble(res.getString("cant_stock")));
+                        art.setDescripcion(res.getString("descripccion"));
+                        art.setId_articulo(Integer.parseInt(res.getString("id_articulo")));
+                        art.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
+                        conectados.get(i).getBasicRemote().sendObject(art);
+                    }while(res.next());
+                }
             }
         }catch(Exception e){
             System.out.println(e.getMessage());

@@ -1,4 +1,5 @@
 var arrayid = [];
+var arrayArticulos = [];
 var ws;
 var url;
 var v_selected;
@@ -170,10 +171,10 @@ procedimiento = function () {
                 document.getElementById("input_6").value = obj.id_metodo_pago;
                 ws.close();
                 ws = null;
-                ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/detalle_fac');
+                ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
                 ws.onopen = onOpen;
                 ws.onclose = onClose;
-                setTimeout('create_tabla()', 3000);
+                setTimeout('get_articulos()', 3000);
             }
             console.log("Se recivio una factura");
         } else if (v_selected == "Metodo_pago") {
@@ -269,6 +270,12 @@ enviar_edit = function () {
 };
 //funcion que acorde a la opcion elegida muestra u oculta los divs
 edit_divs = function () {
+    if(!!document.getElementById("table_d_f")){
+        document.getElementsByTagName("body")[0].removeChild(document.getElementById("table_d_f"));
+    }
+    for(var i=1;i<=7;i++){
+        document.getElementById("input_"+i).value = "";
+    }
     //se esconden primero todos los divs
     hide_divs();
     if (v_selected == "Articulo") {
@@ -342,7 +349,7 @@ create_tabla = function () {
     // Crea un elemento <table> y un elemento <tbody>
     var tabla = document.createElement("table");
     var tblBody = document.createElement("tbody");
-    ws.send(id_selected+"");
+    ws.send(id_selected + "");
     //se ponenen titulos a tabla
     var hilera = document.createElement("tr");
     var celda = document.createElement("td");
@@ -370,59 +377,57 @@ create_tabla = function () {
     text.innerHTML = "ID del articulo";
     celda.appendChild(text);
     hilera.appendChild(celda);
-    
+
     tblBody.appendChild(hilera);
-    
-    function seetear(evt){
+
+    function seetear(evt) {
         var obj = JSON.parse(evt.data);
         //en caso de que no exista el registro
-        if(obj.total == "0"){
+        if (obj.total == "0") {
             console.log("No existe ningun registro");
-        }else{
+        } else {
             arrayid.push(obj.id_detalle_fac);
             var hilera = document.createElement("tr");
             //se agrega cantidad a tabla
             var celda = document.createElement("td");
             var textoCelda = document.createElement("input");
             textoCelda.setAttribute('type', 'text');
-            textoCelda.setAttribute('id','c'+iterator);
+            textoCelda.setAttribute('id', 'c' + iterator);
             textoCelda.setAttribute('value', obj.cantidad);
             celda.appendChild(textoCelda);
             hilera.appendChild(celda);
             //se agrega total a tabla
             var celda = document.createElement("td");
-            var textoCelda_2 = document.createElement("input");
-            textoCelda_2.setAttribute('type', 'text');
-            textoCelda_2.setAttribute('id','t'+iterator);
-            textoCelda_2.setAttribute('value', obj.total);
+            var textoCelda_2 = document.createElement("label");
+            textoCelda_2.setAttribute('id', 't' + iterator);
+            textoCelda_2.innerHTML = obj.total;
             celda.appendChild(textoCelda_2);
             hilera.appendChild(celda);
             //se agrega descuento en porcentaje a la tabla
             var celda = document.createElement("td");
             var textoCelda_3 = document.createElement("input");
             textoCelda_3.setAttribute('type', 'text');
-            textoCelda_3.setAttribute('id','d'+iterator);
+            textoCelda_3.setAttribute('id', 'd' + iterator);
             textoCelda_3.setAttribute('value', obj.descuento);
             celda.appendChild(textoCelda_3);
             hilera.appendChild(celda);
             //se agrega valor del descuento
             var celda = document.createElement("td");
-            var textoCelda_4 = document.createElement("input");
-            textoCelda_4.setAttribute('type', 'text');
-            textoCelda_4.setAttribute('id','v_d'+iterator);
-            textoCelda_4.setAttribute('value', obj.val_descuento);
+            var textoCelda_4 = document.createElement("label");
+            textoCelda_4.setAttribute('id', 'v_d' + iterator);
+            textoCelda_4.innerHTML = obj.val_descuento;
             celda.appendChild(textoCelda_4);
             hilera.appendChild(celda);
             //se agrega id del articulo (en proxima actualizacion se mostrara el nombre del articulo)
             var celda = document.createElement("td");
-            var textoCelda_5 = document.createElement("input");
+            var textoCelda_5 = document.createElement("label");
             textoCelda_5.setAttribute('type', 'text');
-            textoCelda_5.setAttribute('id','i_a'+iterator);
-            textoCelda_5.setAttribute('value', obj.id_articulo);
+            textoCelda_5.setAttribute('id', 'i_a' + iterator);
+            textoCelda_5.innerHTML = obj.id_articulo;
             celda.appendChild(textoCelda_5);
             hilera.appendChild(celda);
-            
-            iterator ++;
+
+            iterator++;
             tblBody.appendChild(hilera);
         }
         // posiciona el <tbody> debajo del elemento <table>
@@ -431,5 +436,35 @@ create_tabla = function () {
         body.appendChild(tabla);
         // modifica el atributo "border" de la tabla y lo fija a "2";
         tabla.setAttribute("border", "2");
+        tabla.setAttribute("id", "table_d_f");
     }
 };
+//funcion para traer todos los articulos
+async function get_articulos (){
+    ws.onmessage = recivir_art;
+    
+    ws.send("Todo");
+    function recivir_art (evt){
+        var obj = JSON.parse(evt.data);
+        //en caso de que no exista el registro
+        if (obj.nombre === 'NE') {
+            console.log("no existen elementos");
+        } else{
+            console.log("Se recivio un articulo");
+            arrayArticulos.push(obj);
+        }
+    };
+    await delay(1);
+    
+    ws.close();
+    ws = null;
+    ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/detalle_fac');
+    ws.onopen = onOpen;
+    ws.onclose = onClose;
+    setTimeout('create_tabla()', 3000);
+}
+function delay(n){
+    return new Promise(function(resolve){
+        setTimeout(resolve,n*1000);
+    });
+}
