@@ -1,3 +1,4 @@
+
 var ws;
 var url;
 var v_selected;
@@ -6,13 +7,15 @@ var nombre;
 var o_selected;
 var iterator = 0;
 var id_selected = "0";
-
+//funcion para confirmar conexion con ws
 function onOpen() {
     console.log('Conectado..');
 }
+//funcion para confirmar cierrre de sesion con ws
 function onClose() {
     console.log('Desonectado..');
 }
+//funcion que controla visivilidad de los divs
 select = function () {
     var input;
     input = document.getElementById("Select");
@@ -55,12 +58,15 @@ select = function () {
             } else {
                 band = false;
             }
+            //se selecciona url a conectar
             selecionar_url();
             edit_divs();
+            //se enlaza el websocket a la url elegida para posteriormente emplearlo
             procedimiento();
         }
     });
 };
+//metodo que elige el tipo de url para el websocket (url solo valida para realizar consultas)
 selecionar_url = function () {
     if (v_selected == "Articulo") {
         url = 'ws://localhost:8080/Proyecto_facturacion/articulo';
@@ -82,6 +88,7 @@ selecionar_url = function () {
         console.log("Ciudad");
     }
 };
+//metodo que elige el tipo de url para el websocket (url solo valida para editar)
 selecionar_url_modify = function () {
     if (v_selected == "Articulo") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyArticulo';
@@ -103,6 +110,7 @@ selecionar_url_modify = function () {
         console.log("Ciudad");
     }
 };
+//funcion para manejar resultados obtenidos del websocket
 procedimiento = function () {
     ws = null;
     ws = new WebSocket(url);
@@ -111,6 +119,7 @@ procedimiento = function () {
     ws.onmessage = onMessage;
     nombre = document.getElementById('Nombre');
     var info = document.getElementById('informacion');
+    //se verifica si elemento esta vacio de lo contrario se procede segun el tipo de onjeto
     function onMessage(evt) {
         console.log("recivido");
         var obj = JSON.parse(evt.data);
@@ -186,6 +195,7 @@ procedimiento = function () {
         }
     }
 };
+//fucion para enviar consulta a aservidor
 enviar = function () {
     if (nombre.value == "") {
         console.log("No se ingreso nombre:");
@@ -193,6 +203,7 @@ enviar = function () {
         ws.send(nombre.value);
     }
 };
+//funcion para cerrar de manera segura la conexion
 close_conexion = function () {
     ws.close();
     selecionar_url_modify();
@@ -200,11 +211,12 @@ close_conexion = function () {
     ws = new WebSocket(url);
     ws.onopen = onOpen;
     ws.onclose = onClose;
+    //espera 3 segundos para permitir el correcto cierre y redirige
     setTimeout('enviar_edit()', 3000);
-}
+};
+//funcion para empaquetar, parsear a JSON y enviar a el servidor el objeto
 enviar_edit = function () {
     console.log("Entro");
-
     if (v_selected == "Articulo") {
         var msg = {
             id_articulo: id_selected,
@@ -255,7 +267,9 @@ enviar_edit = function () {
         ws.send(JSON.stringify(msg));
     }
 };
+//funcion que acorde a la opcion elegida muestra u oculta los divs
 edit_divs = function () {
+    //se esconden primero todos los divs
     hide_divs();
     if (v_selected == "Articulo") {
         document.getElementById("label_1").innerHTML = "Nombre:";
@@ -308,6 +322,7 @@ edit_divs = function () {
         document.getElementById("div_3").style.display = "inline";
     }
 };
+//funcion para esconder divs de edicion
 hide_divs = function () {
     document.getElementById("div_3").style.display = "none";
     document.getElementById("div_4").style.display = "none";
@@ -318,6 +333,7 @@ hide_divs = function () {
     document.getElementById("div_9").style.display = "none";
 
 };
+//funcion para crear la tabla de productos de una factura
 create_tabla = function () {
     ws.onmessage = seetear;
     // Obtener la referencia del elemento body
