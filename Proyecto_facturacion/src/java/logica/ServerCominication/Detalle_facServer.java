@@ -38,14 +38,14 @@ public class Detalle_facServer {
         DBDetalle_fac detDB = new DBDetalle_fac();
         Detalle_fac det = new Detalle_fac();
         try{
-            ResultSet res = detDB.getDetalle_facById_factura(1);
+            ResultSet res = detDB.getDetalle_facById_factura(Integer.parseInt(mens));
             if(!res.next()){
                 det.setCantidad(1);
                 det.setDescuento(1);
                 det.setId_articulo(1);
                 det.setId_detalle_fac(1);
                 det.setId_factura(i);
-                det.setTotal(1.0);
+                det.setTotal(0.0);
                 det.setVal_descuento(1.0);
                 conectados.get(i).getBasicRemote().sendObject(det);
             }else{
@@ -58,7 +58,7 @@ public class Detalle_facServer {
                     det.setTotal(Double.parseDouble(res.getString("total")));
                     det.setVal_descuento(Double.parseDouble(res.getString("val_descuento")));
                     conectados.get(i).getBasicRemote().sendObject(det);
-                }while(!res.next());
+                }while(res.next());
             }
         }catch(Exception e){
             System.out.println(e.getMessage());

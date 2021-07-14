@@ -4,6 +4,7 @@ var v_selected;
 var band = true;
 var nombre;
 var o_selected;
+var iterator = 0;
 var id_selected = "0";
 
 function onOpen() {
@@ -318,7 +319,6 @@ hide_divs = function () {
 
 };
 create_tabla = function () {
-    
     ws.onmessage = seetear;
     // Obtener la referencia del elemento body
     var body = document.getElementsByTagName("body")[0];
@@ -326,44 +326,53 @@ create_tabla = function () {
     // Crea un elemento <table> y un elemento <tbody>
     var tabla = document.createElement("table");
     var tblBody = document.createElement("tbody");
-    ws.send("2");
+    ws.send(id_selected+"");
     function seetear(evt){
         var obj = JSON.parse(evt.data);
-        var hilera = document.createElement("tr");
-        var celda = document.createElement("td");
-        var textoCelda = document.createElement("input");
-        textoCelda.setAttribute('type', 'text');
-        textoCelda.setAttribute('value', obj.cantidad);
-        celda.appendChild(textoCelda);
-        hilera.appendChild(celda);
-        tblBody.appendChild(hilera);
-        // posiciona el <tbody> debajo del elemento <table>
-    tabla.appendChild(tblBody);
-    // appends <table> into <body>
-    body.appendChild(tabla);
-    // modifica el atributo "border" de la tabla y lo fija a "2";
-    tabla.setAttribute("border", "2");
-    }
-    // Crea las celdas
-    /*for (var i = 0; i < 2; i++) {
-        // Crea las hileras de la tabla
-        var hilera = document.createElement("tr");
-
-        for (var j = 0; j < 2; j++) {
-            // Crea un elemento <td> y un nodo de texto, haz que el nodo de
-            // texto sea el contenido de <td>, ubica el elemento <td> al final
-            // de la hilera de la tabla
+        if(obj.total == "0"){
+            console.log("No existe ningun registro");
+        }else{
+            var hilera = document.createElement("tr");
             var celda = document.createElement("td");
             var textoCelda = document.createElement("input");
             textoCelda.setAttribute('type', 'text');
-            textoCelda.setAttribute('value', '54');
+            textoCelda.setAttribute('id','c'+iterator);
+            textoCelda.setAttribute('value', obj.cantidad);
             celda.appendChild(textoCelda);
+            
+            var textoCelda_2 = document.createElement("input");
+            textoCelda_2.setAttribute('type', 'text');
+            textoCelda_2.setAttribute('id','t'+iterator);
+            textoCelda_2.setAttribute('value', obj.total);
+            celda.appendChild(textoCelda_2);
+            
+            var textoCelda_3 = document.createElement("input");
+            textoCelda_3.setAttribute('type', 'text');
+            textoCelda_3.setAttribute('id','d'+iterator);
+            textoCelda_3.setAttribute('value', obj.descuento);
+            celda.appendChild(textoCelda_3);
+            
+            var textoCelda_4 = document.createElement("input");
+            textoCelda_4.setAttribute('type', 'text');
+            textoCelda_4.setAttribute('id','v_d'+iterator);
+            textoCelda_4.setAttribute('value', obj.val_descuento);
+            celda.appendChild(textoCelda_4);
+            
+            var textoCelda_5 = document.createElement("input");
+            textoCelda_5.setAttribute('type', 'text');
+            textoCelda_5.setAttribute('id','i_a'+iterator);
+            textoCelda_5.setAttribute('value', obj.id_articulo);
+            celda.appendChild(textoCelda_5);
+            
+            iterator ++;
             hilera.appendChild(celda);
+            tblBody.appendChild(hilera);
         }
-
-        // agrega la hilera al final de la tabla (al final del elemento tblbody)
-        tblBody.appendChild(hilera);
-    }*/
-
-    
+        // posiciona el <tbody> debajo del elemento <table>
+        tabla.appendChild(tblBody);
+        // appends <table> into <body>
+        body.appendChild(tabla);
+        // modifica el atributo "border" de la tabla y lo fija a "2";
+        tabla.setAttribute("border", "2");
+    }
 };
