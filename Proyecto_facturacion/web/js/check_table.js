@@ -8,7 +8,6 @@ function cerrar_ws() {
 }
 function edit_table() {
     for (var i = 0; i < window.iterator; i++) {
-        console.log(window.arrayid[i]);
         var msg = {
             id_detalle_fac: window.arrayid[i] + "",
             cantidad: document.getElementById("c" + i).value,
@@ -16,14 +15,21 @@ function edit_table() {
             descuento: document.getElementById("d" + i).value,
             val_descuento: document.getElementById("v_d" + i).innerHTML,
             id_factura: window.id_selected + "",
-            id_articulo: document.getElementById("i_a" + i).innerHTML,
+            id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML)+"",
             mensaje: "1"
         };
         ws_table.send(JSON.stringify(msg));
     }
     var input;
 }
-
+function ver_id_a(art){
+    for(var i=0;i<window.arrayArticulos.length;i++){
+        if(window.arrayArticulos[i].nombre == art){
+            return window.arrayArticulos[i].id_articulo;
+            break;
+        }
+    }
+}
 function get_var() {
     console.log(window.iterator);
 }

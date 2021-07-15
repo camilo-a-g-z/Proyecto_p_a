@@ -423,7 +423,8 @@ create_tabla = function () {
             var textoCelda_5 = document.createElement("label");
             textoCelda_5.setAttribute('type', 'text');
             textoCelda_5.setAttribute('id', 'i_a' + iterator);
-            textoCelda_5.innerHTML = obj.id_articulo;
+            textoCelda_5.setAttribute('value', obj.id_articulo);
+            textoCelda_5.innerHTML = set_articulo(obj.id_articulo);
             celda.appendChild(textoCelda_5);
             hilera.appendChild(celda);
 
@@ -450,7 +451,6 @@ async function get_articulos (){
         if (obj.nombre === 'NE') {
             console.log("no existen elementos");
         } else{
-            console.log("Se recivio un articulo");
             arrayArticulos.push(obj);
         }
     };
@@ -467,4 +467,12 @@ function delay(n){
     return new Promise(function(resolve){
         setTimeout(resolve,n*1000);
     });
+}
+function set_articulo(art){
+    for(var i=0;i<arrayArticulos.length;i++){
+        if(arrayArticulos[i].id_articulo == art){
+            return arrayArticulos[i].nombre;
+            break;
+        }
+    }
 }
