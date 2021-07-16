@@ -8,6 +8,11 @@ var nombre;
 var o_selected;
 var iterator = 0;
 var id_selected = "0";
+// Obtener la referencia del elemento body
+var body ;
+// Crea un elemento <table> y un elemento <tbody>
+var tabla ;
+var tblBody;
 //funcion para confirmar conexion con ws
 function onOpen() {
     console.log('Conectado..');
@@ -345,10 +350,10 @@ create_tabla = function () {
     ws.onmessage = seetear;
     // Obtener la referencia del elemento body
     var body = document.getElementsByTagName("body")[0];
-
     // Crea un elemento <table> y un elemento <tbody>
     var tabla = document.createElement("table");
     var tblBody = document.createElement("tbody");
+    //se envia id para obtener los articulos relacionados
     ws.send(id_selected + "");
     //se ponenen titulos a tabla
     var hilera = document.createElement("tr");
