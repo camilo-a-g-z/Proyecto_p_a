@@ -28,7 +28,7 @@ function add_fila(){
     var textoCelda = document.createElement("input");
     textoCelda.setAttribute('type', 'text');
     textoCelda.setAttribute('id', 'c' + window.iterator);
-    textoCelda.setAttribute('value', document.getElementById("input_9"));
+    textoCelda.setAttribute('value', document.getElementById("input_9").value);
     celda.appendChild(textoCelda);
     hilera.appendChild(celda);
     //se agrega total a tabla
@@ -59,16 +59,19 @@ function add_fila(){
     textoCelda_5.setAttribute('type', 'text');
     textoCelda_5.setAttribute('id', 'i_a' + window.iterator);
     textoCelda_5.setAttribute('value', "obj.id_articulo");
-    textoCelda_5.innerHTML = "set_articulo(obj.id_articulo)";
+    textoCelda_5.innerHTML = set_articulo(document.getElementById("input_8").value);
     celda.appendChild(textoCelda_5);
     hilera.appendChild(celda);
 
     window.iterator++;
-    window.tblBody.appendChild(hilera);
+    tblBody = document.getElementsByTagName("tbody")[0];
+    tabla = document.getElementById("table_d_f");
+    body = document.getElementsByTagName("body")[0];
+    tblBody.appendChild(hilera);
     // posiciona el <tbody> debajo del elemento <table>
-    window.tabla.appendChild(tblBody);
+    tabla.appendChild(tblBody);
     // appends <table> into <body>
-    window.body.appendChild(tabla);
+    body.appendChild(tabla);
 }
 function ver_id_a(art){
     for(var i=0;i<window.arrayArticulos.length;i++){
@@ -80,4 +83,12 @@ function ver_id_a(art){
 }
 function get_var() {
     console.log(window.iterator);
+}
+function set_articulo(art){
+    for(var i=0;i<arrayArticulos.length;i++){
+        if(arrayArticulos[i].id_articulo == art){
+            return arrayArticulos[i].nombre;
+            break;
+        }
+    }
 }
