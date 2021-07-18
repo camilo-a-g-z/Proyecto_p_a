@@ -359,12 +359,12 @@ create_tabla = function () {
     var hilera = document.createElement("tr");
     var celda = document.createElement("td");
     var text = document.createElement("label");
-    text.innerHTML = "Cantidad";
+    text.innerHTML = "Nombre del articulo";
     celda.appendChild(text);
     hilera.appendChild(celda);
     var celda = document.createElement("td");
     var text = document.createElement("label");
-    text.innerHTML = "Total";
+    text.innerHTML = "Cantidad";
     celda.appendChild(text);
     hilera.appendChild(celda);
     var celda = document.createElement("td");
@@ -379,7 +379,7 @@ create_tabla = function () {
     hilera.appendChild(celda);
     var celda = document.createElement("td");
     var text = document.createElement("label");
-    text.innerHTML = "ID del articulo";
+    text.innerHTML = "Total";
     celda.appendChild(text);
     hilera.appendChild(celda);
 
@@ -393,6 +393,15 @@ create_tabla = function () {
         } else {
             arrayid.push(obj.id_detalle_fac);
             var hilera = document.createElement("tr");
+            //se agrega id del articulo
+            var celda = document.createElement("td");
+            var textoCelda_5 = document.createElement("label");
+            textoCelda_5.setAttribute('type', 'text');
+            textoCelda_5.setAttribute('id', 'i_a' + iterator);
+            textoCelda_5.setAttribute('value', obj.id_articulo);
+            textoCelda_5.innerHTML = set_articulo(obj.id_articulo);
+            celda.appendChild(textoCelda_5);
+            hilera.appendChild(celda);
             //se agrega cantidad a tabla
             var celda = document.createElement("td");
             var textoCelda = document.createElement("input");
@@ -400,13 +409,6 @@ create_tabla = function () {
             textoCelda.setAttribute('id', 'c' + iterator);
             textoCelda.setAttribute('value', obj.cantidad);
             celda.appendChild(textoCelda);
-            hilera.appendChild(celda);
-            //se agrega total a tabla
-            var celda = document.createElement("td");
-            var textoCelda_2 = document.createElement("label");
-            textoCelda_2.setAttribute('id', 't' + iterator);
-            textoCelda_2.innerHTML = obj.total;
-            celda.appendChild(textoCelda_2);
             hilera.appendChild(celda);
             //se agrega descuento en porcentaje a la tabla
             var celda = document.createElement("td");
@@ -423,14 +425,12 @@ create_tabla = function () {
             textoCelda_4.innerHTML = obj.val_descuento;
             celda.appendChild(textoCelda_4);
             hilera.appendChild(celda);
-            //se agrega id del articulo (en proxima actualizacion se mostrara el nombre del articulo)
+            //se agrega total a tabla
             var celda = document.createElement("td");
-            var textoCelda_5 = document.createElement("label");
-            textoCelda_5.setAttribute('type', 'text');
-            textoCelda_5.setAttribute('id', 'i_a' + iterator);
-            textoCelda_5.setAttribute('value', obj.id_articulo);
-            textoCelda_5.innerHTML = set_articulo(obj.id_articulo);
-            celda.appendChild(textoCelda_5);
+            var textoCelda_2 = document.createElement("label");
+            textoCelda_2.setAttribute('id', 't' + iterator);
+            textoCelda_2.innerHTML = obj.total;
+            celda.appendChild(textoCelda_2);
             hilera.appendChild(celda);
 
             iterator++;

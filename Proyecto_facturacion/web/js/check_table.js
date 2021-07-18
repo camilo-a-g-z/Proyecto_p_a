@@ -23,6 +23,15 @@ function edit_table() {
 }
 function add_fila(){
     var hilera = document.createElement("tr");
+    //se agrega id del articulo
+    var celda = document.createElement("td");
+    var textoCelda_5 = document.createElement("label");
+    textoCelda_5.setAttribute('type', 'text');
+    textoCelda_5.setAttribute('id', 'i_a' + window.iterator);
+    textoCelda_5.setAttribute('value', "obj.id_articulo");
+    textoCelda_5.innerHTML = set_articulo(document.getElementById("input_8").value);
+    celda.appendChild(textoCelda_5);
+    hilera.appendChild(celda);
     //se agrega cantidad a tabla
     var celda = document.createElement("td");
     var textoCelda = document.createElement("input");
@@ -31,36 +40,28 @@ function add_fila(){
     textoCelda.setAttribute('value', document.getElementById("input_9").value);
     celda.appendChild(textoCelda);
     hilera.appendChild(celda);
-    //se agrega total a tabla
-    var celda = document.createElement("td");
-    var textoCelda_2 = document.createElement("label");
-    textoCelda_2.setAttribute('id', 't' + window.iterator);
-    textoCelda_2.innerHTML = "obj.total";
-    celda.appendChild(textoCelda_2);
-    hilera.appendChild(celda);
     //se agrega descuento en porcentaje a la tabla
     var celda = document.createElement("td");
     var textoCelda_3 = document.createElement("input");
     textoCelda_3.setAttribute('type', 'text');
     textoCelda_3.setAttribute('id', 'd' + window.iterator);
-    textoCelda_3.setAttribute('value', "65");
+    textoCelda_3.setAttribute('value', document.getElementById("input_10").value);
     celda.appendChild(textoCelda_3);
     hilera.appendChild(celda);
     //se agrega valor del descuento
+    
     var celda = document.createElement("td");
     var textoCelda_4 = document.createElement("label");
     textoCelda_4.setAttribute('id', 'v_d' + window.iterator);
     textoCelda_4.innerHTML = "obj.val_descuento";
     celda.appendChild(textoCelda_4);
     hilera.appendChild(celda);
-    //se agrega id del articulo (en proxima actualizacion se mostrara el nombre del articulo)
+    //se agrega total a tabla
     var celda = document.createElement("td");
-    var textoCelda_5 = document.createElement("label");
-    textoCelda_5.setAttribute('type', 'text');
-    textoCelda_5.setAttribute('id', 'i_a' + window.iterator);
-    textoCelda_5.setAttribute('value', "obj.id_articulo");
-    textoCelda_5.innerHTML = set_articulo(document.getElementById("input_8").value);
-    celda.appendChild(textoCelda_5);
+    var textoCelda_2 = document.createElement("label");
+    textoCelda_2.setAttribute('id', 't' + window.iterator);
+    textoCelda_2.innerHTML = "obj.total";
+    celda.appendChild(textoCelda_2);
     hilera.appendChild(celda);
 
     window.iterator++;
@@ -80,6 +81,17 @@ function ver_id_a(art){
             break;
         }
     }
+}
+function get_precio_id_a(art){
+    for(var i=0;i<arrayArticulos.length;i++){
+        if(arrayArticulos[i].id_articulo == art){
+            return arrayArticulos[i].descripcion;
+            break;
+        }
+    }
+}
+function get_val_descuento(){
+    return val_descuento = (document.getElementById("input_10").value/100)*(document.getElementById("input_9").value* get_precio_id_a(document.getElementById("input_8").value));
 }
 function get_var() {
     console.log(window.iterator);
