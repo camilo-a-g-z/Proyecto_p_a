@@ -37,7 +37,9 @@ public class EditArticuloServer {
     
    @OnMessage
     public void mensaje(Articulo art){
+        //se crea conexion a base de datos
         DBArticulo artDB = new DBArticulo();
+        //segun opcion se procede a actualizar registro en base de datos
         try{
             switch(Integer.parseInt(art.getMensaje())){
                 case 1:

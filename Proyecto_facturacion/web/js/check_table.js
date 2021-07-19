@@ -16,12 +16,13 @@ function edit_table() {
             val_descuento: document.getElementById("v_d" + i).innerHTML,
             id_factura: window.id_selected + "",
             id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML)+"",
-            mensaje: "1"
+            mensaje: window.arrayOpc[i]+""
         };
         ws_table.send(JSON.stringify(msg));
     }
 }
 function add_fila(){
+    window.arrayOpc.push("2");
     var hilera = document.createElement("tr");
     //se agrega id del articulo
     var celda = document.createElement("td");
@@ -53,14 +54,14 @@ function add_fila(){
     var celda = document.createElement("td");
     var textoCelda_4 = document.createElement("label");
     textoCelda_4.setAttribute('id', 'v_d' + window.iterator);
-    textoCelda_4.innerHTML = "obj.val_descuento";
+    textoCelda_4.innerHTML = get_val_descuento();
     celda.appendChild(textoCelda_4);
     hilera.appendChild(celda);
     //se agrega total a tabla
     var celda = document.createElement("td");
     var textoCelda_2 = document.createElement("label");
     textoCelda_2.setAttribute('id', 't' + window.iterator);
-    textoCelda_2.innerHTML = "obj.total";
+    textoCelda_2.innerHTML = get_val_total();
     celda.appendChild(textoCelda_2);
     hilera.appendChild(celda);
 
@@ -92,6 +93,9 @@ function get_precio_id_a(art){
 }
 function get_val_descuento(){
     return val_descuento = (document.getElementById("input_10").value/100)*(document.getElementById("input_9").value* get_precio_id_a(document.getElementById("input_8").value));
+}
+function get_val_total(){
+    return val_total = (document.getElementById("input_9").value * get_precio_id_a(document.getElementById("input_8").value))- get_val_descuento();
 }
 function get_var() {
     console.log(window.iterator);

@@ -1,4 +1,5 @@
 var arrayid = [];
+var arrayOpc = [];
 var arrayArticulos = [];
 var ws;
 var url;
@@ -392,6 +393,7 @@ create_tabla = function () {
             console.log("No existe ningun registro");
         } else {
             arrayid.push(obj.id_detalle_fac);
+            arrayOpc.push("1");
             var hilera = document.createElement("tr");
             //se agrega id del articulo
             var celda = document.createElement("td");
