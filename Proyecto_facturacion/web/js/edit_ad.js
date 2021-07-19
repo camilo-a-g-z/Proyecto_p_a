@@ -257,7 +257,7 @@ enviar_edit = function () {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
-
+        window.cerrar_ws();
     } else if (v_selected == "Metodo_pago") {
         var msg = {
             id_metodo_pago: id_selected,
@@ -327,6 +327,9 @@ edit_divs = function () {
         document.getElementById("div_6").style.display = "inline";
         document.getElementById("div_7").style.display = "inline";
         document.getElementById("div_8").style.display = "inline";
+        document.getElementById("div_11").style.display = "inline";
+        document.getElementById("div_12").style.display = "inline";
+        document.getElementById("div_13").style.display = "inline";
     } else if (v_selected == "Metodo_pago") {
         document.getElementById("label_1").innerHTML = "Tipo:";
         document.getElementById("div_3").style.display = "inline";
@@ -344,6 +347,9 @@ hide_divs = function () {
     document.getElementById("div_7").style.display = "none";
     document.getElementById("div_8").style.display = "none";
     document.getElementById("div_9").style.display = "none";
+    document.getElementById("div_13").style.display = "none";
+    document.getElementById("div_12").style.display = "none";
+    document.getElementById("div_11").style.display = "none";
 
 };
 //funcion para crear la tabla de productos de una factura
@@ -493,4 +499,14 @@ function set_articulo(art){
             break;
         }
     }
+}
+function sumar_total(add){
+    //label 3
+    sub_total = document.getElementById("input_3").value+0;
+    total = document.getElementById("input_4").value+0;
+    val_iva = document.getElementById("input_2").value+0;
+    
+    sub_total +=add;
+    return sub_total;
+    
 }

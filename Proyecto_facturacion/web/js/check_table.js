@@ -64,15 +64,24 @@ function add_fila(){
     var celda = document.createElement("td");
     var textoCelda_4 = document.createElement("label");
     textoCelda_4.setAttribute('id', 'v_d' + window.iterator);
-    textoCelda_4.innerHTML = get_val_descuento();
+    textoCelda_4.innerHTML = Math.round(get_val_descuento());
     celda.appendChild(textoCelda_4);
     hilera.appendChild(celda);
     //se agrega total a tabla
     var celda = document.createElement("td");
     var textoCelda_2 = document.createElement("label");
     textoCelda_2.setAttribute('id', 't' + window.iterator);
-    textoCelda_2.innerHTML = get_val_total();
+    textoCelda_2.innerHTML = Math.round(get_val_total());
     celda.appendChild(textoCelda_2);
+    hilera.appendChild(celda);
+    //select de eliminar
+    var celda = document.createElement("td");
+    var textoCelda_5 = document.createElement("input");
+    textoCelda_5.setAttribute('type', 'checkbox');
+    textoCelda_5.setAttribute('id', 'e' + window.iterator);
+    textoCelda_5.innerHTML = "Eliminar";
+    celda.appendChild(textoCelda_5);
+    celda.appendChild(document.createTextNode("Eliminar"));
     hilera.appendChild(celda);
 
     window.iterator++;
