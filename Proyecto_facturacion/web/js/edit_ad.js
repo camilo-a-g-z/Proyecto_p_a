@@ -65,6 +65,15 @@ select = function () {
             } else {
                 band = false;
             }
+            if (v_selected == "Factura") {
+                url = 'ws://localhost:8080/Proyecto_facturacion/factura';
+                console.log("Factura");
+            }
+            ws = null;
+            ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
+            ws.onopen = onOpen;
+            ws.onclose = onClose;
+            setTimeout('get_articulos()', 1500);
             //se selecciona url a conectar
             selecionar_url();
             edit_divs();
@@ -118,7 +127,9 @@ selecionar_url_modify = function () {
     }
 };
 //funcion para manejar resultados obtenidos del websocket
-procedimiento = function () {
+async function procedimiento() {
+    await delay(3);
+    set_articulo_div();
     ws = null;
     ws = new WebSocket(url);
     ws.onopen = onOpen;
@@ -177,10 +188,10 @@ procedimiento = function () {
                 document.getElementById("input_6").value = obj.id_metodo_pago;
                 ws.close();
                 ws = null;
-                ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
+                ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/detalle_fac');
                 ws.onopen = onOpen;
                 ws.onclose = onClose;
-                setTimeout('get_articulos()', 3000);
+                setTimeout('create_tabla()', 3000);
             }
             console.log("Se recivio una factura");
         } else if (v_selected == "Metodo_pago") {
@@ -202,7 +213,17 @@ procedimiento = function () {
         }
     }
 };
-//fucion para enviar consulta a aservidor
+//funcion para poner los articulos a escoger
+function set_articulo_div(){
+    selected = document.getElementById("input_8");
+    for(var i=0;i<arrayArticulos.length;i++){
+        var option = document.createElement("option");
+        option.value = arrayArticulos[i].nombre;
+        option.text = arrayArticulos[i].nombre;
+        selected.appendChild(option);
+    }
+}
+//fucion para enviar consulta a servidor
 enviar = function () {
     if (nombre.value == "") {
         console.log("No se ingreso nombre:");
@@ -480,13 +501,7 @@ async function get_articulos (){
         }
     };
     await delay(1);
-    
     ws.close();
-    ws = null;
-    ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/detalle_fac');
-    ws.onopen = onOpen;
-    ws.onclose = onClose;
-    setTimeout('create_tabla()', 3000);
 }
 function delay(n){
     return new Promise(function(resolve){

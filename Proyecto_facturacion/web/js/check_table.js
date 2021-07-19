@@ -32,98 +32,81 @@ async function add_fila(){
     //en caso de que no exista la tabla
     if(!document.getElementsByTagName("tbody")[0]){
         iniciar_tabla();
-        window.ws.close();
-        window.ws = null;
-        window.ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
-        window.ws.onopen = window.onOpen;
-        window.ws.onclose = window.onClose;
-        setTimeout('get_articulos_tabla()', 1000);
-        await window.delay(2);
     }
-    //se le da la opcion de crear elemento
-    window.arrayOpc.push("2");
-    //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
-    window.arrayid.push("1");
-    var hilera = document.createElement("tr");
-    //se agrega id del articulo
-    var celda = document.createElement("td");
-    var textoCelda_5 = document.createElement("label");
-    textoCelda_5.setAttribute('type', 'text');
-    textoCelda_5.setAttribute('id', 'i_a' + window.iterator);
-    textoCelda_5.setAttribute('value', "obj.id_articulo");
-    textoCelda_5.innerHTML = set_articulo(document.getElementById("input_8").value);
-    celda.appendChild(textoCelda_5);
-    hilera.appendChild(celda);
-    //se agrega cantidad a tabla
-    var celda = document.createElement("td");
-    var textoCelda = document.createElement("input");
-    textoCelda.setAttribute('type', 'text');
-    textoCelda.setAttribute('id', 'c' + window.iterator);
-    textoCelda.setAttribute('value', document.getElementById("input_9").value);
-    celda.appendChild(textoCelda);
-    hilera.appendChild(celda);
-    //se agrega descuento en porcentaje a la tabla
-    var celda = document.createElement("td");
-    var textoCelda_3 = document.createElement("input");
-    textoCelda_3.setAttribute('type', 'text');
-    textoCelda_3.setAttribute('id', 'd' + window.iterator);
-    textoCelda_3.setAttribute('value', document.getElementById("input_10").value);
-    celda.appendChild(textoCelda_3);
-    hilera.appendChild(celda);
-    //se agrega valor del descuento
-    
-    var celda = document.createElement("td");
-    var textoCelda_4 = document.createElement("label");
-    textoCelda_4.setAttribute('id', 'v_d' + window.iterator);
-    textoCelda_4.innerHTML = Math.round(get_val_descuento());
-    celda.appendChild(textoCelda_4);
-    hilera.appendChild(celda);
-    //se agrega total a tabla
-    var celda = document.createElement("td");
-    var textoCelda_2 = document.createElement("label");
-    textoCelda_2.setAttribute('id', 't' + window.iterator);
-    var res = get_val_total();
-    textoCelda_2.innerHTML = Math.round(res);
-    window.sumar_total(res);
-    celda.appendChild(textoCelda_2);
-    hilera.appendChild(celda);
-    //select de eliminar
-    var celda = document.createElement("td");
-    var textoCelda_5 = document.createElement("input");
-    textoCelda_5.setAttribute('type', 'checkbox');
-    textoCelda_5.setAttribute('id', 'e' + window.iterator);
-    textoCelda_5.innerHTML = "Eliminar";
-    celda.appendChild(textoCelda_5);
-    celda.appendChild(document.createTextNode("Eliminar"));
-    hilera.appendChild(celda);
+    if(document.getElementById("input_8").value!=""){
+        //se le da la opcion de crear elemento
+        window.arrayOpc.push("2");
+        //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
+        window.arrayid.push("1");
+        var hilera = document.createElement("tr");
+        //se agrega id del articulo
+        var celda = document.createElement("td");
+        var textoCelda_5 = document.createElement("label");
+        textoCelda_5.setAttribute('type', 'text');
+        textoCelda_5.setAttribute('id', 'i_a' + window.iterator);
+        textoCelda_5.setAttribute('value', "obj.id_articulo");
+        textoCelda_5.innerHTML = document.getElementById("input_8").value;
+        celda.appendChild(textoCelda_5);
+        hilera.appendChild(celda);
+        //se agrega cantidad a tabla
+        var celda = document.createElement("td");
+        var textoCelda = document.createElement("input");
+        textoCelda.setAttribute('type', 'text');
+        textoCelda.setAttribute('id', 'c' + window.iterator);
+        textoCelda.setAttribute('value', document.getElementById("input_9").value);
+        celda.appendChild(textoCelda);
+        hilera.appendChild(celda);
+        //se agrega descuento en porcentaje a la tabla
+        var celda = document.createElement("td");
+        var textoCelda_3 = document.createElement("input");
+        textoCelda_3.setAttribute('type', 'text');
+        textoCelda_3.setAttribute('id', 'd' + window.iterator);
+        textoCelda_3.setAttribute('value', document.getElementById("input_10").value);
+        celda.appendChild(textoCelda_3);
+        hilera.appendChild(celda);
+        //se agrega valor del descuento
 
-    window.iterator++;
-    tblBody = document.getElementsByTagName("tbody")[0];
-    tabla = document.getElementById("table_d_f");
-        
-    body = document.getElementsByTagName("body")[0];
-    tblBody.appendChild(hilera);
-    // posiciona el <tbody> debajo del elemento <table>
-    tabla.appendChild(tblBody);
-    // appends <table> into <body>
-    body.appendChild(tabla);
-}
-async function get_articulos_tabla(){
-    window.arrayArticulos.pop();
-    window.ws.onmessage = recivir_art;
-    
-    window.ws.send("Todo");
-    function recivir_art (evt){
-        var obj = JSON.parse(evt.data);
-        //en caso de que no exista el registro
-        if (obj.nombre === 'NE') {
-            console.log("no existen elementos");
-        } else{
-            window.arrayArticulos.push(obj);
-        }
-    };
+        var celda = document.createElement("td");
+        var textoCelda_4 = document.createElement("label");
+        textoCelda_4.setAttribute('id', 'v_d' + window.iterator);
+        textoCelda_4.innerHTML = Math.round(get_val_descuento());
+        celda.appendChild(textoCelda_4);
+        hilera.appendChild(celda);
+        //se agrega total a tabla
+        var celda = document.createElement("td");
+        var textoCelda_2 = document.createElement("label");
+        textoCelda_2.setAttribute('id', 't' + window.iterator);
+        var res = get_val_total();
+        textoCelda_2.innerHTML = Math.round(res);
+        window.sumar_total(res);
+        celda.appendChild(textoCelda_2);
+        hilera.appendChild(celda);
+        //select de eliminar
+        var celda = document.createElement("td");
+        var textoCelda_5 = document.createElement("input");
+        textoCelda_5.setAttribute('type', 'checkbox');
+        textoCelda_5.setAttribute('id', 'e' + window.iterator);
+        textoCelda_5.innerHTML = "Eliminar";
+        celda.appendChild(textoCelda_5);
+        celda.appendChild(document.createTextNode("Eliminar"));
+        hilera.appendChild(celda);
+
+        window.iterator++;
+        tblBody = document.getElementsByTagName("tbody")[0];
+        tabla = document.getElementById("table_d_f");
+
+        body = document.getElementsByTagName("body")[0];
+        tblBody.appendChild(hilera);
+        // posiciona el <tbody> debajo del elemento <table>
+        tabla.appendChild(tblBody);
+        // appends <table> into <body>
+        body.appendChild(tabla);
+    }
 }
 function iniciar_tabla(){
+    //Se agrega fecha actual
+    const hoy = new Date(Date.now());
+    document.getElementById("input_1").value = hoy.toLocaleDateString();
     // Obtener la referencia del elemento body
     var body = document.getElementsByTagName("body")[0];
     // Crea un elemento <table> y un elemento <tbody>
@@ -178,7 +161,7 @@ function ver_id_a(art){
 }
 function get_precio_id_a(art){
     for(var i=0;i<arrayArticulos.length;i++){
-        if(arrayArticulos[i].id_articulo == art){
+        if(arrayArticulos[i].nombre == art){
             return arrayArticulos[i].descripcion;
             break;
         }
@@ -192,12 +175,4 @@ function get_val_total(){
 }
 function get_var() {
     console.log(window.iterator);
-}
-function set_articulo(art){
-    for(var i=0;i<arrayArticulos.length;i++){
-        if(arrayArticulos[i].id_articulo == art){
-            return arrayArticulos[i].nombre;
-            break;
-        }
-    }
 }
