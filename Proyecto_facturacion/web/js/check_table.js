@@ -8,7 +8,13 @@ function cerrar_ws() {
 }
 function edit_table() {
     for (var i = 0; i < window.iterator; i++) {
+        //se pregunta si el usuario desea elimiar el objeto seleccionado
+        if(document.getElementById("e"+i).checked){
+            //se cambia opcion a eliminar
+            window.arrayOpc[i] = "3";
+        }
         var msg = {
+            //se crea el objeto para parsearlo y enviarlo a WS
             id_detalle_fac: window.arrayid[i] + "",
             cantidad: document.getElementById("c" + i).value,
             total: document.getElementById("t" + i).innerHTML,
@@ -18,11 +24,14 @@ function edit_table() {
             id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML)+"",
             mensaje: window.arrayOpc[i]+""
         };
+        //se envia objeto
         ws_table.send(JSON.stringify(msg));
     }
 }
 function add_fila(){
+    //se le da la opcion de crear elemento
     window.arrayOpc.push("2");
+    //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
     window.arrayid.push("1");
     var hilera = document.createElement("tr");
     //se agrega id del articulo

@@ -392,7 +392,9 @@ create_tabla = function () {
         if (obj.total == "0") {
             console.log("No existe ningun registro");
         } else {
+            //se agrega el id del objeto a arraylist
             arrayid.push(obj.id_detalle_fac);
+            //se agrega opcion de modificar
             arrayOpc.push("1");
             var hilera = document.createElement("tr");
             //se agrega id del articulo
@@ -433,6 +435,15 @@ create_tabla = function () {
             textoCelda_2.setAttribute('id', 't' + iterator);
             textoCelda_2.innerHTML = obj.total;
             celda.appendChild(textoCelda_2);
+            hilera.appendChild(celda);
+            //select de eliminar
+            var celda = document.createElement("td");
+            var textoCelda_5 = document.createElement("input");
+            textoCelda_5.setAttribute('type', 'checkbox');
+            textoCelda_5.setAttribute('id', 'e' + iterator);
+            textoCelda_5.innerHTML = "Eliminar";
+            celda.appendChild(textoCelda_5);
+            celda.appendChild(document.createTextNode("Eliminar"));
             hilera.appendChild(celda);
 
             iterator++;
