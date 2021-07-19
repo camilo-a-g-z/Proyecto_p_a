@@ -23,6 +23,7 @@ function edit_table() {
 }
 function add_fila(){
     window.arrayOpc.push("2");
+    window.arrayid.push("1");
     var hilera = document.createElement("tr");
     //se agrega id del articulo
     var celda = document.createElement("td");
