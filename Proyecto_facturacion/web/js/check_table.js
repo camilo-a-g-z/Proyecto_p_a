@@ -37,9 +37,9 @@ async function add_fila(){
         window.ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
         window.ws.onopen = window.onOpen;
         window.ws.onclose = window.onClose;
-        setTimeout('window.get_articulos()', 3000);
+        setTimeout('get_articulos_tabla()', 1000);
+        await window.delay(2);
     }
-    await window.delay(5);
     //se le da la opcion de crear elemento
     window.arrayOpc.push("2");
     //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
@@ -82,7 +82,9 @@ async function add_fila(){
     var celda = document.createElement("td");
     var textoCelda_2 = document.createElement("label");
     textoCelda_2.setAttribute('id', 't' + window.iterator);
-    textoCelda_2.innerHTML = Math.round(get_val_total());
+    var res = get_val_total();
+    textoCelda_2.innerHTML = Math.round(res);
+    window.sumar_total(res);
     celda.appendChild(textoCelda_2);
     hilera.appendChild(celda);
     //select de eliminar
@@ -105,6 +107,21 @@ async function add_fila(){
     tabla.appendChild(tblBody);
     // appends <table> into <body>
     body.appendChild(tabla);
+}
+async function get_articulos_tabla(){
+    window.arrayArticulos.pop();
+    window.ws.onmessage = recivir_art;
+    
+    window.ws.send("Todo");
+    function recivir_art (evt){
+        var obj = JSON.parse(evt.data);
+        //en caso de que no exista el registro
+        if (obj.nombre === 'NE') {
+            console.log("no existen elementos");
+        } else{
+            window.arrayArticulos.push(obj);
+        }
+    };
 }
 function iniciar_tabla(){
     // Obtener la referencia del elemento body

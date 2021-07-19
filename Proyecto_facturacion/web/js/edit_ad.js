@@ -503,8 +503,17 @@ function set_articulo(art){
 }
 function sumar_total(add){
     //se traen los labels donde estan los valores
-    sub_total = parseFloat(document.getElementById("input_3").value);
-    val_iva = parseFloat(document.getElementById("input_2").value);
+    //en caso de que se cree una nueva factura se settean valores a cero
+    if(document.getElementById("input_3").value == ""){
+        sub_total = 0;
+    }else{
+        sub_total = parseFloat(document.getElementById("input_3").value);
+    }
+    if(document.getElementById("input_2").value == ""){
+        val_iva = 0;
+    }else{
+        val_iva = parseFloat(document.getElementById("input_2").value);
+    }
     //se agrega cantidad a sub_total
     sub_total +=add;
     document.getElementById("input_3").value = sub_total;
