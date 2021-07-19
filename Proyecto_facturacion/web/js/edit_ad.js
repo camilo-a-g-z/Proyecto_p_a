@@ -425,7 +425,7 @@ create_tabla = function () {
             var textoCelda_3 = document.createElement("input");
             textoCelda_3.setAttribute('type', 'text');
             textoCelda_3.setAttribute('id', 'd' + iterator);
-            textoCelda_3.setAttribute('value', obj.descuento);
+            textoCelda_3.setAttribute('value', Math.round(obj.descuento));
             celda.appendChild(textoCelda_3);
             hilera.appendChild(celda);
             //se agrega valor del descuento
@@ -466,6 +466,7 @@ create_tabla = function () {
 };
 //funcion para traer todos los articulos
 async function get_articulos (){
+    arrayArticulos.pop();
     ws.onmessage = recivir_art;
     
     ws.send("Todo");
@@ -501,12 +502,15 @@ function set_articulo(art){
     }
 }
 function sumar_total(add){
-    //label 3
-    sub_total = document.getElementById("input_3").value+0;
-    total = document.getElementById("input_4").value+0;
-    val_iva = document.getElementById("input_2").value+0;
-    
+    //se traen los labels donde estan los valores
+    sub_total = parseFloat(document.getElementById("input_3").value);
+    val_iva = parseFloat(document.getElementById("input_2").value);
+    //se agrega cantidad a sub_total
     sub_total +=add;
-    return sub_total;
-    
+    document.getElementById("input_3").value = sub_total;
+    //se agrega cantidad de IVA
+    val_iva = sub_total * 0.19;
+    document.getElementById("input_2").value = val_iva;
+    //se agrega cantidad total de la factura;
+    document.getElementById("input_4").value = sub_total + val_iva;
 }

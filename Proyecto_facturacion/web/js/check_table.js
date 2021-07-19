@@ -28,7 +28,18 @@ function edit_table() {
         ws_table.send(JSON.stringify(msg));
     }
 }
-function add_fila(){
+async function add_fila(){
+    //en caso de que no exista la tabla
+    if(!document.getElementsByTagName("tbody")[0]){
+        iniciar_tabla();
+        window.ws.close();
+        window.ws = null;
+        window.ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
+        window.ws.onopen = window.onOpen;
+        window.ws.onclose = window.onClose;
+        setTimeout('window.get_articulos()', 3000);
+    }
+    await window.delay(5);
     //se le da la opcion de crear elemento
     window.arrayOpc.push("2");
     //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
@@ -87,12 +98,58 @@ function add_fila(){
     window.iterator++;
     tblBody = document.getElementsByTagName("tbody")[0];
     tabla = document.getElementById("table_d_f");
+        
     body = document.getElementsByTagName("body")[0];
     tblBody.appendChild(hilera);
     // posiciona el <tbody> debajo del elemento <table>
     tabla.appendChild(tblBody);
     // appends <table> into <body>
     body.appendChild(tabla);
+}
+function iniciar_tabla(){
+    // Obtener la referencia del elemento body
+    var body = document.getElementsByTagName("body")[0];
+    // Crea un elemento <table> y un elemento <tbody>
+    var tabla = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+    //se envia id para obtener los articulos relacionados
+    //se ponenen titulos a tabla
+    var hilera = document.createElement("tr");
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Nombre del articulo";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Cantidad";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Descuento";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Valor del descuento";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Total";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+
+    tblBody.appendChild(hilera);
+    
+    // posiciona el <tbody> debajo del elemento <table>
+    tabla.appendChild(tblBody);
+    // appends <table> into <body>
+    body.appendChild(tabla);
+    // modifica el atributo "border" de la tabla y lo fija a "2";
+    tabla.setAttribute("border", "2");
+    tabla.setAttribute("id", "table_d_f");
 }
 function ver_id_a(art){
     for(var i=0;i<window.arrayArticulos.length;i++){
