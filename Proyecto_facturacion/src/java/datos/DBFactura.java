@@ -64,6 +64,17 @@ public class DBFactura {
             System.out.println(e);
         }
     }
+    public String get_last_id(){
+        try{
+            PreparedStatement pstm_2 = cn.getConexion().prepareStatement("SELECT LAST_INSERT_ID()");
+            ResultSet res = pstm_2.executeQuery();
+            res.next();
+            return res.getString("LAST_INSERT_ID()");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "";
+    }
     public void eliminarFactura(int i) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("delete from factura where id_factura = "+i);
             pstm.executeUpdate();

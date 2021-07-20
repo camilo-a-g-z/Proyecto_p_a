@@ -1,6 +1,8 @@
 package logica.ServerCominication;
 
 import datos.DBFactura;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -42,12 +44,14 @@ public class EditFacturaServer {
                     break;
                 case 2:
                     facDB.insertarFactura(fac);
+                    System.out.println(facDB.get_last_id());
+                    conectados.get(i).getBasicRemote().sendText(facDB.get_last_id());
                     break;
                 case 3:
                     facDB.eliminarFactura(fac.getId_factura());
                     break;
             }
-        }catch(Exception e){
+        }catch(IOException | NumberFormatException | SQLException e){
             System.out.println(e.getMessage());
         }
     }

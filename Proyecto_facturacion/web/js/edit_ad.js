@@ -281,6 +281,7 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
+        
         window.cerrar_ws();
     } else if (v_selected == "Metodo_pago") {
         var msg = {
