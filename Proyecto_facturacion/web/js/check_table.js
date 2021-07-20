@@ -65,12 +65,18 @@ async function add_fila(){
         celda.appendChild(textoCelda_3);
         hilera.appendChild(celda);
         //se agrega valor del descuento
-
         var celda = document.createElement("td");
         var textoCelda_4 = document.createElement("label");
         textoCelda_4.setAttribute('id', 'v_d' + window.iterator);
         textoCelda_4.innerHTML = Math.round(get_val_descuento());
         celda.appendChild(textoCelda_4);
+        hilera.appendChild(celda);
+        //se agrega valor unitario
+        var celda = document.createElement("td");
+        var textoCelda_5 = document.createElement("label");
+        textoCelda_5.setAttribute('id', 'v_u' + window.iterator);
+        textoCelda_5.innerHTML = get_precio_id_a(document.getElementById("input_8").value);
+        celda.appendChild(textoCelda_5);
         hilera.appendChild(celda);
         //se agrega total a tabla
         var celda = document.createElement("td");
@@ -133,6 +139,11 @@ function iniciar_tabla(){
     var celda = document.createElement("td");
     var text = document.createElement("label");
     text.innerHTML = "Valor del descuento";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
+    text.innerHTML = "Valor unitario";
     celda.appendChild(text);
     hilera.appendChild(celda);
     var celda = document.createElement("td");

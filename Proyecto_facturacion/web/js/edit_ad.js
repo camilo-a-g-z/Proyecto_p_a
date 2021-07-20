@@ -129,7 +129,9 @@ selecionar_url_modify = function () {
 //funcion para manejar resultados obtenidos del websocket
 async function procedimiento() {
     await delay(3);
-    set_articulo_div();
+    if(document.getElementById("input_8").length <= 1){
+        set_articulo_div();
+    }
     ws = null;
     ws = new WebSocket(url);
     ws.onopen = onOpen;
@@ -243,8 +245,9 @@ close_conexion = function () {
     setTimeout('enviar_edit()', 3000);
 };
 //funcion para empaquetar, parsear a JSON y enviar a el servidor el objeto
-enviar_edit = function () {
+async function enviar_edit() {
     console.log("Entro");
+    ws.onmessage = get_id;
     if (v_selected == "Articulo") {
         var msg = {
             id_articulo: id_selected,
@@ -294,6 +297,10 @@ enviar_edit = function () {
         };
         ws.send(JSON.stringify(msg));
     }
+    function get_id(evt){
+        console.log(evt.data);
+    }
+    await delay(2);
 };
 //funcion que acorde a la opcion elegida muestra u oculta los divs
 edit_divs = function () {
@@ -407,6 +414,11 @@ create_tabla = function () {
     hilera.appendChild(celda);
     var celda = document.createElement("td");
     var text = document.createElement("label");
+    text.innerHTML = "Valor unitario";
+    celda.appendChild(text);
+    hilera.appendChild(celda);
+    var celda = document.createElement("td");
+    var text = document.createElement("label");
     text.innerHTML = "Total";
     celda.appendChild(text);
     hilera.appendChild(celda);
@@ -455,6 +467,13 @@ create_tabla = function () {
             textoCelda_4.setAttribute('id', 'v_d' + iterator);
             textoCelda_4.innerHTML = obj.val_descuento;
             celda.appendChild(textoCelda_4);
+            hilera.appendChild(celda);
+            //se agrega valor unitario
+            var celda = document.createElement("td");
+            var textoCelda_5 = document.createElement("label");
+            textoCelda_5.setAttribute('id', 'v_u' + iterator);
+            textoCelda_5.innerHTML = set_val_uni_articulo(obj.id_articulo);
+            celda.appendChild(textoCelda_5);
             hilera.appendChild(celda);
             //se agrega total a tabla
             var celda = document.createElement("td");
@@ -512,6 +531,14 @@ function set_articulo(art){
     for(var i=0;i<arrayArticulos.length;i++){
         if(arrayArticulos[i].id_articulo == art){
             return arrayArticulos[i].nombre;
+            break;
+        }
+    }
+}
+function set_val_uni_articulo(art){
+    for(var i=0;i<arrayArticulos.length;i++){
+        if(arrayArticulos[i].id_articulo == art){
+            return arrayArticulos[i].descripcion;
             break;
         }
     }

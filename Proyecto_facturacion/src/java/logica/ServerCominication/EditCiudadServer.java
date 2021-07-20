@@ -42,6 +42,8 @@ public class EditCiudadServer {
                     break;
                 case 2:
                     ciuDB.insertarCiudad(ciu);
+                    System.out.println(ciuDB.get_last_id());
+                    conectados.get(i).getBasicRemote().sendText(ciuDB.get_last_id());
                     break;
                 case 3:
                     ciuDB.eliminarCiudad(ciu.getId_ciudad());
