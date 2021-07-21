@@ -1,15 +1,18 @@
 var ws_table;
 function cerrar_ws() {
+    //se cierra antigua conexion
     window.ws.close();
     ws_table = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyDetalle_fac');
     ws_table.onclose = window.onClose();
     ws_table.onopen = window.onOpen();
+    //se espera correcta conexion con WS para enviar los registros
     setTimeout('edit_table()', 3000);
 }
+//funcion para crear/modificar/eliminar registros de detalle_fac
 function edit_table() {
     for (var i = 0; i < window.iterator; i++) {
         //se pregunta si el usuario desea elimiar el objeto seleccionado
-        if(document.getElementById("e"+i).checked){
+        if (document.getElementById("e" + i).checked) {
             //se cambia opcion a eliminar
             window.arrayOpc[i] = "3";
         }
@@ -21,19 +24,20 @@ function edit_table() {
             descuento: document.getElementById("d" + i).value,
             val_descuento: document.getElementById("v_d" + i).innerHTML,
             id_factura: window.id_selected + "",
-            id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML)+"",
-            mensaje: window.arrayOpc[i]+""
+            id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML) + "",
+            mensaje: window.arrayOpc[i] + ""
         };
         //se envia objeto
         ws_table.send(JSON.stringify(msg));
     }
 }
-async function add_fila(){
+//funcion para añadir una fila
+async function add_fila() {
     //en caso de que no exista la tabla
-    if(!document.getElementsByTagName("tbody")[0]){
+    if (!document.getElementsByTagName("tbody")[0]) {
         iniciar_tabla();
     }
-    if(document.getElementById("input_8").value!=""){
+    if (document.getElementById("input_8").value != "") {
         //se le da la opcion de crear elemento
         window.arrayOpc.push("2");
         //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
@@ -109,7 +113,8 @@ async function add_fila(){
         body.appendChild(tabla);
     }
 }
-function iniciar_tabla(){
+//funcion para crear encabezado de tabla en caso de que no exista
+function iniciar_tabla() {
     //Se agrega fecha actual
     const hoy = new Date(Date.now());
     document.getElementById("input_1").value = hoy.toLocaleDateString();
@@ -153,7 +158,7 @@ function iniciar_tabla(){
     hilera.appendChild(celda);
 
     tblBody.appendChild(hilera);
-    
+
     // posiciona el <tbody> debajo del elemento <table>
     tabla.appendChild(tblBody);
     // appends <table> into <body>
@@ -162,28 +167,31 @@ function iniciar_tabla(){
     tabla.setAttribute("border", "2");
     tabla.setAttribute("id", "table_d_f");
 }
-function ver_id_a(art){
-    for(var i=0;i<window.arrayArticulos.length;i++){
-        if(window.arrayArticulos[i].nombre == art){
+//segun el nombre se retorna el id del articulo
+function ver_id_a(art) {
+    for (var i = 0; i < window.arrayArticulos.length; i++) {
+        if (window.arrayArticulos[i].nombre == art) {
             return window.arrayArticulos[i].id_articulo;
             break;
         }
     }
 }
-function get_precio_id_a(art){
-    for(var i=0;i<arrayArticulos.length;i++){
-        if(arrayArticulos[i].nombre == art){
+//segun el id del articulo se retorna el precio
+function get_precio_id_a(art) {
+    for (var i = 0; i < arrayArticulos.length; i++) {
+        if (arrayArticulos[i].nombre == art) {
             return arrayArticulos[i].descripcion;
             break;
         }
     }
 }
-function get_val_descuento(){
-    return val_descuento = (document.getElementById("input_10").value/100)*(document.getElementById("input_9").value* get_precio_id_a(document.getElementById("input_8").value));
+//segun el id del articulo se retorna el valor del descuento
+function get_val_descuento() {
+    return val_descuento = (document.getElementById("input_10").value / 100) * (document.getElementById("input_9").value * get_precio_id_a(document.getElementById("input_8").value));
 }
-function get_val_total(){
-    return val_total = (document.getElementById("input_9").value * get_precio_id_a(document.getElementById("input_8").value))- get_val_descuento();
-}
-function get_var() {
-    console.log(window.iterator);
+//Se calcula el total en base a el articlo, cantidad y descuento
+function get_val_total() {
+    return val_total = (
+            document.getElementById("input_9").value * get_precio_id_a(document.getElementById("input_8").value))
+            - get_val_descuento();
 }

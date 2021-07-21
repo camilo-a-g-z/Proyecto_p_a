@@ -10,9 +10,9 @@ var o_selected;
 var iterator = 0;
 var id_selected = "0";
 // Obtener la referencia del elemento body
-var body ;
+var body;
 // Crea un elemento <table> y un elemento <tbody>
-var tabla ;
+var tabla;
 var tblBody;
 //funcion para confirmar conexion con ws
 function onOpen() {
@@ -129,7 +129,7 @@ selecionar_url_modify = function () {
 //funcion para manejar resultados obtenidos del websocket
 async function procedimiento() {
     await delay(3);
-    if(document.getElementById("input_8").length <= 1){
+    if (document.getElementById("input_8").length <= 1) {
         set_articulo_div();
     }
     ws = null;
@@ -214,11 +214,12 @@ async function procedimiento() {
             console.log("Se recivio una ciudad");
         }
     }
-};
+}
+;
 //funcion para poner los articulos a escoger
-function set_articulo_div(){
+function set_articulo_div() {
     selected = document.getElementById("input_8");
-    for(var i=0;i<arrayArticulos.length;i++){
+    for (var i = 0; i < arrayArticulos.length; i++) {
         var option = document.createElement("option");
         option.value = arrayArticulos[i].nombre;
         option.text = arrayArticulos[i].nombre;
@@ -281,13 +282,17 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
+        //se cierra antigua conexion
         ws.close();
+        //se crea nueva conexion para añadir factura
         ws = null;
         ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
         ws.onopen = onOpen;
         ws.onclose = onClose;
         ws.onmessage = get_id;
+        //se espera 2 segundos para permitir correcta conexion con WebSocket
         await delay(2);
+        //se crea el objeto a enviar
         var msg = {
             id_factura: id_selected,
             fecha_fac: document.getElementById("input_1").value,
@@ -299,6 +304,8 @@ async function enviar_edit() {
             mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
+        //se espera a recivir el id de la factura recien registrada en DB
+        //se procede a guardar registros de la factura
         setTimeout('window.cerrar_ws()', 3000);
     } else if (v_selected == "Metodo_pago") {
         var msg = {
@@ -315,18 +322,20 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     }
-    function get_id(evt){
+    function get_id(evt) {
+        //se recive el id del ultimo registro enviado
         id_selected = evt.data;
     }
     await delay(2);
-};
+}
+;
 //funcion que acorde a la opcion elegida muestra u oculta los divs
 edit_divs = function () {
-    if(!!document.getElementById("table_d_f")){
+    if (!!document.getElementById("table_d_f")) {
         document.getElementsByTagName("body")[0].removeChild(document.getElementById("table_d_f"));
     }
-    for(var i=1;i<=7;i++){
-        document.getElementById("input_"+i).value = "";
+    for (var i = 1; i <= 7; i++) {
+        document.getElementById("input_" + i).value = "";
     }
     //se esconden primero todos los divs
     hide_divs();
@@ -523,59 +532,60 @@ create_tabla = function () {
     }
 };
 //funcion para traer todos los articulos
-async function get_articulos (){
+async function get_articulos() {
     arrayArticulos.pop();
     ws.onmessage = recivir_art;
-    
+
     ws.send("Todo");
-    function recivir_art (evt){
+    function recivir_art(evt) {
         var obj = JSON.parse(evt.data);
         //en caso de que no exista el registro
         if (obj.nombre === 'NE') {
             console.log("no existen elementos");
-        } else{
+        } else {
             arrayArticulos.push(obj);
         }
-    };
+    }
+    ;
     await delay(1);
     ws.close();
 }
-function delay(n){
-    return new Promise(function(resolve){
-        setTimeout(resolve,n*1000);
+function delay(n) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, n * 1000);
     });
 }
-function set_articulo(art){
-    for(var i=0;i<arrayArticulos.length;i++){
-        if(arrayArticulos[i].id_articulo == art){
+function set_articulo(art) {
+    for (var i = 0; i < arrayArticulos.length; i++) {
+        if (arrayArticulos[i].id_articulo == art) {
             return arrayArticulos[i].nombre;
             break;
         }
     }
 }
-function set_val_uni_articulo(art){
-    for(var i=0;i<arrayArticulos.length;i++){
-        if(arrayArticulos[i].id_articulo == art){
+function set_val_uni_articulo(art) {
+    for (var i = 0; i < arrayArticulos.length; i++) {
+        if (arrayArticulos[i].id_articulo == art) {
             return arrayArticulos[i].descripcion;
             break;
         }
     }
 }
-function sumar_total(add){
+function sumar_total(add) {
     //se traen los labels donde estan los valores
     //en caso de que se cree una nueva factura se settean valores a cero
-    if(document.getElementById("input_3").value == ""){
+    if (document.getElementById("input_3").value == "") {
         sub_total = 0;
-    }else{
+    } else {
         sub_total = parseFloat(document.getElementById("input_3").value);
     }
-    if(document.getElementById("input_2").value == ""){
+    if (document.getElementById("input_2").value == "") {
         val_iva = 0;
-    }else{
+    } else {
         val_iva = parseFloat(document.getElementById("input_2").value);
     }
     //se agrega cantidad a sub_total
-    sub_total +=add;
+    sub_total += add;
     document.getElementById("input_3").value = sub_total;
     //se agrega cantidad de IVA
     val_iva = sub_total * 0.19;
