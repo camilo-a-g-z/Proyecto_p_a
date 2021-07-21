@@ -281,8 +281,25 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
-        
-        window.cerrar_ws();
+        ws.close();
+        ws = null;
+        ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
+        ws.onopen = onOpen;
+        ws.onclose = onClose;
+        ws.onmessage = get_id;
+        await delay(2);
+        var msg = {
+            id_factura: id_selected,
+            fecha_fac: document.getElementById("input_1").value,
+            val_iva: document.getElementById("input_2").value,
+            val_sub_total: document.getElementById("input_3").value,
+            total: document.getElementById("input_4").value,
+            id_cliente: document.getElementById("input_5").value,
+            id_metodo_pago: document.getElementById("input_6").value,
+            mensaje: o_selected
+        };
+        ws.send(JSON.stringify(msg));
+        setTimeout('window.cerrar_ws()', 3000);
     } else if (v_selected == "Metodo_pago") {
         var msg = {
             id_metodo_pago: id_selected,
@@ -299,7 +316,7 @@ async function enviar_edit() {
         ws.send(JSON.stringify(msg));
     }
     function get_id(evt){
-        console.log(evt.data);
+        id_selected = evt.data;
     }
     await delay(2);
 };
