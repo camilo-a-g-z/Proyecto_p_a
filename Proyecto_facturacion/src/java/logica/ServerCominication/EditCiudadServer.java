@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBCiudad;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -33,7 +34,7 @@ public class EditCiudadServer {
     }
     
     @OnMessage
-    public void mensaje(Ciudad ciu) {
+    public void mensaje(Ciudad ciu) throws IOException {
         DBCiudad ciuDB = new DBCiudad();
         try{
             switch(Integer.parseInt(ciu.getMensaje())){
@@ -47,7 +48,9 @@ public class EditCiudadServer {
                     ciuDB.eliminarCiudad(ciu.getId_ciudad());
                     break;
             }
+            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(Exception e){
+            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }

@@ -2,6 +2,7 @@ package logica.ServerCominication;
 
 import datos.DBArticulo;
 import datos.DBCiudad;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class EditArticuloServer {
     }
     
    @OnMessage
-    public void mensaje(Articulo art){
+    public void mensaje(Articulo art) throws IOException{
         //se crea conexion a base de datos
         DBArticulo artDB = new DBArticulo();
         //segun opcion se procede a actualizar registro en base de datos
@@ -52,7 +53,9 @@ public class EditArticuloServer {
                     artDB.eliminarArticulo(art.getId_articulo());
                     break;
             }
+            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(Exception e){
+            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }

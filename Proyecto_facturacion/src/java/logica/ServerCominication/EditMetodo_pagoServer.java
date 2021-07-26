@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBMetodo_pago;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class EditMetodo_pagoServer {
     }
     
     @OnMessage
-    public void mensaje(Metodo_pago met){
+    public void mensaje(Metodo_pago met) throws IOException{
         DBMetodo_pago metDB = new DBMetodo_pago();
         try{
             switch(Integer.parseInt(met.getMensaje())){
@@ -48,7 +49,9 @@ public class EditMetodo_pagoServer {
                     metDB.eliminarMetodo_pago(met.getId_metodo_pago());
                     break;
             }
+            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(Exception e){
+            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
             

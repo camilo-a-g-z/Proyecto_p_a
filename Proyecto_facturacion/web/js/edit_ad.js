@@ -67,7 +67,6 @@ select = function () {
             }
             if (v_selected == "Factura") {
                 url = 'ws://localhost:8080/Proyecto_facturacion/factura';
-                console.log("Factura");
             }
             ws = null;
             ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
@@ -86,44 +85,32 @@ select = function () {
 selecionar_url = function () {
     if (v_selected == "Articulo") {
         url = 'ws://localhost:8080/Proyecto_facturacion/articulo';
-        console.log("Articulo");
     } else if (v_selected == "Categoria") {
         url = 'ws://localhost:8080/Proyecto_facturacion/categoria';
-        console.log("Categoria");
     } else if (v_selected == "Cliente") {
         url = 'ws://localhost:8080/Proyecto_facturacion/cliente';
-        console.log("Cliente");
     } else if (v_selected == "Factura") {
         url = 'ws://localhost:8080/Proyecto_facturacion/factura';
-        console.log("Factura");
     } else if (v_selected == "Metodo_pago") {
         url = 'ws://localhost:8080/Proyecto_facturacion/metodo_pago';
-        console.log("Metodo de pago");
     } else if (v_selected == "Ciudad") {
         url = 'ws://localhost:8080/Proyecto_facturacion/ciudad';
-        console.log("Ciudad");
     }
 };
 //metodo que elige el tipo de url para el websocket (url solo valida para editar)
 selecionar_url_modify = function () {
     if (v_selected == "Articulo") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyArticulo';
-        console.log("Articulo");
     } else if (v_selected == "Categoria") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCategoria';
-        console.log("Categoria");
     } else if (v_selected == "Cliente") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCliente';
-        console.log("Cliente");
     } else if (v_selected == "Factura") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyFactura';
-        console.log("Factura");
     } else if (v_selected == "Metodo_pago") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyMP';
-        console.log("Metodo de pago");
     } else if (v_selected == "Ciudad") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCiudad';
-        console.log("Ciudad");
     }
 };
 //funcion para manejar resultados obtenidos del websocket
@@ -141,10 +128,8 @@ async function procedimiento() {
     var info = document.getElementById('informacion');
     //se verifica si elemento esta vacio de lo contrario se procede segun el tipo de onjeto
     function onMessage(evt) {
-        console.log("recivido");
         var obj = JSON.parse(evt.data);
         if (v_selected == "Articulo") {
-            console.log("Se recivio un articulo");
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
@@ -211,7 +196,6 @@ async function procedimiento() {
                 id_selected = obj.id_ciudad + "";
                 document.getElementById("input_1").value = obj.nombre;
             }
-            console.log("Se recivio una ciudad");
         }
     }
 }
@@ -229,7 +213,7 @@ function set_articulo_div() {
 //fucion para enviar consulta a servidor
 enviar = function () {
     if (nombre.value == "") {
-        console.log("No se ingreso nombre:");
+        alert("No se ingreso nombre");
     } else {
         ws.send(nombre.value);
     }
@@ -247,7 +231,6 @@ close_conexion = function () {
 };
 //funcion para empaquetar, parsear a JSON y enviar a el servidor el objeto
 async function enviar_edit() {
-    console.log("Entro");
     ws.onmessage = get_id;
     if (v_selected == "Articulo") {
         var msg = {
@@ -327,6 +310,7 @@ async function enviar_edit() {
         id_selected = evt.data;
     }
     await delay(2);
+    
 }
 ;
 //funcion que acorde a la opcion elegida muestra u oculta los divs

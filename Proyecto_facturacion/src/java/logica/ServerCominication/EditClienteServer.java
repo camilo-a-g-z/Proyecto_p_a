@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBCliente;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class EditClienteServer {
     }
     
     @OnMessage
-    public void mensaje(Cliente cli){
+    public void mensaje(Cliente cli) throws IOException{
         DBCliente cliDB = new DBCliente();
         try{
             switch(Integer.parseInt(cli.getMensaje())){
@@ -48,7 +49,9 @@ public class EditClienteServer {
                     cliDB.eliminarCliente(cli.getId_cliente());
                     break;
             }
+            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(Exception e){
+            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }

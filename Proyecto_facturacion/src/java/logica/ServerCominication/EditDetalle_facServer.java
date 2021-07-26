@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBDetalle_fac;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class EditDetalle_facServer {
     }
     
     @OnMessage
-    public void mensaje(Detalle_fac det) {
+    public void mensaje(Detalle_fac det) throws IOException {
         DBDetalle_fac detDB = new DBDetalle_fac();
         try{
             switch(Integer.parseInt(det.getMensaje())){
@@ -48,7 +49,9 @@ public class EditDetalle_facServer {
                     detDB.eliminarDetalle_fac(det.getId_detalle_fac());
                     break;
             }
+            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(NumberFormatException | SQLException e){
+            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }

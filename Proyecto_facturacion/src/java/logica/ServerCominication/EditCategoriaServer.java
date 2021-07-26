@@ -1,6 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBCategoria;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -33,7 +34,7 @@ public class EditCategoriaServer {
     }
     
     @OnMessage
-    public void mensaje(Categoria cat){
+    public void mensaje(Categoria cat) throws IOException{
         DBCategoria catDB = new DBCategoria();
         try{
             switch(Integer.parseInt(cat.getMensaje())){
@@ -47,7 +48,9 @@ public class EditCategoriaServer {
                     catDB.eliminarCategoria(cat.getId_categoria());
                     break;
             }
+            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(Exception e){
+            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }
