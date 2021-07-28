@@ -27,21 +27,32 @@ select = function () {
     var input;
     input = document.getElementById("Select");
     input.addEventListener('input', function () {
-        if (this.value == "Editar") {
+        let seleccionado = this.value;
+        asignar_divs(seleccionado);
+    });
+    input = document.getElementById('opcion');
+    input.addEventListener('input', function () {
+        v_selected = this.value;
+        start_ws(v_selected);
+    });
+};
+//metodo para ajustar segun la seleccion, los divs y el procedimiento
+function asignar_divs (evt){
+    if (evt == "Editar") {
             o_selected = "1";
             edit_divs();
             document.getElementById("div_1").style.display = "inline";
             document.getElementById("div_2").style.display = "inline";
             document.getElementById("div_10").style.display = "inline";
             document.getElementById("boton_2").innerHTML = "Editar";
-        } else if (this.value == "Eliminar") {
+        } else if (evt == "Eliminar") {
             o_selected = "3";
             edit_divs();
             document.getElementById("div_1").style.display = "inline";
             document.getElementById("div_2").style.display = "inline";
             document.getElementById("div_10").style.display = "inline";
             document.getElementById("boton_2").innerHTML = "Eliminar";
-        } else if (this.value == "Crear") {
+        } else if (evt == "Crear") {
             o_selected = "2";
             edit_divs();
             document.getElementById("div_1").style.display = "none";
@@ -53,11 +64,10 @@ select = function () {
             document.getElementById("div_2").style.display = "none";
             document.getElementById("div_10").style.display = "none";
         }
-    });
-    input = document.getElementById('opcion');
-    input.addEventListener('input', function () {
-        v_selected = this.value;
-        if (v_selected == "") {
+}
+//metodo que inicia WS segun requerimiento ademas de variables para correcto funcionamiento
+function start_ws(evt){
+    if (evt == "") {
             console.log("no hace conexion");
         } else {
             if (!band) {
@@ -65,7 +75,7 @@ select = function () {
             } else {
                 band = false;
             }
-            if (v_selected == "Factura") {
+            if (evt == "Factura") {
                 url = 'ws://localhost:8080/Proyecto_facturacion/factura';
             }
             ws = null;
@@ -79,8 +89,7 @@ select = function () {
             //se enlaza el websocket a la url elegida para posteriormente emplearlo
             procedimiento();
         }
-    });
-};
+}
 //metodo que elige el tipo de url para el websocket (url solo valida para realizar consultas)
 selecionar_url = function () {
     if (v_selected == "Articulo") {
@@ -310,7 +319,9 @@ async function enviar_edit() {
         id_selected = evt.data;
     }
     await delay(2);
-    
+    console.log("paso");
+    asignar_divs(document.getElementById("Select").value);
+    start_ws(v_selected);
 }
 ;
 //funcion que acorde a la opcion elegida muestra u oculta los divs
@@ -321,6 +332,8 @@ edit_divs = function () {
     for (var i = 1; i <= 7; i++) {
         document.getElementById("input_" + i).value = "";
     }
+    //se limpia campo de pregunta
+    document.getElementById("Nombre").value = "";
     //se esconden primero todos los divs
     hide_divs();
     if (v_selected == "Articulo") {
