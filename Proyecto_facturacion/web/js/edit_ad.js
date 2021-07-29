@@ -30,8 +30,8 @@ select = function () {
     input.addEventListener('input', function () {
         let seleccionado = this.value;
         asignar_divs(seleccionado);
-        if(band){
-           start_ws(v_selected); 
+        if (band) {
+            start_ws(v_selected);
         }
     });
     input = document.getElementById('opcion');
@@ -42,58 +42,58 @@ select = function () {
     });
 };
 //metodo para ajustar segun la seleccion, los divs y el procedimiento
-function asignar_divs (evt){
+function asignar_divs(evt) {
     if (evt == "Editar") {
-            o_selected = "1";
-            edit_divs();
-            document.getElementById("div_1").style.display = "inline";
-            document.getElementById("div_2").style.display = "inline";
-            document.getElementById("div_10").style.display = "inline";
-            document.getElementById("boton_2").innerHTML = "Editar";
-        } else if (evt == "Eliminar") {
-            o_selected = "3";
-            edit_divs();
-            document.getElementById("div_1").style.display = "inline";
-            document.getElementById("div_2").style.display = "inline";
-            document.getElementById("div_10").style.display = "inline";
-            document.getElementById("boton_2").innerHTML = "Eliminar";
-        } else if (evt == "Crear") {
-            o_selected = "2";
-            edit_divs();
-            document.getElementById("div_1").style.display = "none";
-            document.getElementById("div_2").style.display = "none";
-            document.getElementById("div_10").style.display = "inline";
-            document.getElementById("boton_2").innerHTML = "Crear";
-        } else {
-            document.getElementById("div_1").style.display = "none";
-            document.getElementById("div_2").style.display = "none";
-            document.getElementById("div_10").style.display = "none";
-        }
+        o_selected = "1";
+        edit_divs();
+        document.getElementById("div_1").style.display = "inline";
+        document.getElementById("div_2").style.display = "inline";
+        document.getElementById("div_10").style.display = "inline";
+        document.getElementById("boton_2").innerHTML = "Editar";
+    } else if (evt == "Eliminar") {
+        o_selected = "3";
+        edit_divs();
+        document.getElementById("div_1").style.display = "inline";
+        document.getElementById("div_2").style.display = "inline";
+        document.getElementById("div_10").style.display = "inline";
+        document.getElementById("boton_2").innerHTML = "Eliminar";
+    } else if (evt == "Crear") {
+        o_selected = "2";
+        edit_divs();
+        document.getElementById("div_1").style.display = "none";
+        document.getElementById("div_2").style.display = "none";
+        document.getElementById("div_10").style.display = "inline";
+        document.getElementById("boton_2").innerHTML = "Crear";
+    } else {
+        document.getElementById("div_1").style.display = "none";
+        document.getElementById("div_2").style.display = "none";
+        document.getElementById("div_10").style.display = "none";
+    }
 }
 //metodo que inicia WS segun requerimiento ademas de variables para correcto funcionamiento
-function start_ws(evt){
+function start_ws(evt) {
     if (evt == "") {
-            console.log("no hace conexion");
+        console.log("no hace conexion");
+    } else {
+        if (!band) {
+            ws.close();
         } else {
-            if (!band) {
-                ws.close();
-            } else {
-                band = false;
-            }
-            if (evt == "Factura") {
-                url = 'ws://localhost:8080/Proyecto_facturacion/factura';
-            }
-            ws = null;
-            ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
-            ws.onopen = onOpen;
-            ws.onclose = onClose;
-            setTimeout('get_articulos()', 1500);
-            //se selecciona url a conectar
-            selecionar_url();
-            edit_divs();
-            //se enlaza el websocket a la url elegida para posteriormente emplearlo
-            procedimiento();
+            band = false;
         }
+        if (evt == "Factura") {
+            url = 'ws://localhost:8080/Proyecto_facturacion/factura';
+        }
+        ws = null;
+        ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
+        ws.onopen = onOpen;
+        ws.onclose = onClose;
+        setTimeout('get_articulos()', 1500);
+        //se selecciona url a conectar
+        selecionar_url();
+        edit_divs();
+        //se enlaza el websocket a la url elegida para posteriormente emplearlo
+        procedimiento();
+    }
 }
 //metodo que elige el tipo de url para el websocket (url solo valida para realizar consultas)
 selecionar_url = function () {
@@ -279,7 +279,7 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
-        if(o_selected != "3"){
+        if (o_selected != "3") {
             //se cierra antigua conexion
             ws.close();
             //se crea nueva conexion para añadir factura
@@ -305,7 +305,7 @@ async function enviar_edit() {
             //se espera a recivir el id de la factura recien registrada en DB
             //se procede a guardar registros de la factura
             setTimeout('window.cerrar_ws()', 3000);
-        }else{
+        } else {
             //se cierra antigua conexion
             ws.close();
             ws_table = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyDetalle_fac');
@@ -334,15 +334,15 @@ async function enviar_edit() {
         id_selected = evt.data;
     }
     await delay(2);
-    if(v_selected != "Factura"){
+    if (v_selected != "Factura") {
         asignar_divs(document.getElementById("Select").value);
-        start_ws(v_selected);   
-    }else if(o_selected == "3"){
+        start_ws(v_selected);
+    } else if (o_selected == "3") {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
     }
 }
-function delete_factura(){
+function delete_factura() {
     //se crea el objeto para parsearlo y enviarlo a WS
     var msg = {
         //como se van a eliminar todos los registros de una factura solo importa enviar los registros de esa factura
@@ -353,7 +353,7 @@ function delete_factura(){
         val_descuento: 0 + "",
         id_factura: id_selected + "",
         id_articulo: 0 + "",
-        mensaje: 4+ ""
+        mensaje: 4 + ""
     };
     //se envia objeto
     ws_table.send(JSON.stringify(msg));
@@ -441,7 +441,7 @@ hide_divs = function () {
 //funcion para crear la tabla de productos de una factura
 create_tabla = function () {
     //se limpia el valor del iterador
-    iterator=0;
+    iterator = 0;
     ws.onmessage = seetear;
     // Obtener la referencia del elemento body
     var body = document.getElementsByTagName("body")[0];
@@ -625,4 +625,10 @@ function sumar_total(add) {
     document.getElementById("input_2").value = val_iva;
     //se agrega cantidad total de la factura;
     document.getElementById("input_4").value = sub_total + val_iva;
+}
+function asd(){
+  
+  for(var i = document.getElementById("input_8").options.length;i>=0;i--){
+  document.getElementById("input_8").remove(i);
+}
 }
