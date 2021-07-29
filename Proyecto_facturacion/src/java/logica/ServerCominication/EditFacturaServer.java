@@ -35,7 +35,7 @@ public class EditFacturaServer {
     }
     
     @OnMessage
-    public void mensaje(Factura fac) throws IOException{
+    public void mensaje(Factura fac){
         DBFactura facDB = new DBFactura();
         try{
             switch(Integer.parseInt(fac.getMensaje())){
@@ -51,9 +51,7 @@ public class EditFacturaServer {
                     facDB.eliminarFactura(fac.getId_factura());
                     break;
             }
-            conectados.get(i).getBasicRemote().sendText("exit");
         }catch(IOException | NumberFormatException | SQLException e){
-            conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }

@@ -152,7 +152,7 @@ async function procedimiento() {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
-                id_selected = obj.id_vategoria + "";
+                id_selected = obj.id_categoria + "";
                 document.getElementById("input_1").value = obj.nombre;
                 document.getElementById("input_2").value = obj.descripcion;
             }
@@ -319,9 +319,10 @@ async function enviar_edit() {
         id_selected = evt.data;
     }
     await delay(2);
-    console.log("paso");
-    asignar_divs(document.getElementById("Select").value);
-    start_ws(v_selected);
+    setTimeout('asignar_divs(document.getElementById("Select").value)', 3000);
+    setTimeout('this.then(start_ws(v_selected));',3000);
+    
+    
 }
 ;
 //funcion que acorde a la opcion elegida muestra u oculta los divs

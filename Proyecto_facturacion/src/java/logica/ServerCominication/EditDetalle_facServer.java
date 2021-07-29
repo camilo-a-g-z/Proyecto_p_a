@@ -35,7 +35,7 @@ public class EditDetalle_facServer {
     }
     
     @OnMessage
-    public void mensaje(Detalle_fac det) throws IOException {
+    public void mensaje(Detalle_fac det)  {
         DBDetalle_fac detDB = new DBDetalle_fac();
         try{
             switch(Integer.parseInt(det.getMensaje())){
@@ -49,9 +49,9 @@ public class EditDetalle_facServer {
                     detDB.eliminarDetalle_fac(det.getId_detalle_fac());
                     break;
             }
-            conectados.get(i).getBasicRemote().sendText("exit");
+            //conectados.get(i).getBasicRemote().sendText("exit");
         }catch(NumberFormatException | SQLException e){
-            conectados.get(i).getBasicRemote().sendText(e.getMessage());
+            //conectados.get(i).getBasicRemote().sendText(e.getMessage());
             System.out.println(e.getMessage());
         }
     }
