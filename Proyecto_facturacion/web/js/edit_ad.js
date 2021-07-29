@@ -319,10 +319,10 @@ async function enviar_edit() {
         id_selected = evt.data;
     }
     await delay(2);
-    setTimeout('asignar_divs(document.getElementById("Select").value)', 3000);
-    setTimeout('this.then(start_ws(v_selected));',3000);
-    
-    
+    if(v_selected != "Factura"){
+        asignar_divs(document.getElementById("Select").value);
+        start_ws(v_selected);   
+    }
 }
 ;
 //funcion que acorde a la opcion elegida muestra u oculta los divs

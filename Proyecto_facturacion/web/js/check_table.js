@@ -30,6 +30,9 @@ function edit_table() {
         //se envia objeto
         ws_table.send(JSON.stringify(msg));
     }
+    alert("Factura enviada correctamente");
+    asignar_divs(document.getElementById("Select").value);
+    start_ws(window.v_selected);
 }
 //funcion para añadir una fila
 async function add_fila() {
