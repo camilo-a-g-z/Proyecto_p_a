@@ -274,31 +274,41 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected == "Factura") {
-        //se cierra antigua conexion
-        ws.close();
-        //se crea nueva conexion para añadir factura
-        ws = null;
-        ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
-        ws.onopen = onOpen;
-        ws.onclose = onClose;
-        ws.onmessage = get_id;
-        //se espera 2 segundos para permitir correcta conexion con WebSocket
-        await delay(2);
-        //se crea el objeto a enviar
-        var msg = {
-            id_factura: id_selected,
-            fecha_fac: document.getElementById("input_1").value,
-            val_iva: document.getElementById("input_2").value,
-            val_sub_total: document.getElementById("input_3").value,
-            total: document.getElementById("input_4").value,
-            id_cliente: document.getElementById("input_5").value,
-            id_metodo_pago: document.getElementById("input_6").value,
-            mensaje: o_selected
-        };
-        ws.send(JSON.stringify(msg));
-        //se espera a recivir el id de la factura recien registrada en DB
-        //se procede a guardar registros de la factura
-        setTimeout('window.cerrar_ws()', 3000);
+        if(o_selected != "3"){
+            //se cierra antigua conexion
+            ws.close();
+            //se crea nueva conexion para añadir factura
+            ws = null;
+            ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
+            ws.onopen = onOpen;
+            ws.onclose = onClose;
+            ws.onmessage = get_id;
+            //se espera 2 segundos para permitir correcta conexion con WebSocket
+            await delay(2);
+            //se crea el objeto a enviar
+            var msg = {
+                id_factura: id_selected,
+                fecha_fac: document.getElementById("input_1").value,
+                val_iva: document.getElementById("input_2").value,
+                val_sub_total: document.getElementById("input_3").value,
+                total: document.getElementById("input_4").value,
+                id_cliente: document.getElementById("input_5").value,
+                id_metodo_pago: document.getElementById("input_6").value,
+                mensaje: o_selected
+            };
+            ws.send(JSON.stringify(msg));
+            //se espera a recivir el id de la factura recien registrada en DB
+            //se procede a guardar registros de la factura
+            setTimeout('window.cerrar_ws()', 3000);
+        }else{
+            //se cierra antigua conexion
+            ws.close();
+            ws_table = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyDetalle_fac');
+            ws_table.onclose = onClose();
+            ws_table.onopen = onOpen();
+            //se espera correcta conexion con WS para enviar los registros
+            setTimeout('delete_factura()', 3000);
+        }
     } else if (v_selected == "Metodo_pago") {
         var msg = {
             id_metodo_pago: id_selected,
@@ -324,7 +334,22 @@ async function enviar_edit() {
         start_ws(v_selected);   
     }
 }
-;
+function delete_factura(){
+    //se crea el objeto para parsearlo y enviarlo a WS
+    var msg = {
+        //como se van a eliminar todos los registros de una factura solo importa enviar los registros de esa factura
+        id_detalle_fac: 0 + "",
+        cantidad: 0 + "",
+        total: 0 + "",
+        descuento: 0 + "",
+        val_descuento: 0 + "",
+        id_factura: id_selected + "",
+        id_articulo: 0 + "",
+        mensaje: 4+ ""
+    };
+    //se envia objeto
+    ws_table.send(JSON.stringify(msg));
+}
 //funcion que acorde a la opcion elegida muestra u oculta los divs
 edit_divs = function () {
     if (!!document.getElementById("table_d_f")) {

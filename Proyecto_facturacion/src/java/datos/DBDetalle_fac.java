@@ -54,6 +54,10 @@ public class DBDetalle_fac {
         PreparedStatement pstm = cn.getConexion().prepareStatement("delete from detalle_fac where id_detalle_fac = "+i);
             pstm.executeUpdate();
     }
+    public void eliminarDetalle_fac_by_factura(int i) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("delete from detalle_fac where id_factura = "+i);
+            pstm.executeUpdate();
+    }
     public void modifyDetalle_fac(Detalle_fac d) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("update detalle_fac "
                 + "set  cantidad = ? , total = ? , descuento = ? , val_descuento = ? "
