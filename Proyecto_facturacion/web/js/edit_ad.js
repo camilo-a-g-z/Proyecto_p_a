@@ -626,9 +626,9 @@ function sumar_total(add) {
     //se agrega cantidad total de la factura;
     document.getElementById("input_4").value = sub_total + val_iva;
 }
-function asd(){
-  
+//funcion para lipiar select o input 8
+function clean_input_8(){
   for(var i = document.getElementById("input_8").options.length;i>=0;i--){
-  document.getElementById("input_8").remove(i);
-}
+    document.getElementById("input_8").remove(i);
+  }
 }

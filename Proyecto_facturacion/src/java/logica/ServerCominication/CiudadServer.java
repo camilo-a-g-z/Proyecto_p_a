@@ -38,14 +38,28 @@ public class CiudadServer {
         DBCiudad ciuDB = new DBCiudad();
         Ciudad ciu = new Ciudad();
         try{
-            ResultSet res = ciuDB.getCiudadByNombre(mens);
-            if(!res.next()){
-                ciu.setNombre("NE");
-                conectados.get(i).getBasicRemote().sendObject(ciu);
+            if("Todo".equals(mens)){
+                ResultSet res = ciuDB.getCiudades();
+                if(!res.next()){
+                    ciu.setNombre("NE");
+                    conectados.get(i).getBasicRemote().sendObject(ciu);
+                }else{
+                    do{
+                        ciu.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
+                        ciu.setNombre(res.getString("nombre"));
+                        conectados.get(i).getBasicRemote().sendObject(ciu);
+                    }while(res.next());
+                }
             }else{
-                ciu.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
-                ciu.setNombre(res.getString("nombre"));
-                conectados.get(i).getBasicRemote().sendObject(ciu);
+                ResultSet res = ciuDB.getCiudadByNombre(mens);
+                if(!res.next()){
+                    ciu.setNombre("NE");
+                    conectados.get(i).getBasicRemote().sendObject(ciu);
+                }else{
+                    ciu.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
+                    ciu.setNombre(res.getString("nombre"));
+                    conectados.get(i).getBasicRemote().sendObject(ciu);
+                }
             }
         }catch(Exception e){
             System.out.println(e.getMessage());

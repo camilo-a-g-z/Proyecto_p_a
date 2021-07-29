@@ -43,18 +43,37 @@ public class Metodo_pagoServer {
         DBMetodo_pago metDB = new DBMetodo_pago();
         Metodo_pago met = new Metodo_pago();
         try{
-            //se carga de la base de datos segun requerimiento de websocket
-            ResultSet res = metDB.getMPByNombre(mens);
-            //se carga resultado
-            if(!res.next()){
-                met.setTipo("NE");
-                conectados.get(i).getBasicRemote().sendObject(met);
+            //se pregunta si el cliente necesita todos o unicamente uno en especifico
+            if(mens == "Todo"){
+                //se carga de la base de datos segun requerimiento de websocket
+                ResultSet res = metDB.getMetodos_pago();
+                //se carga resultado
+                if(!res.next()){
+                    met.setTipo("NE");
+                    conectados.get(i).getBasicRemote().sendObject(met);
+                }else{
+                    do{
+                        //se carga a onjeto el resultado obtenido en la base de datos
+                        met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
+                        met.setTipo(res.getString("tipo"));
+                        // se envia a la sesion que solicito la informacion por medio del websocket
+                        conectados.get(i).getBasicRemote().sendObject(met);
+                    }while(res.next());
+                }
             }else{
-                //se carga a onjeto el resultado obtenido en la base de datos
-                met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
-                met.setTipo(res.getString("tipo"));
-                // se envia a la sesion que solicito la informacion por medio del websocket
-                conectados.get(i).getBasicRemote().sendObject(met);
+                //se carga de la base de datos segun requerimiento de websocket
+                ResultSet res = metDB.getMPByNombre(mens);
+                //se carga resultado
+                if(!res.next()){
+                    met.setTipo("NE");
+                    conectados.get(i).getBasicRemote().sendObject(met);
+                }else{
+                    //se carga a onjeto el resultado obtenido en la base de datos
+                    met.setId_metodo_pago(Integer.parseInt(res.getString("id_metodo_pago")));
+                    met.setTipo(res.getString("tipo"));
+                    // se envia a la sesion que solicito la informacion por medio del websocket
+                    conectados.get(i).getBasicRemote().sendObject(met);
+                }
             }
         }catch(Exception e){
             System.out.println(e.getMessage());

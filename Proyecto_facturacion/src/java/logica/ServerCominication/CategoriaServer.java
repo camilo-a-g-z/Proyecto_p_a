@@ -41,18 +41,36 @@ public class CategoriaServer {
         DBCategoria catDB = new DBCategoria();
         Categoria cat = new Categoria();
         try{
-            ResultSet res = catDB.getCategoriaByNombre(mens);
-            if(!res.next()){
-                cat.setNombre("NE");
-                cat.setDescripcion("NE");
-                cat.setId_categoria(0);
-                cat.setMensaje("NE");
-                conectados.get(i).getBasicRemote().sendObject(cat);
+            if("Todo".equals(mens)){
+                ResultSet res = catDB.getCategorias();
+                if(!res.next()){
+                    cat.setNombre("NE");
+                    cat.setDescripcion("NE");
+                    cat.setId_categoria(0);
+                    cat.setMensaje("NE");
+                    conectados.get(i).getBasicRemote().sendObject(cat);
+                }else{
+                    do{
+                        cat.setNombre(res.getString("nombre"));
+                        cat.setDescripcion(res.getString("descripcion"));
+                        cat.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
+                        conectados.get(i).getBasicRemote().sendObject(cat);
+                    }while(res.next());
+                }
             }else{
-                cat.setNombre(res.getString("nombre"));
-                cat.setDescripcion(res.getString("descripcion"));
-                cat.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
-                conectados.get(i).getBasicRemote().sendObject(cat);
+                ResultSet res = catDB.getCategoriaByNombre(mens);
+                if(!res.next()){
+                    cat.setNombre("NE");
+                    cat.setDescripcion("NE");
+                    cat.setId_categoria(0);
+                    cat.setMensaje("NE");
+                    conectados.get(i).getBasicRemote().sendObject(cat);
+                }else{
+                    cat.setNombre(res.getString("nombre"));
+                    cat.setDescripcion(res.getString("descripcion"));
+                    cat.setId_categoria(Integer.parseInt(res.getString("id_categoria")));
+                    conectados.get(i).getBasicRemote().sendObject(cat);
+                }
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
