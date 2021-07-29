@@ -25,14 +25,19 @@ function onClose() {
 //funcion que controla visivilidad de los divs
 select = function () {
     var input;
+    let band = false;
     input = document.getElementById("Select");
     input.addEventListener('input', function () {
         let seleccionado = this.value;
         asignar_divs(seleccionado);
+        if(band){
+           start_ws(v_selected); 
+        }
     });
     input = document.getElementById('opcion');
     input.addEventListener('input', function () {
         v_selected = this.value;
+        band = true;
         start_ws(v_selected);
     });
 };
@@ -332,6 +337,9 @@ async function enviar_edit() {
     if(v_selected != "Factura"){
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);   
+    }else if(o_selected == "3"){
+        asignar_divs(document.getElementById("Select").value);
+        start_ws(v_selected);
     }
 }
 function delete_factura(){
@@ -432,6 +440,8 @@ hide_divs = function () {
 };
 //funcion para crear la tabla de productos de una factura
 create_tabla = function () {
+    //se limpia el valor del iterador
+    iterator=0;
     ws.onmessage = seetear;
     // Obtener la referencia del elemento body
     var body = document.getElementsByTagName("body")[0];
