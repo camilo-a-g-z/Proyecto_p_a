@@ -83,11 +83,7 @@ function start_ws(evt) {
         if (evt == "Factura") {
             url = 'ws://localhost:8080/Proyecto_facturacion/factura';
         }
-        ws = null;
-        ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
-        ws.onopen = onOpen;
-        ws.onclose = onClose;
-        setTimeout('get_articulos()', 1500);
+        
         //se selecciona url a conectar
         selecionar_url();
         edit_divs();

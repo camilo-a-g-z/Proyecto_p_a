@@ -6,8 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="js/edit_ad.js"></script>
         <script type="text/javascript" src="js/check_table.js"></script>
+        <script type="text/javascript" src="js/LoadBasicDates.js"></script>
     </head>
     <body onload="select()">
+        <!--Se carga primero todos los datos antes de empezar la pagina-->
+        <script>
+            window.load();
+        </script>
         <center>
             <select name="opcion" id="opcion">
                <option value="" selected=""></option>
