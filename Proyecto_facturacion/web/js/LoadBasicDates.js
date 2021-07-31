@@ -69,5 +69,5 @@ async function get_ciudades() {
     ;
     await window.delay(1);
     wsc.close();
-    alert("carga completa");
+    document.getElementsByTagName("body")[0].removeChild(document.getElementById("load"));
 }
