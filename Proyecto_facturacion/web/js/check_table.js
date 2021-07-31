@@ -119,7 +119,7 @@ async function add_fila() {
 //funcion para crear encabezado de tabla en caso de que no exista
 function iniciar_tabla() {
     //se reinicia el iterador
-    window.iterator=0;
+    window.iterator = 0;
     //Se agrega fecha actual
     const hoy = new Date(Date.now());
     document.getElementById("input_1").value = hoy.toLocaleDateString();

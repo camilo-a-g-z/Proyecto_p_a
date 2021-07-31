@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Facturacion Empleado</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" />
         <script type="text/javascript" src="js/edit_ad.js"></script>
         <script type="text/javascript" src="js/check_table.js"></script>
         <script type="text/javascript" src="js/LoadBasicDates.js"></script>
@@ -37,9 +38,9 @@
                 animation: spin 1s linear infinite;
             }
             @keyframes spin {
-              to {
-                transform: rotate(360deg);
-              }
+                to {
+                    transform: rotate(360deg);
+                }
             }            
         </style>
         <div class="loading show" id="load">
@@ -48,94 +49,94 @@
         <script>
             window.load();
         </script>
-        <center>
-            <select name="opcion" id="opcion">
-               <option value="" selected=""></option>
-                <option value="Articulo">Articulo</option>
-                <option value="Categoria">Categoria</option>
-                <option value="Cliente">Cliente</option>
-                <option value="Factura">Factura</option>
-                <option value="Metodo_pago">Metodo de pago</option>
-                <option value="Ciudad">Ciudad</option>
-            </select>
-         </center>
-        <center>
-            <select name="Select" id="Select">
-               <option value="" selected=""></option>
-                <option value="Editar">Editar</option>
-                <option value="Crear">Crear</option>
-                <option value="Eliminar">Eliminar</option>
-            </select>
-         </center>
+    <center>
+        <select name="opcion" id="opcion">
+            <option value="" selected=""></option>
+            <option value="Articulo">Articulo</option>
+            <option value="Categoria">Categoria</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Factura">Factura</option>
+            <option value="Metodo_pago">Metodo de pago</option>
+            <option value="Ciudad">Ciudad</option>
+        </select>
+    </center>
+    <center>
+        <select name="Select" id="Select">
+            <option value="" selected=""></option>
+            <option value="Editar">Editar</option>
+            <option value="Crear">Crear</option>
+            <option value="Eliminar">Eliminar</option>
+        </select>
+    </center>
+    <br>
+    <div style="display:none" id="div_1">
+        <label>Ingrese nombre del articulo: </label>
+        <input type="text" id="Nombre" name="Nombre" placeholder="Escriba el nombre del articulo">
+        <button id="boton" name="boton" onclick="enviar()" >Buscar</button>
+    </div>
+    <br>
+    <div style="display:none" id="div_2">
+        <label id="informacion" ></label>
+        <label id="obtenido"></label>
+    </div>
+    <br>
+    <div style="display:none" id="div_3">
+        <label id="label_1">Nombre:</label>
+        <input type="text" id="input_1" name="input_1" placeholder="Escriba nuevo nombre articulo">
+    </div>
+    <br>
+    <div style="display:none" id="div_4">
+        <label id="label_2">Cantidad en stock:</label>
+        <input type="text" id="input_2" name="input_2" placeholder="Escriba cantidad">
+    </div>
+    <br>
+    <div style="display:none" id="div_5">
+        <label id="label_3">Descripcion del producto:</label>
+        <input type="text" id="input_3" name="input_3" placeholder="Escriba la descripcion del producto">
+    </div>
+    <br>
+    <div style="display:none" id="div_6">
+        <label id="label_4">Categoria del producto:</label>
+        <input type="text" id="input_4" name="input_4" placeholder="Escriba id categoria">
+    </div>
+    <br>
+    <div style="display:none" id="div_7">
+        <label id="label_5">Nuemero de celular:</label>
+        <input type="text" id="input_5" name="input_5" placeholder="Escriba id categoria">
+    </div>        
+    <br>
+    <div style="display:none" id="div_8">
+        <label id="label_6">Numero de cedulo:</label>
+        <input type="text" id="input_6" name="input_6" placeholder="Escriba id categoria">
+    </div>
+    <br>
+    <div style="display:none" id="div_9">
+        <label id="label_7">ID ciudad:</label>
+        <input type="text" id="input_7" name="input_7" placeholder="Escriba id categoria"> 
+    </div>
+    <br>
+    <div style="display:none" id="div_11">
+        Ingresar un nuevo articulo a factura:<br>
+        <label id="label_8">Articulo:</label>
+        <select name="input_8" id="input_8">
+            <option value="" selected=""></option>
+        </select>
+    </div>
+    <br>
+    <div style="display:none" id="div_12">
+        <label id="label_9">Cantidad:</label>
+        <input type="text" id="input_9" name="input_9" placeholder="Escriba id categoria"> 
+    </div>
+    <br>
+    <div style="display:none" id="div_13">
+        <label id="label_10">Descuento:</label>
+        <input type="text" id="input_10" name="input_10" placeholder="Escriba id categoria"> 
         <br>
-        <div style="display:none" id="div_1">
-            <label>Ingrese nombre del articulo: </label>
-            <input type="text" id="Nombre" name="Nombre" placeholder="Escriba el nombre del articulo">
-            <button id="boton" name="boton" onclick="enviar()" >Buscar</button>
-        </div>
-        <br>
-        <div style="display:none" id="div_2">
-            <label id="informacion" ></label>
-            <label id="obtenido"></label>
-        </div>
-        <br>
-        <div style="display:none" id="div_3">
-            <label id="label_1">Nombre:</label>
-            <input type="text" id="input_1" name="input_1" placeholder="Escriba nuevo nombre articulo">
-        </div>
-        <br>
-        <div style="display:none" id="div_4">
-            <label id="label_2">Cantidad en stock:</label>
-            <input type="text" id="input_2" name="input_2" placeholder="Escriba cantidad">
-        </div>
-        <br>
-        <div style="display:none" id="div_5">
-            <label id="label_3">Descripcion del producto:</label>
-            <input type="text" id="input_3" name="input_3" placeholder="Escriba la descripcion del producto">
-        </div>
-        <br>
-        <div style="display:none" id="div_6">
-            <label id="label_4">Categoria del producto:</label>
-            <input type="text" id="input_4" name="input_4" placeholder="Escriba id categoria">
-        </div>
-        <br>
-        <div style="display:none" id="div_7">
-            <label id="label_5">Nuemero de celular:</label>
-            <input type="text" id="input_5" name="input_5" placeholder="Escriba id categoria">
-        </div>        
-        <br>
-        <div style="display:none" id="div_8">
-            <label id="label_6">Numero de cedulo:</label>
-            <input type="text" id="input_6" name="input_6" placeholder="Escriba id categoria">
-        </div>
-        <br>
-        <div style="display:none" id="div_9">
-           <label id="label_7">ID ciudad:</label>
-            <input type="text" id="input_7" name="input_7" placeholder="Escriba id categoria"> 
-        </div>
-        <br>
-        <div style="display:none" id="div_11">
-            Ingresar un nuevo articulo a factura:<br>
-           <label id="label_8">Articulo:</label>
-            <select name="input_8" id="input_8">
-               <option value="" selected=""></option>
-            </select>
-        </div>
-        <br>
-        <div style="display:none" id="div_12">
-           <label id="label_9">Cantidad:</label>
-            <input type="text" id="input_9" name="input_9" placeholder="Escriba id categoria"> 
-        </div>
-        <br>
-        <div style="display:none" id="div_13">
-           <label id="label_10">Descuento:</label>
-            <input type="text" id="input_10" name="input_10" placeholder="Escriba id categoria"> 
-            <br>
-            <button id="boton_3" name="boton_3" onclick="add_fila()">Agregar</button>
-        </div>
-        <br>
-        <div style="display:none" id="div_10">
-            <button id="boton_2" name="boton_2" onclick="close_conexion()">Enviar</button>
-        </div>
-    </body>
+        <button id="boton_3" name="boton_3" onclick="add_fila()">Agregar</button>
+    </div>
+    <br>
+    <div style="display:none" id="div_10">
+        <button id="boton_2" name="boton_2" onclick="close_conexion()">Enviar</button>
+    </div>
+</body>
 </html>

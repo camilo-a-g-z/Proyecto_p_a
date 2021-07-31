@@ -579,11 +579,13 @@ async function get_articulos() {
     await delay(1);
     ws.close();
 }
+//funcion para agregar un retraso en un tiempo n segundos
 function delay(n) {
     return new Promise(function (resolve) {
         setTimeout(resolve, n * 1000);
     });
 }
+//funcion para buscar segun el id del articulo el nombre de este
 function set_articulo(art) {
     for (var i = 0; i < arrayArticulos.length; i++) {
         if (arrayArticulos[i].id_articulo == art) {
@@ -592,6 +594,7 @@ function set_articulo(art) {
         }
     }
 }
+//funcion que segun el id del articulo devuelve el precio del mismo
 function set_val_uni_articulo(art) {
     for (var i = 0; i < arrayArticulos.length; i++) {
         if (arrayArticulos[i].id_articulo == art) {
@@ -600,6 +603,7 @@ function set_val_uni_articulo(art) {
         }
     }
 }
+//funcion para agregar total
 function sumar_total(add) {
     //se traen los labels donde estan los valores
     //en caso de que se cree una nueva factura se settean valores a cero

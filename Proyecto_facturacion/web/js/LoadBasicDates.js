@@ -2,13 +2,16 @@ var wsc;
 var arrayCategoria = [];
 var arrayCiudad = [];
 var arrayMP = [];
+//se abre primer ws
 wsc = null;
 wsc = new WebSocket('ws://localhost:8080/Proyecto_facturacion/categoria');
 wsc.onopen = window.onOpen;
 wsc.onclose = window.onClose;
+//funcion para iniciar carga
 async function load(){
     get_categorias();
 }
+//funcion para traer categorias desde servidor
 async function get_categorias() {
     arrayCategoria.pop();
     wsc.onmessage = recivir_art;
@@ -27,6 +30,7 @@ async function get_categorias() {
     wsc.close();
     get_articulos();
 }
+//funcion para traer articulos desde servidor
 async function get_articulos() {
     wsc = new WebSocket('ws://localhost:8080/Proyecto_facturacion/articulo');
     wsc.onopen = window.onOpen;
@@ -49,6 +53,7 @@ async function get_articulos() {
     wsc.close();
     get_ciudades();
 }
+//funcion para traer ciudades desde servidor
 async function get_ciudades() {
     wsc = new WebSocket('ws://localhost:8080/Proyecto_facturacion/ciudad');
     wsc.onopen = window.onOpen;
@@ -69,5 +74,6 @@ async function get_ciudades() {
     ;
     await window.delay(1);
     wsc.close();
+    //se cierra simbolo de carga
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("load"));
 }
