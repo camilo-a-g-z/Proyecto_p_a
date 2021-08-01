@@ -74,6 +74,30 @@ async function get_ciudades() {
     ;
     await window.delay(1);
     wsc.close();
+    get_metodo_pago();
+}
+//funcion para traer ciudades desde servidor
+async function get_metodo_pago() {
+    wsc = new WebSocket('ws://localhost:8080/Proyecto_facturacion/metodo_pago');
+    wsc.onopen = window.onOpen;
+    wsc.onclose = window.onClose;
+    arrayMP.pop();
+    wsc.onmessage = recivir_art;
+    await window.delay(2);
+    wsc.send("Todo");
+    function recivir_art(evt) {
+        var obj = JSON.parse(evt.data);
+        //en caso de que no exista el registro
+        if (obj.tipo === 'NE') {
+            console.log("no existen metodos de pago");
+        } else {
+            arrayMP.push(obj);
+        }
+    }
+    ;
+    await window.delay(1);
+    wsc.close();
+    await window.delay(2);
     //se cierra simbolo de carga
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("load"));
 }

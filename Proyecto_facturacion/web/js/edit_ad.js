@@ -37,7 +37,6 @@ select = function () {
     input = document.getElementById('opcion');
     input.addEventListener('input', function () {
         v_selected = this.value;
-        band = true;
         start_ws(v_selected);
     });
 };
@@ -212,11 +211,45 @@ async function procedimiento() {
 ;
 //funcion para poner los articulos a escoger
 function set_articulo_div() {
+    clean_input_8();
     selected = document.getElementById("input_8");
     for (var i = 0; i < arrayArticulos.length; i++) {
         var option = document.createElement("option");
         option.value = arrayArticulos[i].nombre;
         option.text = arrayArticulos[i].nombre;
+        selected.appendChild(option);
+    }
+}
+//funcion para poner las categorias a escoger
+function set_categoria_div() {
+    clean_input_MO();
+    selected = document.getElementById("input_MO");
+    for (var i = 0; i < window.arrayCategoria.length; i++) {
+        var option = document.createElement("option");
+        option.value = window.arrayCategoria[i].nombre;
+        option.text = window.arrayCategoria[i].nombre;
+        selected.appendChild(option);
+    }
+}
+//funcion para poner las ciudades a escoger
+function set_ciudad_div() {
+    clean_input_MO();
+    selected = document.getElementById("input_MO");
+    for (var i = 0; i < window.arrayCiudad.length; i++) {
+        var option = document.createElement("option");
+        option.value = window.arrayCiudad[i].nombre;
+        option.text = window.arrayCiudad[i].nombre;
+        selected.appendChild(option);
+    }
+}
+//funcion para poner los metodos de pago a escoger
+function set_MP_div() {
+    clean_input_MO();
+    selected = document.getElementById("input_MO");
+    for (var i = 0; i < window.arrayMP.length; i++) {
+        var option = document.createElement("option");
+        option.value = window.arrayMP[i].tipo;
+        option.text = window.arrayMP[i].tipo;
         selected.appendChild(option);
     }
 }
@@ -371,11 +404,13 @@ edit_divs = function () {
         document.getElementById("label_2").innerHTML = "Cantidad en stock:";
         document.getElementById("label_3").innerHTML = "Descripcion:";
         document.getElementById("label_4").innerHTML = "ID de la categoria:";
+        document.getElementById("label_MO").innerHTML = "Escoja la categoria:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
         document.getElementById("div_6").style.display = "inline";
-
+        document.getElementById("div_MO").style.display = "inline";
+        set_categoria_div();
     } else if (v_selected == "Categoria") {
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Descripcion:";
@@ -389,6 +424,7 @@ edit_divs = function () {
         document.getElementById("label_5").innerHTML = "Celular:";
         document.getElementById("label_6").innerHTML = "Cedula:";
         document.getElementById("label_7").innerHTML = "ID ciudad:";
+        document.getElementById("label_MO").innerHTML = "Escoja ciudad:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
@@ -396,6 +432,8 @@ edit_divs = function () {
         document.getElementById("div_7").style.display = "inline";
         document.getElementById("div_8").style.display = "inline";
         document.getElementById("div_9").style.display = "inline";
+        document.getElementById("div_MO").style.display = "inline";
+        set_ciudad_div();
     } else if (v_selected == "Factura") {
         document.getElementById("label_1").innerHTML = "Fecha de la factura:";
         document.getElementById("label_2").innerHTML = "Valor de IVA:";
@@ -403,6 +441,7 @@ edit_divs = function () {
         document.getElementById("label_4").innerHTML = "Total:";
         document.getElementById("label_5").innerHTML = "ID del cliente:";
         document.getElementById("label_6").innerHTML = "ID del metodo de pago:";
+        document.getElementById("label_MO").innerHTML = "Metodo de pago:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
@@ -412,6 +451,8 @@ edit_divs = function () {
         document.getElementById("div_11").style.display = "inline";
         document.getElementById("div_12").style.display = "inline";
         document.getElementById("div_13").style.display = "inline";
+        document.getElementById("div_MO").style.display = "inline";
+        set_MP_div();
     } else if (v_selected == "Metodo_pago") {
         document.getElementById("label_1").innerHTML = "Tipo:";
         document.getElementById("div_3").style.display = "inline";
@@ -432,6 +473,7 @@ hide_divs = function () {
     document.getElementById("div_13").style.display = "none";
     document.getElementById("div_12").style.display = "none";
     document.getElementById("div_11").style.display = "none";
+    document.getElementById("div_MO").style.display = "none";
 
 };
 //funcion para crear la tabla de productos de una factura
@@ -560,25 +602,6 @@ create_tabla = function () {
         tabla.setAttribute("id", "table_d_f");
     }
 };
-//funcion para traer todos los articulos
-async function get_articulos() {
-    arrayArticulos.pop();
-    ws.onmessage = recivir_art;
-
-    ws.send("Todo");
-    function recivir_art(evt) {
-        var obj = JSON.parse(evt.data);
-        //en caso de que no exista el registro
-        if (obj.nombre === 'NE') {
-            console.log("no existen elementos");
-        } else {
-            arrayArticulos.push(obj);
-        }
-    }
-    ;
-    await delay(1);
-    ws.close();
-}
 //funcion para agregar un retraso en un tiempo n segundos
 function delay(n) {
     return new Promise(function (resolve) {
@@ -630,5 +653,13 @@ function sumar_total(add) {
 function clean_input_8(){
   for(var i = document.getElementById("input_8").options.length;i>=0;i--){
     document.getElementById("input_8").remove(i);
+  }
+}
+//funcion para lipiar select o input MO
+function clean_input_MO(){
+  if(document.getElementById("input_MO").options.length>1){
+      for(var i = document.getElementById("input_MO").options.length;i>=0;i--){
+        document.getElementById("input_MO").remove(i);
+      }
   }
 }

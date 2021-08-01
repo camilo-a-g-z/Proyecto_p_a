@@ -42,7 +42,7 @@ public class Metodo_pagoServer {
         Metodo_pago met = new Metodo_pago();
         try{
             //se pregunta si el cliente necesita todos o unicamente uno en especifico
-            if(mens == "Todo"){
+            if("Todo".equals(mens)){
                 //se carga de la base de datos segun requerimiento de websocket
                 ResultSet res = metDB.getMetodos_pago();
                 //se carga resultado
