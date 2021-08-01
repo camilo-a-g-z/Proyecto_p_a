@@ -146,7 +146,6 @@ async function procedimiento() {
                 document.getElementById("input_1").value = obj.nombre;
                 document.getElementById("input_2").value = obj.cant_stock;
                 document.getElementById("input_3").value = obj.descripcion;
-                document.getElementById("input_4").value = obj.id_categoria;
                 set_categoria_by_id(obj.id_categoria);
             }
         } else if (v_selected == "Categoria") {
@@ -169,7 +168,6 @@ async function procedimiento() {
                 document.getElementById("input_4").value = obj.direccion;
                 document.getElementById("input_5").value = obj.celular;
                 document.getElementById("input_6").value = obj.cedula;
-                document.getElementById("input_7").value = obj.id_ciudad;
                 set_ciudad_by_id(obj.id_ciudad);
             }
             console.log("Se recivio un cliente");
@@ -183,7 +181,7 @@ async function procedimiento() {
                 document.getElementById("input_3").value = obj.val_sub_total;
                 document.getElementById("input_4").value = obj.total;
                 document.getElementById("input_5").value = obj.id_cliente;
-                document.getElementById("input_6").value = obj.id_metodo_pago;
+                set_MP_by_id(obj.id_metodo_pago);
                 ws.close();
                 ws = null;
                 ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/detalle_fac');
@@ -329,7 +327,7 @@ async function enviar_edit() {
                 val_sub_total: document.getElementById("input_3").value,
                 total: document.getElementById("input_4").value,
                 id_cliente: document.getElementById("input_5").value,
-                id_metodo_pago: document.getElementById("input_6").value,
+                id_metodo_pago: set_MP_by_nombre(document.getElementById("input_MO").value)+"",
                 mensaje: o_selected
             };
             ws.send(JSON.stringify(msg));
@@ -405,10 +403,8 @@ edit_divs = function () {
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Cantidad en stock:";
         document.getElementById("label_3").innerHTML = "Descripcion:";
-        document.getElementById("label_4").innerHTML = "ID de la categoria:";
         document.getElementById("label_MO").innerHTML = "Escoja la categoria:";
         document.getElementById("div_3").style.display = "inline";
-        document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
         document.getElementById("div_6").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
@@ -425,13 +421,11 @@ edit_divs = function () {
         document.getElementById("label_4").innerHTML = "Direccion:";
         document.getElementById("label_5").innerHTML = "Celular:";
         document.getElementById("label_6").innerHTML = "Cedula:";
-        document.getElementById("label_7").innerHTML = "ID ciudad:";
         document.getElementById("label_MO").innerHTML = "Escoja ciudad:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
         document.getElementById("div_6").style.display = "inline";
-        document.getElementById("div_7").style.display = "inline";
         document.getElementById("div_8").style.display = "inline";
         document.getElementById("div_9").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
@@ -442,12 +436,10 @@ edit_divs = function () {
         document.getElementById("label_3").innerHTML = "Valor subTotal:";
         document.getElementById("label_4").innerHTML = "Total:";
         document.getElementById("label_5").innerHTML = "ID del cliente:";
-        document.getElementById("label_6").innerHTML = "ID del metodo de pago:";
         document.getElementById("label_MO").innerHTML = "Metodo de pago:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
-        document.getElementById("div_6").style.display = "inline";
         document.getElementById("div_7").style.display = "inline";
         document.getElementById("div_8").style.display = "inline";
         document.getElementById("div_11").style.display = "inline";
@@ -634,6 +626,29 @@ function set_categoria_by_id(cat){
         if (window.arrayCategoria[i].id_categoria === cat) {
             for(var f = 0;f<document.getElementById("input_MO").options.length;f++){
                 if(window.arrayCategoria[i].nombre === document.getElementById("input_MO").options[f].value){
+                    document.getElementById("input_MO").options[f].setAttribute("selected", "");
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+//funcion para buscar segun el nombre del metodo de pago el id de este
+function set_MP_by_nombre(cat){
+    for (var i = 0; i < window.arrayMP.length; i++) {
+        if (window.arrayMP[i].tipo === cat) {
+            return window.arrayMP[i].id_metodo_pago;
+            break;
+        }
+    }
+}
+//funcion para poner en el div la seleccion segun el servidor
+function set_MP_by_id(mp){
+    for (var i = 0; i < window.arrayMP.length; i++) {
+        if (window.arrayMP[i].id_metodo_pago === mp) {
+            for(var f = 0;f<document.getElementById("input_MO").options.length;f++){
+                if(window.arrayMP[i].tipo === document.getElementById("input_MO").options[f].value){
                     document.getElementById("input_MO").options[f].setAttribute("selected", "");
                     break;
                 }
