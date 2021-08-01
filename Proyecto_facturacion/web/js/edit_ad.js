@@ -147,6 +147,7 @@ async function procedimiento() {
                 document.getElementById("input_2").value = obj.cant_stock;
                 document.getElementById("input_3").value = obj.descripcion;
                 document.getElementById("input_4").value = obj.id_categoria;
+                set_categoria_by_id(obj.id_categoria);
             }
         } else if (v_selected == "Categoria") {
             if (obj.nombre === 'NE') {
@@ -169,6 +170,7 @@ async function procedimiento() {
                 document.getElementById("input_5").value = obj.celular;
                 document.getElementById("input_6").value = obj.cedula;
                 document.getElementById("input_7").value = obj.id_ciudad;
+                set_ciudad_by_id(obj.id_ciudad);
             }
             console.log("Se recivio un cliente");
         } else if (v_selected === "Factura") {
@@ -281,7 +283,7 @@ async function enviar_edit() {
             nombre: document.getElementById("input_1").value,
             cant_stock: document.getElementById("input_2").value,
             descripcion: document.getElementById("input_3").value,
-            id_categoria: document.getElementById("input_4").value,
+            id_categoria: set_categoria_by_nombre(document.getElementById("input_MO").value)+"",
             mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
@@ -302,7 +304,7 @@ async function enviar_edit() {
             direccion: document.getElementById("input_4").value,
             celular: document.getElementById("input_5").value,
             cedula: document.getElementById("input_6").value,
-            id_ciudad: document.getElementById("input_7").value,
+            id_ciudad: set_ciudad_by_nombre(document.getElementById("input_MO").value)+"",
             password: "1234",
             mensaje: o_selected
         };
@@ -613,6 +615,54 @@ function set_articulo(art) {
     for (var i = 0; i < arrayArticulos.length; i++) {
         if (arrayArticulos[i].id_articulo == art) {
             return arrayArticulos[i].nombre;
+            break;
+        }
+    }
+}
+//funcion para buscar segun el nombre de la categoria el id de este
+function set_categoria_by_nombre(cat){
+    for (var i = 0; i < window.arrayCategoria.length; i++) {
+        if (window.arrayCategoria[i].nombre == cat) {
+            return window.arrayCategoria[i].id_categoria;
+            break;
+        }
+    }
+}
+//funcion para poner en el div la seleccion segun el servidor
+function set_categoria_by_id(cat){
+    for (var i = 0; i < window.arrayCategoria.length; i++) {
+        if (window.arrayCategoria[i].id_categoria === cat) {
+            for(var f = 0;f<document.getElementById("input_MO").options.length;f++){
+                if(window.arrayCategoria[i].nombre === document.getElementById("input_MO").options[f].value){
+                    document.getElementById("input_MO").options[f].setAttribute("selected", "");
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+//funcion para buscar segun el nombre de la ciudad el id de este
+function set_ciudad_by_nombre(ciu){
+    for (var i = 0; i < window.arrayCiudad.length; i++) {
+        if (window.arrayCiudad[i].nombre === ciu) {
+            return window.arrayCiudad[i].id_ciudad;
+            break;
+        }
+    }
+}
+//funcion para poner en el div la seleccion segun el servidor
+function set_ciudad_by_id(ciu){
+    for (var i = 0; i < window.arrayCiudad.length; i++) {
+        if (window.arrayCiudad[i].id_ciudad === ciu) {
+            console.log(window.arrayCiudad[i].nombre);
+            for(var f = 0;f<document.getElementById("input_MO").options.length;f++){
+                if(window.arrayCiudad[i].nombre === document.getElementById("input_MO").options[f].value){
+                    console.log("Entro");
+                    document.getElementById("input_MO").options[f].setAttribute("selected", "");
+                    break;
+                }
+            }
             break;
         }
     }

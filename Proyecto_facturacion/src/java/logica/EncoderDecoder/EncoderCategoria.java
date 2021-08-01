@@ -18,7 +18,7 @@ public class EncoderCategoria implements Encoder.TextStream<Categoria>{
     @Override
     public void encode(Categoria object, Writer writer) throws EncodeException, IOException {
         JsonObject json = Json.createObjectBuilder()
-                .add("id_articulo", object.getId_categoria())
+                .add("id_categoria", object.getId_categoria())
                 .add("nombre", object.getNombre())
                 .add("descripcion", object.getDescripcion())
                 .add("mensaje", object.getMensaje())

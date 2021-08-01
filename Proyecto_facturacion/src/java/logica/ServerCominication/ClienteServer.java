@@ -40,9 +40,17 @@ public class ClienteServer {
         DBCliente cliDB = new DBCliente();
         Cliente cli = new Cliente();
         try{
-            ResultSet res = cliDB.getClienteByNombre(mens);
+            ResultSet res = cliDB.getClienteById(Integer.parseInt(mens));
             if(!res.next()){
+                cli.setApellido("NE");
+                cli.setCedula("NE");
+                cli.setCelular(0.0);
+                cli.setCorreo("NE");
+                cli.setDireccion("NE");
+                cli.setId_ciudad(0);
+                cli.setId_cliente(0);
                 cli.setNombre("NE");
+                cli.setPassword("NE");
                 conectados.get(i).getBasicRemote().sendObject(cli);
             }else{
                 cli.setApellido(res.getString("apellido"));
