@@ -402,6 +402,7 @@ edit_divs = function () {
     //se esconden primero todos los divs
     hide_divs();
     if (v_selected === "Articulo") {
+        document.getElementById("principal_info").innerHTML = "Ingrese nombre del articulo:";
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Cantidad en stock:";
         document.getElementById("label_3").innerHTML = "Descripcion:";
@@ -412,11 +413,13 @@ edit_divs = function () {
         document.getElementById("div_MO").style.display = "inline";
         set_categoria_div();
     } else if (v_selected === "Categoria") {
+        document.getElementById("principal_info").innerHTML = "Ingrese nombre de la categoria:";
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Descripcion:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
     } else if (v_selected === "Cliente") {
+        document.getElementById("principal_info").innerHTML = "Ingrese el ID del cliente:";
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Apellido:";
         document.getElementById("label_3").innerHTML = "Correo:";
@@ -433,6 +436,7 @@ edit_divs = function () {
         document.getElementById("div_MO").style.display = "inline";
         set_ciudad_div();
     } else if (v_selected === "Factura") {
+        document.getElementById("principal_info").innerHTML = "Ingrese el ID de la factura:";
         document.getElementById("label_1").innerHTML = "Fecha de la factura:";
         document.getElementById("label_2").innerHTML = "Valor de IVA:";
         document.getElementById("label_3").innerHTML = "Valor subTotal:";
@@ -446,13 +450,16 @@ edit_divs = function () {
         document.getElementById("div_7").style.display = "inline";
         document.getElementById("div_11").style.display = "inline";
         document.getElementById("div_12").style.display = "inline";
+        document.getElementById("div_13").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
         document.getElementById("div_CT").style.display = "inline";
         set_MP_div();
     } else if (v_selected === "Metodo_pago") {
+        document.getElementById("principal_info").innerHTML = "Ingrese nombre del metodo de pago:";
         document.getElementById("label_1").innerHTML = "Tipo:";
         document.getElementById("div_3").style.display = "inline";
     } else if (v_selected === "Ciudad") {
+        document.getElementById("principal_info").innerHTML = "Ingrese nombre de la ciudad:";
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("div_3").style.display = "inline";
     }
@@ -474,6 +481,11 @@ hide_divs = function () {
 };
 //funcion para crear la tabla de productos de una factura
 create_tabla = function () {
+    //se limpia (si existe una tabla anterior)
+    if (document.getElementById("table_d_f")) {
+        console.log("entro");
+        document.getElementsByTagName("body")[0].removeChild(document.getElementById("table_d_f"));
+    }
     //se limpia el valor del iterador
     iterator = 0;
     ws.onmessage = seetear;
