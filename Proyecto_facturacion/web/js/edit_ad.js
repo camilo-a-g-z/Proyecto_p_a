@@ -30,9 +30,7 @@ select = function () {
     input.addEventListener('input', function () {
         let seleccionado = this.value;
         asignar_divs(seleccionado);
-        if (band) {
-            start_ws(v_selected);
-        }
+        start_ws(v_selected);
     });
     input = document.getElementById('opcion');
     input.addEventListener('input', function () {
@@ -42,21 +40,21 @@ select = function () {
 };
 //metodo para ajustar segun la seleccion, los divs y el procedimiento
 function asignar_divs(evt) {
-    if (evt == "Editar") {
+    if (evt === "Editar") {
         o_selected = "1";
         edit_divs();
         document.getElementById("div_1").style.display = "inline";
         document.getElementById("div_2").style.display = "inline";
         document.getElementById("div_10").style.display = "inline";
         document.getElementById("boton_2").innerHTML = "Editar";
-    } else if (evt == "Eliminar") {
+    } else if (evt === "Eliminar") {
         o_selected = "3";
         edit_divs();
         document.getElementById("div_1").style.display = "inline";
         document.getElementById("div_2").style.display = "inline";
         document.getElementById("div_10").style.display = "inline";
         document.getElementById("boton_2").innerHTML = "Eliminar";
-    } else if (evt == "Crear") {
+    } else if (evt === "Crear") {
         o_selected = "2";
         edit_divs();
         document.getElementById("div_1").style.display = "none";
@@ -71,18 +69,17 @@ function asignar_divs(evt) {
 }
 //metodo que inicia WS segun requerimiento ademas de variables para correcto funcionamiento
 function start_ws(evt) {
-    if (evt == "") {
-        console.log("no hace conexion");
+    if (evt === "") {
+        console.log("No se logro conexión");
     } else {
         if (!band) {
             ws.close();
         } else {
             band = false;
         }
-        if (evt == "Factura") {
+        if (evt === "Factura") {
             url = 'ws://localhost:8080/Proyecto_facturacion/factura';
         }
-        
         //se selecciona url a conectar
         selecionar_url();
         edit_divs();
@@ -92,33 +89,33 @@ function start_ws(evt) {
 }
 //metodo que elige el tipo de url para el websocket (url solo valida para realizar consultas)
 selecionar_url = function () {
-    if (v_selected == "Articulo") {
+    if (v_selected === "Articulo") {
         url = 'ws://localhost:8080/Proyecto_facturacion/articulo';
-    } else if (v_selected == "Categoria") {
+    } else if (v_selected === "Categoria") {
         url = 'ws://localhost:8080/Proyecto_facturacion/categoria';
-    } else if (v_selected == "Cliente") {
+    } else if (v_selected === "Cliente") {
         url = 'ws://localhost:8080/Proyecto_facturacion/cliente';
-    } else if (v_selected == "Factura") {
+    } else if (v_selected === "Factura") {
         url = 'ws://localhost:8080/Proyecto_facturacion/factura';
-    } else if (v_selected == "Metodo_pago") {
+    } else if (v_selected === "Metodo_pago") {
         url = 'ws://localhost:8080/Proyecto_facturacion/metodo_pago';
-    } else if (v_selected == "Ciudad") {
+    } else if (v_selected === "Ciudad") {
         url = 'ws://localhost:8080/Proyecto_facturacion/ciudad';
     }
 };
 //metodo que elige el tipo de url para el websocket (url solo valida para editar)
 selecionar_url_modify = function () {
-    if (v_selected == "Articulo") {
+    if (v_selected === "Articulo") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyArticulo';
-    } else if (v_selected == "Categoria") {
+    } else if (v_selected === "Categoria") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCategoria';
-    } else if (v_selected == "Cliente") {
+    } else if (v_selected === "Cliente") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCliente';
-    } else if (v_selected == "Factura") {
+    } else if (v_selected === "Factura") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyFactura';
-    } else if (v_selected == "Metodo_pago") {
+    } else if (v_selected === "Metodo_pago") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyMP';
-    } else if (v_selected == "Ciudad") {
+    } else if (v_selected === "Ciudad") {
         url = 'ws://localhost:8080/Proyecto_facturacion/modifyCiudad';
     }
 };
@@ -138,7 +135,7 @@ async function procedimiento() {
     //se verifica si elemento esta vacio de lo contrario se procede segun el tipo de onjeto
     function onMessage(evt) {
         var obj = JSON.parse(evt.data);
-        if (v_selected == "Articulo") {
+        if (v_selected === "Articulo") {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
@@ -148,7 +145,7 @@ async function procedimiento() {
                 document.getElementById("input_3").value = obj.descripcion;
                 set_categoria_by_id(obj.id_categoria);
             }
-        } else if (v_selected == "Categoria") {
+        } else if (v_selected === "Categoria") {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
@@ -157,7 +154,7 @@ async function procedimiento() {
                 document.getElementById("input_2").value = obj.descripcion;
             }
             console.log("Se recivio una categoria");
-        } else if (v_selected == "Cliente") {
+        } else if (v_selected === "Cliente") {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
@@ -190,7 +187,7 @@ async function procedimiento() {
                 setTimeout('create_tabla()', 3000);
             }
             console.log("Se recivio una factura");
-        } else if (v_selected == "Metodo_pago") {
+        } else if (v_selected === "Metodo_pago") {
             if (obj.tipo === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
@@ -198,7 +195,7 @@ async function procedimiento() {
                 document.getElementById("input_1").value = obj.tipo;
             }
             console.log("Se recivio un metodo de pago");
-        } else if (v_selected == "Ciudad") {
+        } else if (v_selected === "Ciudad") {
             if (obj.nombre === 'NE') {
                 info.innerHTML = 'No existe elemento';
             } else {
@@ -208,7 +205,6 @@ async function procedimiento() {
         }
     }
 }
-;
 //funcion para poner los articulos a escoger
 function set_articulo_div() {
     clean_input_8();
@@ -255,7 +251,7 @@ function set_MP_div() {
 }
 //fucion para enviar consulta a servidor
 enviar = function () {
-    if (nombre.value == "") {
+    if (nombre.value === "") {
         alert("No se ingreso nombre");
     } else {
         ws.send(nombre.value);
@@ -275,7 +271,7 @@ close_conexion = function () {
 //funcion para empaquetar, parsear a JSON y enviar a el servidor el objeto
 async function enviar_edit() {
     ws.onmessage = get_id;
-    if (v_selected == "Articulo") {
+    if (v_selected === "Articulo") {
         var msg = {
             id_articulo: id_selected,
             nombre: document.getElementById("input_1").value,
@@ -285,7 +281,7 @@ async function enviar_edit() {
             mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
-    } else if (v_selected == "Categoria") {
+    } else if (v_selected === "Categoria") {
         var msg = {
             id_categoria: id_selected,
             nombre: document.getElementById("input_1").value,
@@ -293,7 +289,7 @@ async function enviar_edit() {
             mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
-    } else if (v_selected == "Cliente") {
+    } else if (v_selected === "Cliente") {
         var msg = {
             id_cliente: id_selected,
             nombre: document.getElementById("input_1").value,
@@ -307,7 +303,7 @@ async function enviar_edit() {
             mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
-    } else if (v_selected == "Factura") {
+    } else if (v_selected === "Factura") {
         if (o_selected != "3") {
             //se cierra antigua conexion
             ws.close();
@@ -343,14 +339,14 @@ async function enviar_edit() {
             //se espera correcta conexion con WS para enviar los registros
             setTimeout('delete_factura()', 3000);
         }
-    } else if (v_selected == "Metodo_pago") {
+    } else if (v_selected === "Metodo_pago") {
         var msg = {
             id_metodo_pago: id_selected,
             tipo: document.getElementById("input_1").value,
             mensaje: o_selected
         };
         ws.send(JSON.stringify(msg));
-    } else if (v_selected == "Ciudad") {
+    } else if (v_selected === "Ciudad") {
         var msg = {
             id_ciudad: id_selected,
             nombre: document.getElementById("input_1").value,
@@ -366,7 +362,7 @@ async function enviar_edit() {
     if (v_selected != "Factura") {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
-    } else if (o_selected == "3") {
+    } else if (o_selected === "3") {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
     }
@@ -399,22 +395,22 @@ edit_divs = function () {
     document.getElementById("Nombre").value = "";
     //se esconden primero todos los divs
     hide_divs();
-    if (v_selected == "Articulo") {
+    if (v_selected === "Articulo") {
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Cantidad en stock:";
         document.getElementById("label_3").innerHTML = "Descripcion:";
         document.getElementById("label_MO").innerHTML = "Escoja la categoria:";
         document.getElementById("div_3").style.display = "inline";
+        document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
-        document.getElementById("div_6").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
         set_categoria_div();
-    } else if (v_selected == "Categoria") {
+    } else if (v_selected === "Categoria") {
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Descripcion:";
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
-    } else if (v_selected == "Cliente") {
+    } else if (v_selected === "Cliente") {
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("label_2").innerHTML = "Apellido:";
         document.getElementById("label_3").innerHTML = "Correo:";
@@ -426,11 +422,11 @@ edit_divs = function () {
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
         document.getElementById("div_6").style.display = "inline";
+        document.getElementById("div_7").style.display = "inline";
         document.getElementById("div_8").style.display = "inline";
-        document.getElementById("div_9").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
         set_ciudad_div();
-    } else if (v_selected == "Factura") {
+    } else if (v_selected === "Factura") {
         document.getElementById("label_1").innerHTML = "Fecha de la factura:";
         document.getElementById("label_2").innerHTML = "Valor de IVA:";
         document.getElementById("label_3").innerHTML = "Valor subTotal:";
@@ -440,17 +436,16 @@ edit_divs = function () {
         document.getElementById("div_3").style.display = "inline";
         document.getElementById("div_4").style.display = "inline";
         document.getElementById("div_5").style.display = "inline";
+        document.getElementById("div_6").style.display = "inline";
         document.getElementById("div_7").style.display = "inline";
-        document.getElementById("div_8").style.display = "inline";
         document.getElementById("div_11").style.display = "inline";
         document.getElementById("div_12").style.display = "inline";
-        document.getElementById("div_13").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
         set_MP_div();
-    } else if (v_selected == "Metodo_pago") {
+    } else if (v_selected === "Metodo_pago") {
         document.getElementById("label_1").innerHTML = "Tipo:";
         document.getElementById("div_3").style.display = "inline";
-    } else if (v_selected == "Ciudad") {
+    } else if (v_selected === "Ciudad") {
         document.getElementById("label_1").innerHTML = "Nombre:";
         document.getElementById("div_3").style.display = "inline";
     }
@@ -520,7 +515,7 @@ create_tabla = function () {
     function seetear(evt) {
         var obj = JSON.parse(evt.data);
         //en caso de que no exista el registro
-        if (obj.total == "0") {
+        if (obj.total === "0") {
             console.log("No existe ningun registro");
         } else {
             //se agrega el id del objeto a arraylist
@@ -605,7 +600,7 @@ function delay(n) {
 //funcion para buscar segun el id del articulo el nombre de este
 function set_articulo(art) {
     for (var i = 0; i < arrayArticulos.length; i++) {
-        if (arrayArticulos[i].id_articulo == art) {
+        if (arrayArticulos[i].id_articulo === art) {
             return arrayArticulos[i].nombre;
             break;
         }
@@ -614,7 +609,7 @@ function set_articulo(art) {
 //funcion para buscar segun el nombre de la categoria el id de este
 function set_categoria_by_nombre(cat){
     for (var i = 0; i < window.arrayCategoria.length; i++) {
-        if (window.arrayCategoria[i].nombre == cat) {
+        if (window.arrayCategoria[i].nombre === cat) {
             return window.arrayCategoria[i].id_categoria;
             break;
         }
@@ -670,10 +665,8 @@ function set_ciudad_by_nombre(ciu){
 function set_ciudad_by_id(ciu){
     for (var i = 0; i < window.arrayCiudad.length; i++) {
         if (window.arrayCiudad[i].id_ciudad === ciu) {
-            console.log(window.arrayCiudad[i].nombre);
             for(var f = 0;f<document.getElementById("input_MO").options.length;f++){
                 if(window.arrayCiudad[i].nombre === document.getElementById("input_MO").options[f].value){
-                    console.log("Entro");
                     document.getElementById("input_MO").options[f].setAttribute("selected", "");
                     break;
                 }
@@ -685,7 +678,7 @@ function set_ciudad_by_id(ciu){
 //funcion que segun el id del articulo devuelve el precio del mismo
 function set_val_uni_articulo(art) {
     for (var i = 0; i < arrayArticulos.length; i++) {
-        if (arrayArticulos[i].id_articulo == art) {
+        if (arrayArticulos[i].id_articulo === art) {
             return arrayArticulos[i].descripcion;
             break;
         }
@@ -695,12 +688,12 @@ function set_val_uni_articulo(art) {
 function sumar_total(add) {
     //se traen los labels donde estan los valores
     //en caso de que se cree una nueva factura se settean valores a cero
-    if (document.getElementById("input_3").value == "") {
+    if (document.getElementById("input_3").value === "") {
         sub_total = 0;
     } else {
         sub_total = parseFloat(document.getElementById("input_3").value);
     }
-    if (document.getElementById("input_2").value == "") {
+    if (document.getElementById("input_2").value === "") {
         val_iva = 0;
     } else {
         val_iva = parseFloat(document.getElementById("input_2").value);
