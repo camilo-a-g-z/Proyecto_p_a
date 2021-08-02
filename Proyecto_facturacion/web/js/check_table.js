@@ -40,7 +40,7 @@ async function add_fila() {
     if (!document.getElementsByTagName("tbody")[0]) {
         iniciar_tabla();
     }
-    if (document.getElementById("input_8").value != "") {
+    if (document.getElementById("input_8").value !== "") {
         //se le da la opcion de crear elemento
         window.arrayOpc.push("2");
         //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio

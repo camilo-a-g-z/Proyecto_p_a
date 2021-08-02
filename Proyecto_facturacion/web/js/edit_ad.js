@@ -37,6 +37,12 @@ select = function () {
         v_selected = this.value;
         start_ws(v_selected);
     });
+    input = document.getElementById('input_8');
+    input.addEventListener('input', function () {
+        console.log(get_precio_id_a(document.getElementById("input_8").value));
+        let valor = get_precio_id_a(document.getElementById("input_8").value);
+        document.getElementById("input_CT").value = valor;
+    });
 };
 //metodo para ajustar segun la seleccion, los divs y el procedimiento
 function asignar_divs(evt) {
@@ -441,6 +447,7 @@ edit_divs = function () {
         document.getElementById("div_11").style.display = "inline";
         document.getElementById("div_12").style.display = "inline";
         document.getElementById("div_MO").style.display = "inline";
+        document.getElementById("div_CT").style.display = "inline";
         set_MP_div();
     } else if (v_selected === "Metodo_pago") {
         document.getElementById("label_1").innerHTML = "Tipo:";
@@ -463,7 +470,7 @@ hide_divs = function () {
     document.getElementById("div_12").style.display = "none";
     document.getElementById("div_11").style.display = "none";
     document.getElementById("div_MO").style.display = "none";
-
+    document.getElementById("div_CT").style.display = "none";
 };
 //funcion para crear la tabla de productos de una factura
 create_tabla = function () {
