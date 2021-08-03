@@ -466,6 +466,8 @@ edit_divs = function () {
 };
 //funcion para esconder divs de edicion
 hide_divs = function () {
+    document.getElementById("informacion").innerHTML = "";
+    document.getElementById("obtenido").innerHTML = "";
     document.getElementById("div_3").style.display = "none";
     document.getElementById("div_4").style.display = "none";
     document.getElementById("div_5").style.display = "none";

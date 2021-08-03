@@ -41,6 +41,12 @@ public class FacturaServer {
             ResultSet res = facDB.getFacturaById(Integer.parseInt(mens));
             if(!res.next()){
                 fac.setFecha_fac("NE");
+                fac.setId_cliente(0);
+                fac.setId_factura(0);
+                fac.setId_metodo_pago(0);
+                fac.setTotal(0.0);
+                fac.setVal_iva(0.0);
+                fac.setVal_sub_total(0.0);
                 conectados.get(i).getBasicRemote().sendObject(fac);
             }else{
                 fac.setFecha_fac(res.getString("fecha_fac"));
