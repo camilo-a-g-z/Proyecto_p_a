@@ -8,6 +8,10 @@
         <servlet-name>Empleado</servlet-name>
         <servlet-class>servlets.Empleado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Cliente</servlet-name>
+        <servlet-class>servlets.Cliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Empleado</servlet-name>
         <url-pattern>/Empleado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cliente</servlet-name>
+        <url-pattern>/Cliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
