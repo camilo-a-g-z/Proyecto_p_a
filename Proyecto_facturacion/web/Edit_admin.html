@@ -8,6 +8,7 @@
         <script type="text/javascript" src="js/edit_ad.js"></script>
         <script type="text/javascript" src="js/check_table.js"></script>
         <script type="text/javascript" src="js/LoadBasicDates.js"></script>
+        <script type="text/javascript" src="js/Verify_inputs.js"></script>
     </head>
     <body onload="select()">
         <!--Se carga primero todos los datos antes de empezar la pagina-->
@@ -132,18 +133,15 @@
     <br>
     <div style="display:none" id="div_12">
         <label id="label_9">Cantidad:</label>
-        <input type="text" id="input_9" name="input_9" placeholder="Escriba id categoria"> 
+        <input type="text" id="input_9" name="input_9" placeholder="Escriba cantidad" onkeypress="return isNumberKey(event)"> 
     </div>
     <br>
     <div style="display:none" id="div_CT">
         <label id="label_CT">Precio:</label>
-        <input type="text" id="input_CT" name="input_CT" placeholder="Valor:"> 
+        <input type="text" id="input_CT" name="input_CT" placeholder="Valor:" onkeypress="return isNumberKeyDecimal(event)"> 
     </div>
     <br>
     <div style="display:none" id="div_13">
-        <label id="label_10">Descuento:</label>
-        <input type="text" id="input_10" name="input_10" placeholder="Escriba id categoria"> 
-        <br>
         <button id="boton_3" name="boton_3" onclick="add_fila()">Agregar</button>
     </div>
     <br>

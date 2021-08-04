@@ -35,6 +35,7 @@ select = function () {
     input = document.getElementById('opcion');
     input.addEventListener('input', function () {
         v_selected = this.value;
+        window.SetListeners();
         start_ws(v_selected);
     });
     input = document.getElementById('input_8');
