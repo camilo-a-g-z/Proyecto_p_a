@@ -40,9 +40,13 @@ select = function () {
     });
     input = document.getElementById('input_8');
     input.addEventListener('input', function () {
-        console.log(get_precio_id_a(document.getElementById("input_8").value));
+        //Se obtiene precio
         let valor = get_precio_id_a(document.getElementById("input_8").value);
-        document.getElementById("input_CT").value = valor;
+        //Se envia a label
+        document.getElementById("input_CT").innerHTML = valor;
+        //se limpiuan otros labels
+        document.getElementById("input_9").value = "";
+        document.getElementById("input_10").value = "";
     });
 };
 //metodo para ajustar segun la seleccion, los divs y el procedimiento
