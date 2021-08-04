@@ -17,23 +17,41 @@ function SetListeners() {
         document.getElementById("input_5").setAttribute("onkeypress","return isNumberKey(event)");
     }
 }
+//funcion que verifica si los campos de cantidad y descuento estan llenos
+function veryfyAddFila(){
+    //en caso de que no haya llenado se le notifica al usuario
+    if(document.getElementById("input_9").value === "" || document.getElementById("input_10").value === ""){
+        alert("Digite cantidad y descuento");
+    }else{
+        window.add_fila();
+    }
+}
+//funcion para verificar que los campos en cada caso de envio esten completos
+function verifyClose_conexion(){
+    if (window.v_selected === "Articulo") {
+        
+    } else if (window.v_selected === "Categoria") {
+        
+    } else if (window.v_selected === "Cliente") {
+        
+    } else if (window.v_selected === "Factura") {
+        
+    } else if (window.v_selected === "Metodo_pago") {
+        
+    } else if (window.v_selected === "Ciudad") {
+        
+    }
+}
 //funcion para eliminar listeners de los inputs
 function RemoveListeners(){
     //se pregunta si tiene el listener y encaso de tenerlo se elimina
+    for(let i = 1;i<=6;i++){
+        if(document.getElementById("input_"+i).hasAttribute("onkeypress")){
+            document.getElementById("input_"+i).removeAttribute("onkeypress");
+        }
+    }
     if(document.getElementById("Nombre").hasAttribute("onkeypress")){
         document.getElementById("Nombre").removeAttribute("onkeypress");
-    } else if(document.getElementById("input_1").hasAttribute("onkeypress")){
-        document.getElementById("input_1").removeAttribute("onkeypress");
-    } else if(document.getElementById("input_2").hasAttribute("onkeypress")){
-        document.getElementById("input_2").removeAttribute("onkeypress");
-    }else if(document.getElementById("input_3").hasAttribute("onkeypress")){
-        document.getElementById("input_3").removeAttribute("onkeypress");
-    } else if(document.getElementById("input_4").hasAttribute("onkeypress")){
-        document.getElementById("input_4").removeAttribute("onkeypress");
-    }else if(document.getElementById("input_5").hasAttribute("onkeypress")){
-        document.getElementById("input_5").removeAttribute("onkeypress");
-    } else if(document.getElementById("input_6").hasAttribute("onkeypress")){
-        document.getElementById("input_6").removeAttribute("onkeypress");
     }
 }
 //funcion para eliminar disable
@@ -41,18 +59,11 @@ function RemoveDisable(){
     //se pregunta si esta desabilitado y se vueleve a habilitar
     if(document.getElementById("Nombre").hasAttribute("disabled")){
         document.getElementById("Nombre").removeAttribute("disabled");
-    } else if(document.getElementById("input_1").hasAttribute("disabled")){
-        document.getElementById("input_1").removeAttribute("disabled");
-    } else if(document.getElementById("input_2").hasAttribute("disabled")){
-        document.getElementById("input_2").removeAttribute("disabled");
-    }else if(document.getElementById("input_3").hasAttribute("disabled")){
-        document.getElementById("input_3").removeAttribute("disabled");
-    } else if(document.getElementById("input_4").hasAttribute("disabled")){
-        document.getElementById("input_4").removeAttribute("disabled");
-    }else if(document.getElementById("input_5").hasAttribute("disabled")){
-        document.getElementById("input_5").removeAttribute("disabled");
-    } else if(document.getElementById("input_6").hasAttribute("disabled")){
-        document.getElementById("input_6").removeAttribute("disabled");
+    }
+    for(let i = 1;i<=6;i++){
+        if(document.getElementById("input_"+i).hasAttribute("disabled")){
+            document.getElementById("input_"+i).removeAttribute("disabled");
+        }
     }
 }
 //funcion para limitar a solo ingreso de numeros en input HTML
