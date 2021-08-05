@@ -7,9 +7,11 @@ function SetListeners() {
         document.getElementById("input_2").setAttribute("onkeypress","return isNumberKey(event)");
         document.getElementById("input_3").setAttribute("onkeypress","return isNumberKeyDecimal(event)");
     } else if (window.v_selected === "Cliente") {
+        document.getElementById("Nombre").setAttribute("onkeypress","return isNumberKey(event)");
         document.getElementById("input_5").setAttribute("onkeypress","return isNumberKey(event)");
         document.getElementById("input_6").setAttribute("onkeypress","return isNumberKey(event)");
     } else if (window.v_selected === "Factura") {
+        document.getElementById("Nombre").setAttribute("onkeypress","return isNumberKey(event)");
         document.getElementById("input_1").setAttribute("disabled","");
         document.getElementById("input_2").setAttribute("disabled","");
         document.getElementById("input_3").setAttribute("disabled","");
@@ -28,18 +30,42 @@ function veryfyAddFila(){
 }
 //funcion para verificar que los campos en cada caso de envio esten completos
 function verifyClose_conexion(){
+    let band = true;
     if (window.v_selected === "Articulo") {
-        
+        if(document.getElementById("input_1").value === "" || 
+                document.getElementById("input_2").value === "" || 
+                document.getElementById("input_3").value === "" ){
+            alert("Ingrese todos los datos de ARTICULO.");
+            band = false;
+        }
     } else if (window.v_selected === "Categoria") {
-        
+        if(document.getElementById("input_1").value === "" || document.getElementById("input_2").value === ""){
+            alert("Ingrese todos los datos de CATEGORIA.");
+            band = false;
+        }
     } else if (window.v_selected === "Cliente") {
-        
+        if(document.getElementById("input_1").value === "" ||
+                document.getElementById("input_2").value === "" ||
+                document.getElementById("input_3").value === "" ||
+                document.getElementById("input_4").value === "" ||
+                document.getElementById("input_5").value === "" ||
+                document.getElementById("input_6").value === ""){
+            alert("Ingrese todos los datos de CLIENTE.");
+            band = false;
+        }
     } else if (window.v_selected === "Factura") {
-        
-    } else if (window.v_selected === "Metodo_pago") {
-        
-    } else if (window.v_selected === "Ciudad") {
-        
+        if(document.getElementById("input_5").value === "" ){
+            alert("Ingrese todos los datos de Factura.");
+            band = false;
+        }
+    } else if (window.v_selected === "Metodo_pago" || window.v_selected === "Ciudad") {
+        if(document.getElementById("input_1").value === "" ){
+            alert("Ingrese todos los datos de Factura.");
+            band = false;
+        }
+    }
+    if(band){
+        window.close_conexion();
     }
 }
 //funcion para eliminar listeners de los inputs
