@@ -1,5 +1,7 @@
 var ws_table;
 function cerrar_ws() {
+    //se inicia simbolo de carga
+    document.getElementById("load").removeAttribute("style");
     //se cierra antigua conexion
     window.ws.close();
     ws_table = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyDetalle_fac');
@@ -29,7 +31,8 @@ function edit_table() {
         };
         //se envia objeto
         ws_table.send(JSON.stringify(msg));
-    }
+    }//se cierra simbolo de carga
+    document.getElementById("load").setAttribute("style","display:none");
     alert("Factura enviada correctamente");
     asignar_divs(document.getElementById("Select").value);
     start_ws(window.v_selected);

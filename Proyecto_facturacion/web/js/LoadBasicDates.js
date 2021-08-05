@@ -99,5 +99,6 @@ async function get_metodo_pago() {
     wsc.close();
     await window.delay(2);
     //se cierra simbolo de carga
-    document.getElementsByTagName("body")[0].removeChild(document.getElementById("load"));
+    //document.getElementsByTagName("body")[0].removeChild(document.getElementById("load"));
+    document.getElementById("load").setAttribute("style","display:none");
 }

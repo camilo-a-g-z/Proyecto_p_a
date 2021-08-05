@@ -281,6 +281,8 @@ close_conexion = function () {
 };
 //funcion para empaquetar, parsear a JSON y enviar a el servidor el objeto
 async function enviar_edit() {
+    //se inicia simbolo de carga
+    document.getElementById("load").removeAttribute("style");
     ws.onmessage = get_id;
     if (v_selected === "Articulo") {
         var msg = {
@@ -377,6 +379,8 @@ async function enviar_edit() {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
     }
+    //se finaliza simbolo de carga
+    document.getElementById("load").setAttribute("style","display:none");
 }
 function delete_factura() {
     //se crea el objeto para parsearlo y enviarlo a WS
