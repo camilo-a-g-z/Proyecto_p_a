@@ -553,6 +553,7 @@ create_tabla = function () {
             //se agrega opcion de modificar
             arrayOpc.push("1");
             var hilera = document.createElement("tr");
+            hilera.setAttribute("id","tr"+window.iterator);
             //se agrega id del articulo
             var celda = document.createElement("td");
             var textoCelda_5 = document.createElement("label");
