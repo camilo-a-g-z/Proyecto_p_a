@@ -372,7 +372,7 @@ async function enviar_edit() {
         id_selected = evt.data;
     }
     await delay(2);
-    if (v_selected != "Factura") {
+    if (v_selected !== "Factura") {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
     } else if (o_selected === "3") {
@@ -604,6 +604,7 @@ create_tabla = function () {
             var textoCelda_5 = document.createElement("input");
             textoCelda_5.setAttribute('type', 'checkbox');
             textoCelda_5.setAttribute('id', 'e' + iterator);
+            textoCelda_5.setAttribute('onclick', 'deleteItem('+window.iterator+');');
             textoCelda_5.innerHTML = "Eliminar";
             celda.appendChild(textoCelda_5);
             celda.appendChild(document.createTextNode("Eliminar"));

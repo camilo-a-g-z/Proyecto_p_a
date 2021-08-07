@@ -18,19 +18,23 @@ function edit_table() {
             //se cambia opcion a eliminar
             window.arrayOpc[i] = "3";
         }
-        var msg = {
-            //se crea el objeto para parsearlo y enviarlo a WS
-            id_detalle_fac: window.arrayid[i] + "",
-            cantidad: document.getElementById("c" + i).value,
-            total: document.getElementById("t" + i).innerHTML,
-            descuento: document.getElementById("d" + i).value,
-            val_descuento: document.getElementById("v_d" + i).innerHTML,
-            id_factura: window.id_selected + "",
-            id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML) + "",
-            mensaje: window.arrayOpc[i] + ""
-        };
-        //se envia objeto
-        ws_table.send(JSON.stringify(msg));
+        //se revisa que si se agrega nueva factura y se quita elemento este no se envie a servidor
+        if(document.getElementById("e" + i).checked && document.getElementById("Select").value === "Crear"){
+        }else{
+            var msg = {
+                //se crea el objeto para parsearlo y enviarlo a WS
+                id_detalle_fac: window.arrayid[i] + "",
+                cantidad: document.getElementById("c" + i).value,
+                total: document.getElementById("t" + i).innerHTML,
+                descuento: document.getElementById("d" + i).value,
+                val_descuento: document.getElementById("v_d" + i).innerHTML,
+                id_factura: window.id_selected + "",
+                id_articulo: ver_id_a(document.getElementById("i_a" + i).innerHTML) + "",
+                mensaje: window.arrayOpc[i] + ""
+            };
+            //se envia objeto
+            ws_table.send(JSON.stringify(msg));
+        }
     }//se cierra simbolo de carga
     document.getElementById("load").setAttribute("style","display:none");
     alert("Factura enviada correctamente");
@@ -49,6 +53,7 @@ async function add_fila() {
         //para evitar problema del lado del servidor en el Decoder se settea un id aelatorio
         window.arrayid.push("1");
         var hilera = document.createElement("tr");
+        hilera.setAttribute("id","tr"+window.iterator);
         //se agrega id del articulo
         var celda = document.createElement("td");
         var textoCelda_5 = document.createElement("label");
@@ -102,6 +107,7 @@ async function add_fila() {
         var textoCelda_5 = document.createElement("input");
         textoCelda_5.setAttribute('type', 'checkbox');
         textoCelda_5.setAttribute('id', 'e' + window.iterator);
+        textoCelda_5.setAttribute('onclick', 'deleteItem('+window.iterator+');');
         textoCelda_5.innerHTML = "Eliminar";
         celda.appendChild(textoCelda_5);
         celda.appendChild(document.createTextNode("Eliminar"));
