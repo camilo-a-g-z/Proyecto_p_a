@@ -1,4 +1,5 @@
 var arrayArticulos = [];
+var iterator = 0;
 //funcion para agregar un retraso en un tiempo n segundos
 function delay(n) {
     return new Promise(function (resolve) {
