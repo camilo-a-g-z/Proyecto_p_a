@@ -37,29 +37,29 @@ public class Cliente extends HttpServlet {
             out.println("<html>");
             out.println("<body>");
             //se consulta si la respuesta esta vacia
-            if(!res.next()){
+            if (!res.next()) {
                 out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
-                    out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
-            }else{
-                if(res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))){
-                    out.println("<meta http-equiv='refresh' content='3;URL=Edit_admin.html'>");//redirects after 3 seconds
-                    out.println("<p style='color:red;'>Bienvenido"+request.getParameter("Nombre")+"</p>");
-                }else{
+                out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
+            } else {
+                if (res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))) {
+                    out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.html'>");//redirects after 3 seconds
+                    out.println("<p style='color:red;'>Bienvenido" + request.getParameter("Nombre") + "</p>");
+                } else {
                     out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
                     out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
                 }
             }
             out.println("</body>");
             out.println("</html>");
-        }catch(Exception e){
+        } catch (Exception e) {
             //en caso de que no se pueda establecer coneccion se muestra el error
             out.println("<html>");
             out.println("<body>");
             out.println("<h1>Error en esta parte " + e.toString() + "</h1>");
-            out.println("<h1>El error esta: "+empDB.getMensaje()+"</h1>");
+            out.println("<h1>El error esta: " + empDB.getMensaje() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }finally {            
+        } finally {
             out.close();
         }
     }
