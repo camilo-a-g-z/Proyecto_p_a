@@ -78,6 +78,6 @@ async function get_metodo_pago() {
     //se cierra simbolo de carga
     document.getElementById("load").setAttribute("style","display:none");
     //se cargan a select las opciones 
-    window.set_categoria_div();
+    window.set_MP_div();
     window.set_articulo_div();
 }
