@@ -20,7 +20,7 @@ public class DBConexion {
     public DBConexion(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection(url,login,password);
+            conexion = DriverManager.getConnection(url, login, password);
             if (conexion!=null){
                     System.out.println("Conexión a base de datos "+bd+" OK");
             }

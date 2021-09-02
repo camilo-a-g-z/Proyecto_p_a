@@ -69,7 +69,7 @@ function select (){
         let valor = get_precio_id_a(document.getElementById("input_8").value);
         //Se envia a label
         document.getElementById("input_CT").innerHTML = valor;
-        //se limpiuan otros labels
+        //se limpian otros labels
         document.getElementById("input_9").value = "";
         document.getElementById("input_10").value = "";
     });

@@ -379,6 +379,7 @@ async function enviar_edit() {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
     }
+    id_selected ="0";
     //se finaliza simbolo de carga
     document.getElementById("load").setAttribute("style","display:none");
 }
