@@ -317,7 +317,7 @@ async function enviar_edit() {
         };
         ws.send(JSON.stringify(msg));
     } else if (v_selected === "Factura") {
-        if (o_selected != "3") {
+        if (o_selected !== "3") {
             //se cierra antigua conexion
             ws.close();
             //se crea nueva conexion para añadir factura
@@ -375,11 +375,11 @@ async function enviar_edit() {
     if (v_selected !== "Factura") {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
+        id_selected ="0";
     } else if (o_selected === "3") {
         asignar_divs(document.getElementById("Select").value);
         start_ws(v_selected);
     }
-    //id_selected ="0";
     //se finaliza simbolo de carga
     document.getElementById("load").setAttribute("style","display:none");
 }

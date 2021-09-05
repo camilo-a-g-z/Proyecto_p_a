@@ -1,9 +1,7 @@
 package logica.ServerCominication;
 
 import datos.DBArticulo;
-import datos.DBCiudad;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.websocket.OnClose;
@@ -12,7 +10,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import logica.Articulo;
-import logica.Ciudad;
 import logica.EncoderDecoder.DecoderArticulo;
 import logica.EncoderDecoder.EncoderArticulo;
 

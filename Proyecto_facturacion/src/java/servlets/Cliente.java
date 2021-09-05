@@ -42,8 +42,10 @@ public class Cliente extends HttpServlet {
                 out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
             } else {
                 if (res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))) {
-                    out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.html'>");//redirects after 3 seconds
-                    out.println("<p style='color:red;'>Bienvenido" + request.getParameter("Nombre") + "</p>");
+                    request.getSession().setAttribute("id_user", res.getString("id_cliente"));
+                    System.out.println(res.getString("id_cliente"));
+                    out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.jsp'>");//redirects after 3 seconds
+                    out.println("<p style='color:red;'>Bienvenido " + request.getParameter("Nombre") + "</p>");
                 } else {
                     out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
                     out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");

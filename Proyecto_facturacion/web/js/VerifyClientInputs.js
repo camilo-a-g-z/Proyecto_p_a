@@ -21,3 +21,12 @@ function deleteItem(id){
     //ahora se oculta label
     document.getElementById("tr"+id).setAttribute("style","display:none");
 }
+//funcion para verificar que campo de cantidad sea diferente a cero
+function cantVerify(){
+    let cant = document.getElementById("input_9");
+    if(cant.value === "" || cant.value === "0"){
+        alert("Ingrese una cantidad valida");
+    }else{
+        window.add_fila();
+    }
+}

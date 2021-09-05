@@ -1,3 +1,4 @@
+<%String user = (String) session.getAttribute("id_user"); %>
 <html>
     <head>
         <title>Facturacion electronica</title>
@@ -10,6 +11,9 @@
         <script type="text/javascript" src="js/VerifyClientInputs.js"></script>
     </head>
     <body onload="select()">
+        <div id="info" style="display:none">
+            <label id="opc_img"><%out.println(user);%></label>
+        </div>
         <!--Se carga primero todos los datos antes de empezar la pagina-->
         <style>
             .loading {
@@ -98,7 +102,8 @@
             <label id="label_10">Descuento:</label>
             <input type="text" id="input_10" name="input_10" disabled="" value="0">
             <br>
-            <button id="boton_3" name="boton_3" onclick="add_fila()">Agregar</button>
+            <button id="boton_3" name="boton_3" onclick="cantVerify()">Agregar</button>
+            <button id="boton_4" name="boton_3" onclick="cantVerify()">Enviar factura</button>
         </div>
     </body>
 </html>

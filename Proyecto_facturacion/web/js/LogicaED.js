@@ -2,6 +2,7 @@ var arrayArticulos = [];
 var iterator = 0;
 var arrayOpc = [];
 var arrayid = [];
+var id_client;
 //funcion para agregar un retraso en un tiempo n segundos
 function delay(n) {
     return new Promise(function (resolve) {
