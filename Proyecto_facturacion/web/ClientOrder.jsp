@@ -12,7 +12,8 @@
     </head>
     <body onload="select()">
         <div id="info" style="display:none">
-            <label id="opc_img"><%out.println(user);%></label>
+            <label id="id_user"><%out.println(user);%></label>
+            <input id="Select"></label>
         </div>
         <!--Se carga primero todos los datos antes de empezar la pagina-->
         <style>
@@ -103,7 +104,7 @@
             <input type="text" id="input_10" name="input_10" disabled="" value="0">
             <br>
             <button id="boton_3" name="boton_3" onclick="cantVerify()">Agregar</button>
-            <button id="boton_4" name="boton_3" onclick="cantVerify()">Enviar factura</button>
+            <button id="boton_4" name="boton_3" onclick="verifyEnviar()">Enviar factura</button>
         </div>
     </body>
 </html>

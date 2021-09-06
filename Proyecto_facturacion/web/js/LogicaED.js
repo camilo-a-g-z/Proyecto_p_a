@@ -2,7 +2,62 @@ var arrayArticulos = [];
 var iterator = 0;
 var arrayOpc = [];
 var arrayid = [];
+var ws;
 var id_client;
+var id_selected;
+function open_factura_conexion() {
+    id_client = parseInt(document.getElementById("id_user").innerHTML);
+    console.log(id_client);
+    if(id_client !== 'null\n'){
+        //se inicia simbolo de carga
+        document.getElementById("load").removeAttribute("style");
+        ws = null;
+        ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
+        ws.onopen = onOpen;
+        ws.onclose = onClose;
+        //espera 3 segundos para permitir el correcto cierre y redirige
+        setTimeout('sendBill()', 3000);
+    }else{
+        alert("Error de red intente ingresando nuevamente");
+    }
+};
+function sendBill(){
+    ws.onmessage = get_id;
+    var msg = {
+        id_factura: "0",
+        fecha_fac: document.getElementById("input_1").value,
+        val_iva: document.getElementById("input_2").value,
+        val_sub_total: document.getElementById("input_3").value,
+        total: document.getElementById("input_4").value,
+        id_cliente: id_client+"",
+        id_metodo_pago: set_MP_by_nombre(document.getElementById("input_MO").value)+"",
+        mensaje: "2"
+    };
+    ws.send(JSON.stringify(msg));
+    //se espera a recivir el id de la factura recien registrada en DB
+    //se procede a guardar registros de la factura
+    setTimeout('window.cerrar_ws()', 3000);
+}
+//funcion para almacenar el id de la factura recien creada
+function get_id(evt) {
+        //se recive el id del ultimo registro enviado
+        id_selected = evt.data;
+}
+function asignar_divs(evt){
+    
+}
+function start_ws(evt){
+    
+}
+//funcion para buscar segun el nombre del metodo de pago el id de este
+function set_MP_by_nombre(cat){
+    for (var i = 0; i < window.arrayMP.length; i++) {
+        if (window.arrayMP[i].tipo === cat) {
+            return window.arrayMP[i].id_metodo_pago;
+            break;
+        }
+    }
+}
 //funcion para agregar un retraso en un tiempo n segundos
 function delay(n) {
     return new Promise(function (resolve) {
@@ -72,7 +127,7 @@ function select (){
         document.getElementById("input_CT").innerHTML = valor;
         //se limpian otros labels
         document.getElementById("input_9").value = "";
-        document.getElementById("input_10").value = "";
+        document.getElementById("input_10").value = "0";
     });
 }
 //funcion para agregar total

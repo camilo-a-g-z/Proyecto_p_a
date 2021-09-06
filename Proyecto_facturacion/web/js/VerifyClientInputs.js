@@ -30,3 +30,10 @@ function cantVerify(){
         window.add_fila();
     }
 }
+function verifyEnviar(){
+    if(!document.getElementById("table_d_f")){
+        alert("Ingrese articulos.");
+    }else{
+       window.open_factura_conexion();
+    }
+}

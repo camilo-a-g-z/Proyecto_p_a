@@ -44,7 +44,6 @@ public class EditFacturaServer {
                     break;
                 case 2:
                     facDB.insertarFactura(fac);
-                    System.out.println(facDB.get_last_id());
                     conectados.get(i).getBasicRemote().sendText(facDB.get_last_id());
                     break;
                 case 3:
