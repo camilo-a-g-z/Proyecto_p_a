@@ -9,6 +9,7 @@
         <script type="text/javascript" src="js/LogicaED.js"></script>
         <script type="text/javascript" src="js/check_table.js"></script>
         <script type="text/javascript" src="js/VerifyClientInputs.js"></script>
+        <script src="js/html2pdf.bundle.min.js"></script>
     </head>
     <body onload="select()">
         <div id="info" style="display:none">
