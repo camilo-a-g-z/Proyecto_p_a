@@ -43,8 +43,12 @@ function get_id(evt) {
         //se recive el id del ultimo registro enviado
         id_selected = evt.data;
 }
+//se limpia campo para nueva factura
 function asignar_divs(evt){
-    
+    document.getElementById("input_2").value = "";
+    document.getElementById("input_3").value = "";
+    document.getElementById("input_4").value = "";
+    document.getElementById("input_9").value = "";
 }
 function start_ws(evt){
     
