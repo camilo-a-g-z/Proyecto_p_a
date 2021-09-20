@@ -127,12 +127,37 @@ function select (){
     input.addEventListener('input', function () {
         //Se obtiene precio
         let valor = get_precio_id_a(document.getElementById("input_8").value);
+        let info = ver_id_a(document.getElementById("input_8").value);
+        //set_val_categoria(get_id_categoria(info));
+        get_id_categoria(info);
         //Se envia a label
         document.getElementById("input_CT").innerHTML = valor;
         //se limpian otros labels
         document.getElementById("input_9").value = "";
         document.getElementById("input_10").value = "0";
     });
+}
+//funcion para obtener categoria
+function get_id_categoria(art){
+    var id;
+    for (var i = 0; i < window.arrayCategoria.length; i++) {
+        if (window.arrayCategoria[i].id_categoria === art) {
+            console.log(window.arrayCategoria[i].id_categoria);
+            id = window.arrayCategoria[i].id_categoria;
+            let nombre = window.arrayCategoria[i].nombre;
+            let desc = window.arrayCategoria[i].descripcion;
+            document.getElementById("info").innerHTML = nombre + desc;
+        }
+    }
+    //console.log(id);
+    //return id;
+}
+//funcion para settear valores de categoria
+function set_val_categoria(art){
+    console.log(art);
+    let nombre = window.arrayCategoria[art].nombre;
+    let desc = window.arrayCategoria[art].descripcion;
+    document.getElementById("info").innerHTML = nombre + desc;
 }
 //funcion para agregar total
 function sumar_total(add) {

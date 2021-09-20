@@ -89,6 +89,10 @@
                 <option value="" selected=""></option>
             </select>
         </div>
+        <div  id="info_div">
+            Informacion del producto: 
+            <label id="info"></label>
+        </div>
         <br>
         <div  id="div_12">
             <label id="label_9">Cantidad:</label>
