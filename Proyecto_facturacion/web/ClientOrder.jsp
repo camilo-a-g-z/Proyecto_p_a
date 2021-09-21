@@ -1,4 +1,6 @@
-<%String user = (String) session.getAttribute("id_user"); %>
+<%@page import="logica.Cliente"%>
+<%String user = (String) session.getAttribute("id_user"); 
+  Cliente cli = (Cliente) session.getAttribute("user");%>
 <html>
     <head>
         <title>Facturacion electronica</title>
@@ -49,13 +51,27 @@
                 }
             }            
         </style>
-
+        <div id="user_info">
+            <label>Nombre: <%out.println(cli.getNombre());%></label>
+            <br>
+            <label>Apellido: <%out.println(cli.getApellido());%></label>
+            <br>
+            <label>Cedula: <%out.println(cli.getCedula());%></label>
+            <br>
+            <label>Celular: <%out.println(cli.getCelular());%></label>
+            <br>
+            <label>Dirección: <%out.println(cli.getDireccion());%></label>
+            <br>
+            <label>Correo: <%out.println(cli.getCorreo());%></label>
+            <br>
+        </div>
         <div class="loading show" id="load">
             <div class="spin"></div>
         </div>
         <script>
             window.load();
         </script>
+        
         <div  id="div_3">
             <label id="label_1">Fecha de la factura:</label>
             <input type="text" id="input_1" name="input_1" placeholder="DD/MM/AA" disabled="">

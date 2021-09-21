@@ -53,6 +53,7 @@ public class ClienteServlet extends HttpServlet {
                     cli.setId_cliente(Integer.parseInt(res.getString("id_cliente")));
                     cli.setNombre(res.getString("nombre"));
                     cli.setPassword(res.getString("password"));
+                    request.getSession().setAttribute("user", cli);
                     request.getSession().setAttribute("id_user", res.getString("id_cliente"));
                     System.out.println(res.getString("id_cliente"));
                     out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.jsp'>");//redirects after 3 seconds
