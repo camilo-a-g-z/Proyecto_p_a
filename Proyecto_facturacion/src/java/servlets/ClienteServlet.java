@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
+import logica.Cliente;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Camilo Garcia
  */
-public class Cliente extends HttpServlet {
+public class ClienteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +32,7 @@ public class Cliente extends HttpServlet {
         DBCliente empDB = new DBCliente();
         PrintWriter out = response.getWriter();
         ResultSet res = null;
+        Cliente cli = new Cliente();
         try {
             //se llama y guardan los datos recividos segun el parametro recivido
             res = empDB.getClienteByNombre(request.getParameter("Nombre"));
@@ -42,6 +44,15 @@ public class Cliente extends HttpServlet {
                 out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
             } else {
                 if (res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))) {
+                    cli.setApellido(res.getString("apellido"));
+                    cli.setCedula(res.getString("cedula"));
+                    cli.setCelular(Double.parseDouble(res.getString("celular")));
+                    cli.setCorreo(res.getString("correo"));
+                    cli.setDireccion(res.getString("direccion"));
+                    cli.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
+                    cli.setId_cliente(Integer.parseInt(res.getString("id_cliente")));
+                    cli.setNombre(res.getString("nombre"));
+                    cli.setPassword(res.getString("password"));
                     request.getSession().setAttribute("id_user", res.getString("id_cliente"));
                     System.out.println(res.getString("id_cliente"));
                     out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.jsp'>");//redirects after 3 seconds
