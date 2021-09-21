@@ -1,0 +1,75 @@
+body{
+    background:  url("https://th.bing.com/th/id/R.db423538fb557609634dda5025a49483?rik=7voBrr4S2y5EjQ&riu=http%3a%2f%2fwww.fondoshd.mx%2fwallpapers%2fresoluciones%2f16%2fwallpaper-colores-oscuros_1360x768_4260.jpg&ehk=XWTl3OBLgV1uviLgz67aArajHWrJ2Ut7pVhN89gyzwY%3d&risl=&pid=ImgRaw&r=0");
+    background-position: center 10%; 
+    background-size: cover; 
+}
+input[type=text]{
+    font: 150% Segoe UI;
+    width: 50%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid #adadad;
+    margin: 0px 40px;
+    color:#adadad;
+}
+button{
+    font: 100% Segoe UI;
+    border: #006666 1px solid;
+    cursor:pointer;
+    margin: 15px 100px;
+    width:10%;
+    height: 50px;
+    border-radius: 25px;
+    font-size: 18px;
+    background:#006666;
+    font-weight: 700;
+    outline: none;
+    color:#ffffff;
+    width: 110px;
+}
+button[id=boton]{
+    margin: 10px 20px;
+}
+label{text-align:left;
+      width:2000px ;
+      float:left;
+      margin: 15px 40px;
+      font: 120% Segoe UI;
+      color:#666666;
+}
+select{
+    font: 100% Segoe UI;
+    border: #666600 1px solid;
+    cursor:pointer;
+    margin: 15px 30px;
+    width: 10%;
+    height: 50px;
+    border-radius: 25px;
+    font-size: 18px;
+    background:#666600;
+    font-weight: 700;
+    outline: none;
+    text-align:center;
+    color:#ffffff;
+    width: 200px;
+}
+div[id=div_11]{
+    margin: 15px 40px;
+    font: 100% Segoe UI;
+}
+div[id=div_0]{
+    margin: 15px 630px;
+    width: 600px;
+    height: 900px;
+}
+div[id=div_11]{
+    text-align:left;
+    width:2000px ;
+    float:left;
+    margin: 15px 40px;
+    font: 120% Segoe UI;
+    color:#666666;
+}

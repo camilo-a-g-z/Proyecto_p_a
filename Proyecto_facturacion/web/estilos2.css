@@ -1,0 +1,41 @@
+body{
+	background:  url("https://k42.kn3.net/taringa/1/6/2/6/3/8/83/mateverde/5BB.gif?1346");
+        background-position: center 10%; 
+        background-size: cover; 
+}
+div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+}
+input[type=text]{
+    font: 100% Segoe UI;
+    width: 70%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    position:relative;
+    border-bottom: 2px solid #adadad;
+    margin: 20px 40px;
+}
+input[type=submit]{
+	font: 100% Segoe UI;
+	border: lime 1px solid;
+  	cursor:pointer;
+        margin: 15px 100px;
+        width: 50%;
+        height: 50px;
+        border-radius: 25px;
+        font-size: 18px;
+        background:lime;
+        font-weight: 700;
+        outline: none;
+        color:#ffffff;
+}
