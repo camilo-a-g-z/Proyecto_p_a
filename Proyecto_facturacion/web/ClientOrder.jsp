@@ -91,7 +91,7 @@
         </div>
         <div  id="info_div">
             Informacion del producto: 
-            <label id="info"></label>
+            <label id="info_producto"></label>
         </div>
         <br>
         <div  id="div_12">

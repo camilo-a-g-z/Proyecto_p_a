@@ -146,11 +146,9 @@ function get_id_categoria(art){
             id = window.arrayCategoria[i].id_categoria;
             let nombre = window.arrayCategoria[i].nombre;
             let desc = window.arrayCategoria[i].descripcion;
-            document.getElementById("info").innerHTML = nombre + desc;
+            document.getElementById("info_producto").innerHTML = nombre + " " + desc + "";
         }
     }
-    //console.log(id);
-    //return id;
 }
 //funcion para settear valores de categoria
 function set_val_categoria(art){
