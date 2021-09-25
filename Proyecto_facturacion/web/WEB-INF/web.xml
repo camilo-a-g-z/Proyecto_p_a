@@ -16,6 +16,10 @@
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>servlets.NewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadDatesNU</servlet-name>
+        <servlet-class>servlets.LoadDatesNU</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadDatesNU</servlet-name>
+        <url-pattern>/LoadDatesNU</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
