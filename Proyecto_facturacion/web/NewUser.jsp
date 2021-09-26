@@ -19,12 +19,12 @@
         <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre" required>
         <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido" required>
         <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo" required>
-        <input class="controls" type="text" name="direccion" id="direccion" placeholder="Ingrese su dirección" onkeypress="return valideKey(event);" required>
-        <input class="controls" type="text" name=celular" id="celular" placeholder="Ingrese numero de celular" onkeypress="return valideKey(event);" required>
-        <input class="controls" type="text" name="documento" id="documento" placeholder="Ingrese nuemro de documento" required>
+        <input class="controls" type="text" name="direccion" id="direccion" placeholder="Ingrese su dirección"  required>
+        <input class="controls" type="text" name="num_celu" id="num_celu" placeholder="Ingrese su numero de celular" required> 
+        <input class="controls" type="text" name="documento" id="documento" placeholder="Ingrese nuemro de documento" onkeypress="return valideKey(event);" required>
         <select name="citySelect" class="controls">
             <%while (res.next()){%>
-                <option value="id_ciudad"><%= res.getString("nombre") %></option>
+                <option value="<%= res.getString("id_ciudad") %>"><%= res.getString("nombre") %></option>
             <%}%>
         </select>
         <input class="controls" type="password" name="pass" id="pass" placeholder="Ingrese su Contraseña" required="">    
