@@ -1,4 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%ResultSet res = (ResultSet) session.getAttribute("ciudades");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +18,11 @@
     <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
     <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
     <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
+    <select name="citySelect" class="controls">
+        <%while (res.next()){%>
+            <option value="id_ciudad"><%= res.getString("nombre") %></option>
+        <%}%>
+    </select>
     <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
     <input class="botons" type="submit" value="Registrar">
     <p><a href="Cliente.jsp">¿Ya tengo Cuenta?</a></p>

@@ -1,11 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 7/06/2021, 10:19:34 AM
-    Author     : Camilo Garcia
-
-    Este jsp es usado para testeos en usuario
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="logica.Metodo_pago"%>
 <%@page import="java.sql.ResultSet"%>
