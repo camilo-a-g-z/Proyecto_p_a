@@ -6,20 +6,15 @@ var ws;
 var id_client;
 var id_selected;
 function open_factura_conexion() {
-    id_client = parseInt(document.getElementById("id_user").innerHTML);
     console.log(id_client);
-    if(id_client !== 'null\n'){
-        //se inicia simbolo de carga
-        document.getElementById("load").removeAttribute("style");
-        ws = null;
-        ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
-        ws.onopen = onOpen;
-        ws.onclose = onClose;
-        //espera 3 segundos para permitir el correcto cierre y redirige
-        setTimeout('sendBill()', 3000);
-    }else{
-        alert("Error de red intente ingresando nuevamente");
-    }
+    //se inicia simbolo de carga
+    document.getElementById("load").removeAttribute("style");
+    ws = null;
+    ws = new WebSocket('ws://localhost:8080/Proyecto_facturacion/modifyFactura');
+    ws.onopen = onOpen;
+    ws.onclose = onClose;
+    //espera 3 segundos para permitir el correcto cierre y redirige
+    setTimeout('sendBill()', 3000);
 };
 function sendBill(){
     ws.onmessage = get_id;
@@ -45,6 +40,20 @@ function get_id(evt) {
 }
 //se limpia campo para nueva factura
 function asignar_divs(evt){
+    document.getElementById("div_11").style.display = "none";
+    document.getElementById("info_div").style.display = "none";
+    document.getElementById("div_12").style.display = "none";
+    document.getElementById("div_CT").style.display = "none";
+    document.getElementById("div_13").style.display = "none";
+    generarFactura();
+    show_hide_divs();
+}
+async function show_hide_divs(){
+    await delay(3);
+    window.location.replace("Cliente.jsp");
+    
+    delay(10);
+    alert("Gracias por su compra");
     document.getElementById("input_2").value = "";
     document.getElementById("input_3").value = "";
     document.getElementById("input_4").value = "";
@@ -181,8 +190,8 @@ function sumar_total(add) {
     document.getElementById("input_4").value = sub_total + val_iva;
 }
 //funcion para generar factura
-function generarFacura(){
-    const $elementoParaConvertir = document.body; // <-- Aquí puedes elegir cualquier elemento del DOM
+function generarFactura(){
+    const $elementoParaConvertir = document.body;
     html2pdf()
         .set({
             margin: 1,
@@ -203,5 +212,6 @@ function generarFacura(){
     })
     .from($elementoParaConvertir)
     .save()
-    .catch(err => console.log(err));
+    .catch(err => console.log(err));    
+    
 }
