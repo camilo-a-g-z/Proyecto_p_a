@@ -19,6 +19,8 @@
             <input type="text" id="contrasena" name="contrasena" placeholder="Escriba la contraseña" />
             <input type="submit" value="enviar" id="id_boton">
         </form>
-        <a href="NewUser.html">¿Nuevo usuario?</a>
+        <form id="NC" method="post" action="LoadDatesNU">
+            <input type="submit" value="¿Nuevo usuario?">
+        </form>
     </body>
 </html>
