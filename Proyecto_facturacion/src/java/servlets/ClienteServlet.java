@@ -1,6 +1,7 @@
 package servlets;
 
 import datos.DBCliente;
+import datos.DBFactura;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -32,7 +33,9 @@ public class ClienteServlet extends HttpServlet {
         DBCliente empDB = new DBCliente();
         PrintWriter out = response.getWriter();
         ResultSet res = null;
+        ResultSet res_F = null;
         Cliente cli = new Cliente();
+        DBFactura facDB = new DBFactura();
         try {
             //se llama y guardan los datos recividos segun el parametro recivido
             res = empDB.getClienteByNombre(request.getParameter("Nombre"));
@@ -53,9 +56,14 @@ public class ClienteServlet extends HttpServlet {
                     cli.setId_cliente(Integer.parseInt(res.getString("id_cliente")));
                     cli.setNombre(res.getString("nombre"));
                     cli.setPassword(res.getString("password"));
+                    
+                    res_F = facDB.getFacturaById_usuario(Integer.parseInt(res.getString("id_cliente")));                    
+                    System.out.println("Correcta carga de facturas");
                     request.getSession().setAttribute("user", cli);
+                    request.getSession().setAttribute("facturas", res_F);
                     request.getSession().setAttribute("id_user", res.getString("id_cliente"));
-                    System.out.println(res.getString("id_cliente"));
+                    
+                    
                     out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.jsp'>");//redirects after 3 seconds
                     out.println("<p style='color:red;'>Bienvenido " + request.getParameter("Nombre") + "</p>");
                 } else {

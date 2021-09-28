@@ -20,6 +20,10 @@
         <servlet-name>CreateNU</servlet-name>
         <servlet-class>servlets.CreateNU</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NFServlet</servlet-name>
+        <servlet-class>servlets.NFServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CreateNU</servlet-name>
         <url-pattern>/CreateNU</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NFServlet</servlet-name>
+        <url-pattern>/NFServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
