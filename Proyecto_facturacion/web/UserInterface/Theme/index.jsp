@@ -11,7 +11,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - FREE Bootstrap Admin Template</title>
+    <title>Facturacion Electronica</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -77,7 +77,7 @@
                           <span>Facturas Realizadas</span>
                       </a>
                   </li>
-
+                  
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
@@ -87,7 +87,15 @@
                           <li><a  href="general.html">General</a></li>
                       </ul>
                   </li>
-
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-tasks"></i>
+                          <span>Usuario</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="form_component.html">Modificar datos</a></li>
+                      </ul>
+                  </li>
                   
               </ul>
               <!-- sidebar menu end-->
@@ -134,6 +142,16 @@
                                     <td class="numeric"><%out.println(res.getString("val_iva"));%></td>
                                     <td class="numeric"><%out.println(res.getString("val_sub_total"));%></td>
                                     <td class="numeric"><%out.println(res.getString("total"));%></td>
+                                    <td>
+                                        <form action="../../ShowFactura">
+                                            <div id="info" style="display:none">
+                                                <input id="id_cliente" name="id_cliente" type="text" value="<%out.println(user);%>">
+                                                <input id="id_factura" name="id_factura" type="text" value="<%out.println(res.getString("id_factura"));%>">
+                                                <input id="btm_submit" type="submit">
+                                            </div>
+                                            <button type="submit" class="btn btn-round btn-primary">Ver factura</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <%}%>
                             </tbody>

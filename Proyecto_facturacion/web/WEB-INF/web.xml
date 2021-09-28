@@ -28,6 +28,10 @@
         <servlet-name>RedirectUser</servlet-name>
         <servlet-class>servlets.RedirectUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowFactura</servlet-name>
+        <servlet-class>servlets.ShowFactura</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>RedirectUser</servlet-name>
         <url-pattern>/RedirectUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowFactura</servlet-name>
+        <url-pattern>/ShowFactura</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

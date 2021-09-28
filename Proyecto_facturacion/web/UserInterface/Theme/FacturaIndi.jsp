@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -258,7 +259,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li class="active"><a  href="responsive_table.html">Responsive Table</a></li>
+                          <li class="active"><a  href="FacturaIndivi.html">Responsive Table</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -589,7 +590,7 @@
       <footer class="site-footer">
           <div class="text-center">
               2014 - Alvarez.is
-              <a href="responsive_table.html#" class="go-top">
+              <a href="FacturaIndivi.html" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
           </div>
