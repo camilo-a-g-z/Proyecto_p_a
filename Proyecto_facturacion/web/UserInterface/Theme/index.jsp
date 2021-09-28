@@ -102,6 +102,15 @@
       <section id="main-content">
         <section class="wrapper">
             <h3><i class="fa fa-angle-right"></i> Pedidos realizados</h3>
+            <div class="showback">
+                    <h4><i class="fa fa-angle-right"></i> Nueva factura</h4>
+                    <form class="form-login" action="../../NFServlet">
+                        <div id="info" style="display:none">
+                            <input id="id_user" name="id_user" type="text" value="<%out.println(user);%>">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Generar nueva factura</button>
+                    </form>
+            </div>
                 <div class="row mt">
                     <div class="col-lg-12">
                     <div class="content-panel">
@@ -140,10 +149,7 @@
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2014 - Alvarez.is
-              <a href="index.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
+              2014 - Alvarez.is Autor diseño
           </div>
       </footer>
       <!--footer end-->

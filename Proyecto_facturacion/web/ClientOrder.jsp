@@ -16,7 +16,11 @@
     <body onload="select()">
         <div id="info" style="display:none">
             <label id="id_user"><%out.println(user);%></label>
-            <input id="Select"></label>
+            <input id="Select">
+            <form id="formBack" action="RedirectUser" method="post">
+                <input id="id_cliente" name="id_cliente" type="text" value="<%out.println(user);%>">
+                <input id="btm_submit" type="submit">
+            </form>
         </div>
         <!--Se carga primero todos los datos antes de empezar la pagina-->
         <style>

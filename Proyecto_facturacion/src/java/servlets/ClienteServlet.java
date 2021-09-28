@@ -47,19 +47,8 @@ public class ClienteServlet extends HttpServlet {
                 out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
             } else {
                 if (res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))) {
-                    cli.setApellido(res.getString("apellido"));
-                    cli.setCedula(res.getString("cedula"));
-                    cli.setCelular(Double.parseDouble(res.getString("celular")));
-                    cli.setCorreo(res.getString("correo"));
-                    cli.setDireccion(res.getString("direccion"));
-                    cli.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
-                    cli.setId_cliente(Integer.parseInt(res.getString("id_cliente")));
-                    cli.setNombre(res.getString("nombre"));
-                    cli.setPassword(res.getString("password"));
                     
                     res_F = facDB.getFacturaById_usuario(Integer.parseInt(res.getString("id_cliente")));                    
-                    System.out.println("Correcta carga de facturas");
-                    request.getSession().setAttribute("user", cli);
                     request.getSession().setAttribute("facturas", res_F);
                     request.getSession().setAttribute("id_user", res.getString("id_cliente"));
                     

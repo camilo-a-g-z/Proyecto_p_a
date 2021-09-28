@@ -5,12 +5,15 @@
  */
 package servlets;
 
+import datos.DBCliente;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logica.Cliente;
 
 /**
  *
@@ -30,17 +33,27 @@ public class NFServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        DBCliente empDB = new DBCliente();
+        Cliente cli = new Cliente();
+        ResultSet res = null;
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NFServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NFServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            res = empDB.getClienteById(Integer.parseInt(request.getParameter("id_user")));
+            res.next();
+            cli.setApellido(res.getString("apellido"));
+            cli.setCedula(res.getString("cedula"));
+            cli.setCelular(Double.parseDouble(res.getString("celular")));
+            cli.setCorreo(res.getString("correo"));
+            cli.setDireccion(res.getString("direccion"));
+            cli.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
+            cli.setId_cliente(Integer.parseInt(res.getString("id_cliente")));
+            cli.setNombre(res.getString("nombre"));
+            cli.setPassword(res.getString("password"));
+            
+            request.getSession().setAttribute("id_user", res.getString("id_cliente"));
+            request.getSession().setAttribute("user", cli);
+            response.sendRedirect("ClientOrder.jsp");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 

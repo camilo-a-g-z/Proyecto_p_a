@@ -1,6 +1,7 @@
 package servlets;
 
-import datos.DBMetodo_pago;
+import datos.DBCliente;
+import datos.DBFactura;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -10,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Camilo Garcia
- * Este servlet es empleado para diferentes testeos en las bases de datos y en el servidor
+ *
+ * @author User
  */
-public class inicio extends HttpServlet {
+public class RedirectUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,42 +28,17 @@ public class inicio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        //se crea conexion con base de datos
-        DBMetodo_pago metDB = new DBMetodo_pago();
-        out.print("<!DOCTYPE html>\n" +
-            "<html>\n" +
-            "    <head>\n" +
-            "        <title>Bienbenida</title>\n" +
-            "        <meta charset=\"UTF-8\">\n" +
-            "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-            "    </head>\n" +
-            "    <body>\n" +
-            "        <h1>Prueba</h1>\n "+
-                    "<table>\n" +
-            "    </body>\n" +
-            "</html>");
-        /*try {
-            ResultSet res = metDB.getMetodos_pago();
-            //se sube a la sesion los datos encontrados
-            request.getSession().setAttribute("metodos", res);
-            //se envia al usuario al index
-            response.sendRedirect("index.jsp");
+        DBFactura facDB = new DBFactura();
+        ResultSet res = null;
+        try (PrintWriter out = response.getWriter()) {
+            res = facDB.getFacturaById_usuario(Integer.parseInt(request.getParameter("id_cliente")));
+            res.next();
+            request.getSession().setAttribute("facturas", res);
+            request.getSession().setAttribute("id_user", res.getString("id_cliente"));
+            response.sendRedirect("UserInterface/Theme/index.jsp");
         }catch(Exception e){
-            //en caso de que no se pueda establecer coneccion se muestra el error
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Inicio</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Error en esta parte " + e.toString() + "</h1>");
-            out.println("<h1>El error esta: "+metDB.getMensaje()+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            
-        }finally {            
-            out.close();
-        }*/
+            System.out.println(e.getMessage());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

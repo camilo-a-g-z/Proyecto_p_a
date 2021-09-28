@@ -49,8 +49,10 @@ function asignar_divs(evt){
     show_hide_divs();
 }
 async function show_hide_divs(){
+    let form = document.forms[0];
     await delay(3);
-    window.location.replace("Cliente.jsp");
+    form.submit();
+    //window.location.replace("UserInterface/Theme/index.jsp");
     
     delay(10);
     alert("Gracias por su compra");
