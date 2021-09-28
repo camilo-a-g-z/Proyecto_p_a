@@ -64,7 +64,7 @@ public class ClienteServlet extends HttpServlet {
                     request.getSession().setAttribute("id_user", res.getString("id_cliente"));
                     
                     
-                    out.println("<meta http-equiv='refresh' content='3;URL=ClientOrder.jsp'>");//redirects after 3 seconds
+                    out.println("<meta http-equiv='refresh' content='3;URL=UserInterface/Theme/index.jsp'>");//redirects after 3 seconds
                     out.println("<p style='color:red;'>Bienvenido " + request.getParameter("Nombre") + "</p>");
                 } else {
                     out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
