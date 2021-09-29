@@ -1,5 +1,9 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%String user = (String) session.getAttribute("id_cliente");%>
+<%
+    String user = (String) session.getAttribute("user");
+    ResultSet cli = (ResultSet) session.getAttribute("cliente");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -255,72 +259,57 @@
           		<div class="col-lg-12">
                   <div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i> Datos usuario</h4>
-                      <form class="form-horizontal style-form" method="get">
+                          <form class="form-horizontal style-form" method="get" action="../../EditUserDates">
+                          <div id="info" style="display:none">
+                              <input id="id_user" name="id_cliente" type="text" value="<%out.println(user);%>">
+                          </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control">
+                                  <input type="text" name="nombre" class="form-control" required value="<%out.print(cli.getString("nombre"));%>">
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Apellido</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control">
+                                  <input type="text" name="apellido" class="form-control" required value="<%out.print(cli.getString("apellido"));%>">
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Direccion</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control">
+                                  <input type="text" name="direccion" class="form-control" required value="<%out.print(cli.getString("direccion"));%>">
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Celular</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" onkeypress="return valideKey(event);">
+                                  <input type="text" name="celular" class="form-control" onkeypress="return valideKey(event);" required value="<%out.print(cli.getString("celular"));%>">
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Cedula</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" onkeypress="return valideKey(event);">
+                                  <input type="text" name="cedula" class="form-control" onkeypress="return valideKey(event);" required value="<%out.print(cli.getString("cedula"));%>">
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Rounder</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Contraseña</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control round-form">
+                                  <input type="password" name="password"  class="form-control" placeholder="" value="<%out.print(cli.getString("password"));%>">
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Input focus</label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" id="focusedInput" type="text" value="This is focused...">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Disabled</label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Placeholder</label>
-                              <div class="col-sm-10">
-                                  <input type="text"  class="form-control" placeholder="placeholder">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Password</label>
-                              <div class="col-sm-10">
-                                  <input type="password"  class="form-control" placeholder="">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-lg-2 col-sm-2 control-label">Static control</label>
+                              <label class="col-lg-2 col-sm-2 control-label">Correo</label>
                               <div class="col-lg-10">
-                                  <p class="form-control-static">email@example.com</p>
+                                  <p class="form-control-static"><%out.print(cli.getString("correo"));%></p>
                               </div>
+                              <div id="info" style="display:none">
+                                  <input id="id_user" name="correo" type="text" value="<%out.print(cli.getString("correo"));%>">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-primary btn-lg btn-block">Editar informacion</button>
                           </div>
                       </form>
                   </div>

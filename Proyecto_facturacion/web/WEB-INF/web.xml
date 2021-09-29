@@ -36,6 +36,10 @@
         <servlet-name>ShowUserBasicDates</servlet-name>
         <servlet-class>servlets.ShowUserBasicDates</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUserDates</servlet-name>
+        <servlet-class>servlets.EditUserDates</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ShowUserBasicDates</servlet-name>
         <url-pattern>/ShowUserBasicDates</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserDates</servlet-name>
+        <url-pattern>/EditUserDates</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
