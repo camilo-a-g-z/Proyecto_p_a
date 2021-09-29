@@ -5,15 +5,18 @@
  */
 package servlets;
 
+import datos.DBArticulo;
 import datos.DBCliente;
 import datos.DBDetalle_fac;
 import datos.DBFactura;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logica.Factura;
 
 /**
  *
@@ -34,10 +37,33 @@ public class ShowFactura extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DBFactura facDB = new DBFactura();
-        DBCliente cliDB = new DBCliente();
+        DBArticulo artDB = new DBArticulo();
         DBDetalle_fac detDB = new DBDetalle_fac();
+        ResultSet res1 =  null;
+        ResultSet res2 =  null;
+        Factura fac= new Factura();
+        ResultSet res3 =  null;
         try (PrintWriter out = response.getWriter()) {
-            
+            res1 = facDB.getFacturaById_usuario(Integer.parseInt(request.getParameter("id_cliente")));
+            res2 = detDB.getDetalle_facById_factura(Integer.parseInt(request.getParameter("id_factura")));
+            res3 = artDB.getArticulos();
+            while(res1.next()){
+                if(res1.getString("id_factura").equals(request.getParameter("id_factura"))){
+                    fac.setFecha_fac(res1.getString("fecha_fac"));
+                    fac.setId_cliente(Integer.parseInt(res1.getString("id_cliente")));
+                    fac.setId_factura(Integer.parseInt(res1.getString("id_factura")));
+                    fac.setId_metodo_pago(Integer.parseInt(res1.getString("id_metodo_pago")));
+                    fac.setTotal(Double.parseDouble(res1.getString("total")));
+                    fac.setVal_iva(Double.parseDouble(res1.getString("val_iva")));
+                    fac.setVal_sub_total(Double.parseDouble(res1.getString("val_sub_total")));
+                    break;
+                }
+            }
+            request.getSession().setAttribute("factura", fac);
+            request.getSession().setAttribute("detalles", res2);
+            request.getSession().setAttribute("articulos", res3);
+            request.getSession().setAttribute("id_cliente", request.getParameter("id_cliente"));
+            response.sendRedirect("UserInterface/Theme/FacturaIndi.jsp");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
