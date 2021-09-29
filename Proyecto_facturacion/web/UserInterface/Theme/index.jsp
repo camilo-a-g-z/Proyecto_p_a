@@ -46,7 +46,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+            <a class="logo"><b>Facturacion electronica</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                
@@ -68,24 +68,20 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <p class="centered"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">Facturacion electronica</h5>
               	  	
                   <li class="mt">
-                      <a class="active" href="index.html">
+                      <a class="active" id="prueba">
                           <i class="fa fa-dashboard"></i>
-                          <span>Facturas Realizadas</span>
+                          <form action="../../RedirectUser">
+                                <div id="info" style="display:none">
+                                    <input id="id_user" name="id_cliente" type="text" value="<%out.println(user);%>">
+                                </div>
+                                    <button type="submit" class="btn btn-theme">Facturas realizadas</button>
+                                </span>
+                          </form>
                       </a>
-                  </li>
-                  
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-desktop"></i>
-                          <span>Informacion de usuario</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                      </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -93,7 +89,15 @@
                           <span>Usuario</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="form_component.html">Modificar datos</a></li>
+                          <li>
+                              <form action="../../ShowUserBasicDates">
+                                    <div id="info" style="display:none">
+                                        <input id="id_user" name="id_cliente" type="text" value="<%out.println(user);%>">
+                                    </div>
+                                        <button type="submit" class="btn btn-theme">Editar informacion</button>
+                                    </span>
+                              </form>
+                          </li>
                       </ul>
                   </li>
                   

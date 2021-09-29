@@ -32,6 +32,10 @@
         <servlet-name>ShowFactura</servlet-name>
         <servlet-class>servlets.ShowFactura</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowUserBasicDates</servlet-name>
+        <servlet-class>servlets.ShowUserBasicDates</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ShowFactura</servlet-name>
         <url-pattern>/ShowFactura</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowUserBasicDates</servlet-name>
+        <url-pattern>/ShowUserBasicDates</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
