@@ -1,11 +1,15 @@
 package servlets;
 
+import datos.DBCliente;
+import datos.DBFactura;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logica.Cliente;
 
 /**
  *
@@ -25,17 +29,36 @@ public class EditUserDates extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        DBCliente cliDB = new DBCliente();
+        Cliente cli = new Cliente();
+        DBFactura facDB = new DBFactura();
+        ResultSet res = null;
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditUserDates</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditUserDates at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            //se trae id ciudad
+            res = cliDB.getClienteById(Integer.parseInt(request.getParameter("id_cliente")));
+            //se carga
+            res.next();
+            //se cargan datos en objeto
+            cli.setApellido(request.getParameter("apellido"));
+            cli.setNombre(request.getParameter("nombre"));
+            cli.setDireccion(request.getParameter("direccion"));
+            cli.setCelular(Double.parseDouble(request.getParameter("celular")));
+            cli.setCedula(request.getParameter("cedula"));
+            cli.setPassword(request.getParameter("password"));
+            cli.setCorreo(request.getParameter("correo"));
+            cli.setId_cliente(Integer.parseInt(request.getParameter("id_cliente")));
+            cli.setId_ciudad(Integer.parseInt(res.getString("id_ciudad")));
+            //se modifican datos
+            cliDB.modifyCliente(cli);
+            //ahora se cargan los datos necesarios para redireccionar a las facturas del usuario
+            res = facDB.getFacturaById_usuario(Integer.parseInt(request.getParameter("id_cliente")));
+            res.next();
+            request.getSession().setAttribute("facturas", res);
+            request.getSession().setAttribute("id_user", res.getString("id_cliente"));
+            response.sendRedirect("UserInterface/Theme/index.jsp");
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
