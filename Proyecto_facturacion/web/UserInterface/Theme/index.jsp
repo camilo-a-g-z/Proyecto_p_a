@@ -186,7 +186,7 @@
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="assets/js/jquery.sparkline.js"></script>
 
-
+ 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
     
