@@ -75,7 +75,9 @@
         <script>
             window.load();
         </script>
-        
+        <div>
+            <button onclick="window.location.href='index.html'">Logout</button>
+        </div>
         <div  id="div_3">
             <label id="label_1">Fecha de la factura:</label>
             <input type="text" id="input_1" name="input_1" placeholder="DD/MM/AA" disabled="">

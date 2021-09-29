@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Empleado
-    Created on : 10/06/2021, 11:36:25 AM
-    Author     : Camilo Garcia
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
