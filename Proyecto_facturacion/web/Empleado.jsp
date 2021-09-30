@@ -38,7 +38,7 @@
 		      <form class="form-login" id="empleado_data" method="post" action="Empleado">
 		        <h2 class="form-login-heading">Inicia Sesión (Empleado)</h2>
 		        <div class="login-wrap">
-		            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Ingrese Nombre del Empleado" autofocus>
+		            <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Ingrese Cedula del Empleado" autofocus>
 		            <br>
 		            <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese Contraseña">
 		            <label class="checkbox">

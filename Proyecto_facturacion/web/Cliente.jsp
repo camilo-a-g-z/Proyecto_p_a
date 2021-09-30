@@ -45,7 +45,7 @@
                     <link rel="shortcut icon" href="Recursos/favicon.ico" mce_href="Recursos/favicon.ico" type="image/x-icon" />
                     <h2 class="form-login-heading">Inicia Sesión (Cliente)</h2>
                     <div class="login-wrap">
-                        <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Ingrese Nombre del usuario" autofocus>
+                        <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Ingrese Correo del usuario" autofocus>
                         <br>
                         <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese Contraseña">
                         <label class="checkbox">
