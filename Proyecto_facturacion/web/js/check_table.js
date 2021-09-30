@@ -179,6 +179,7 @@ function iniciar_tabla() {
     body.appendChild(tabla);
     // modifica el atributo "border" de la tabla y lo fija a "2";
     tabla.setAttribute("border", "2");
+    tabla.setAttribute("class", "tableDesign");
     tabla.setAttribute("id", "table_d_f");
 }
 //segun el nombre se retorna el id del articulo
