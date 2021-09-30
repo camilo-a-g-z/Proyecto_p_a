@@ -40,6 +40,7 @@ public class CreateNU extends HttpServlet {
             cli.setId_cliente(0);
             cli.setPassword(request.getParameter("pass"));
             cliDB.insertarCliente(cli);
+            response.sendRedirect("index.html");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
