@@ -26,6 +26,17 @@ public class DBEmpleado {
         ResultSet res = pstm.executeQuery();
         return res;
     }
+    public ResultSet getEmpleadoByCedula(String cedula) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_empleado, "
+                + "nombre, "
+                + "cedula, "
+                + "id_ciudad,"
+                + "password "
+                + "FROM empleado "
+                + "WHERE cedula = "+cedula);
+        ResultSet res = pstm.executeQuery();
+        return res;
+    }
     
     public ResultSet geEmpleadoByNombre(String nombre) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_empleado, "

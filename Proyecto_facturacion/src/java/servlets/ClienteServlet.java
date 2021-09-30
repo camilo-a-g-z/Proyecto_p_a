@@ -38,7 +38,7 @@ public class ClienteServlet extends HttpServlet {
         DBFactura facDB = new DBFactura();
         try {
             //se llama y guardan los datos recividos segun el parametro recivido
-            res = empDB.getClienteByNombre(request.getParameter("Nombre"));
+            res = empDB.getClienteByCorreo(request.getParameter("Nombre"));
             out.println("<html>");
             out.println("<body>");
             //se consulta si la respuesta esta vacia
@@ -54,7 +54,7 @@ public class ClienteServlet extends HttpServlet {
                     
                     
                     out.println("<meta http-equiv='refresh' content='3;URL=UserInterface/Theme/index.jsp'>");//redirects after 3 seconds
-                    out.println("<p style='color:red;'>Bienvenido " + request.getParameter("Nombre") + "</p>");
+                    out.println("<p style='color:red;'>Bienvenido " + res.getString("nombre") + "</p>");
                 } else {
                     out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
                     out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");

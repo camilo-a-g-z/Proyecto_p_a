@@ -30,6 +30,22 @@ public class DBCliente {
         ResultSet res = pstm.executeQuery();
         return res;
     }
+    public ResultSet getClienteByCorreo(String correo) throws SQLException{
+        PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_cliente, "
+                + "nombre, "
+                + "apellido, "
+                + "correo, "
+                + "direccion, "
+                + "celular, "
+                + "cedula, "
+                + "id_ciudad,"
+                + "password "
+                + "FROM cliente "
+                + "WHERE correo = ?");
+        pstm.setString(1, correo);
+        ResultSet res = pstm.executeQuery();
+        return res;
+    }
     
     public ResultSet getClienteByNombre(String nombre) throws SQLException{
         PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id_cliente, "

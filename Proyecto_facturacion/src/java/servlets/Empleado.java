@@ -34,7 +34,7 @@ public class Empleado extends HttpServlet {
         ResultSet res = null;
         try {
             //se llama y guardan los datos recividos segun el parametro recivido
-            res = empDB.geEmpleadoByNombre(request.getParameter("Nombre"));
+            res = empDB.getEmpleadoByCedula(request.getParameter("Nombre"));
             out.println("<html>");
             out.println("<body>");
             //se consulta si la respuesta esta vacia
@@ -44,7 +44,7 @@ public class Empleado extends HttpServlet {
             }else{
                 if(res.getString("password") == null ? request.getParameter("contrasena") == null : res.getString("password").equals(request.getParameter("contrasena"))){
                     out.println("<meta http-equiv='refresh' content='3;URL=Edit_admin.html'>");//redirects after 3 seconds
-                    out.println("<p style='color:red;'>Bienvenido "+request.getParameter("Nombre")+"</p>");
+                    out.println("<p style='color:red;'>Bienvenido "+res.getString("nombre")+"</p>");
                 }else{
                     out.println("<meta http-equiv='refresh' content='3;URL=Empleado.jsp'>");//redirects after 3 seconds
                     out.println("<p style='color:red;'>Contraseña o usuario incorrecto</p>");
