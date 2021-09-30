@@ -5,6 +5,7 @@
     <head>
         <title>Facturacion electronica</title>
         <link rel="shortcut icon" href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" />
+        <link href="CSS/estilos4.css" rel="stylesheet"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="js/LoadClientDates.js"></script>
@@ -56,17 +57,17 @@
             }            
         </style>
         <div id="user_info">
-            <label>Nombre: <%out.println(cli.getNombre());%></label>
+            <label class="principal">Nombre: <%out.println(cli.getNombre());%></label>
             <br>
-            <label>Apellido: <%out.println(cli.getApellido());%></label>
+            <label class="principal">Apellido: <%out.println(cli.getApellido());%></label>
             <br>
-            <label>Cedula: <%out.println(cli.getCedula());%></label>
+            <label class="principal">Cedula: <%out.println(cli.getCedula());%></label>
             <br>
-            <label>Celular: <%out.println(cli.getCelular());%></label>
+            <label class="principal">Celular: <%out.println(cli.getCelular());%></label>
             <br>
-            <label>Dirección: <%out.println(cli.getDireccion());%></label>
+            <label class="principal">DirecciÃ³n: <%out.println(cli.getDireccion());%></label>
             <br>
-            <label>Correo: <%out.println(cli.getCorreo());%></label>
+            <label class="principal">Correo: <%out.println(cli.getCorreo());%></label>
             <br>
         </div>
         <div class="loading show" id="load">
@@ -75,59 +76,56 @@
         <script>
             window.load();
         </script>
-        <div>
-            <button onclick="window.location.href='index.html'">Logout</button>
-        </div>
+        
         <div  id="div_3">
-            <label id="label_1">Fecha de la factura:</label>
+            <label class="principal" id="label_1">Fecha de la factura:</label>
             <input type="text" id="input_1" name="input_1" placeholder="DD/MM/AA" disabled="">
         </div>
         <br>
         <div  id="div_4">
-            <label id="label_2">Valor del iva:</label>
+            <label class="principal" id="label_2">Valor del iva:</label>
             <input type="text" id="input_2" name="input_2" disabled="">
         </div>
         <br>
         <div  id="div_5">
-            <label id="label_3">Valor subTotal:</label>
+            <label class="principal" id="label_3">Valor subTotal:</label>
             <input type="text" id="input_3" name="input_3" disabled="">
         </div>
         <br>
         <div  id="div_6">
-            <label id="label_4">Valor Total:</label>
+            <label class="principal" id="label_4">Valor Total:</label>
             <input type="text" id="input_4" name="input_4" disabled="">
         </div>     
         <br>
         <div  id="div_MO">
-            <label id="label_MO">Metodo de pago:</label>
+            <label class="principal" id="label_MO">Metodo de pago:</label>
             <select name="input_MO" id="input_MO">
                 <option value="" selected=""></option>
             </select>
         </div>
         <div  id="div_11">
-            Ingresar un nuevo articulo a factura:<br>
-            <label id="label_8">Articulo:</label>
+            Ingresar un nuevo articulo a factura:<br> </div>
+            <label class="principal" id="label_8">Articulo:</label>
             <select name="input_8" id="input_8">
                 <option value="" selected=""></option>
             </select>
-        </div>
-        <div  id="info_div">
+        <div  id="div_11" id="info_div">
             Informacion del producto: 
-            <label id="info_producto"></label>
+            <label class="principal" id="info_producto"></label>
         </div>
         <br>
         <div  id="div_12">
-            <label id="label_9">Cantidad:</label>
+            <label class="principal" id="label_9">Cantidad:</label>
             <input type="text" id="input_9" name="input_9" placeholder="Escriba cantidad" onkeypress="return isNumberKeyDecimal(event)"> 
         </div>
         <br>
         <div  id="div_CT">
-            <label id="label_CT">Precio:</label>
-            <label id="input_CT"></label>
+            <label class="principal" id="label_CT">Precio:</label>
+            <label class="principal" id="input_CT"></label>
         </div>
         <br>
         <div id="div_13">
-            <label id="label_10">Descuento:</label>
+            <label class="principal" id="label_10">Descuento:</label>
             <input type="text" id="input_10" name="input_10" disabled="" value="0">
             <br>
             <button id="boton_3" name="boton_3" onclick="cantVerify()">Agregar</button>
