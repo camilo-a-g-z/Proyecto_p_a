@@ -65,7 +65,7 @@
             <br>
             <label class="principal">Celular: <%out.println(cli.getCelular());%></label>
             <br>
-            <label class="principal">DirecciÃ³n: <%out.println(cli.getDireccion());%></label>
+            <label class="principal">Dirección: <%out.println(cli.getDireccion());%></label>
             <br>
             <label class="principal">Correo: <%out.println(cli.getCorreo());%></label>
             <br>
@@ -104,12 +104,13 @@
             </select>
         </div>
         <div  id="div_11">
-            Ingresar un nuevo articulo a factura:<br> </div>
+            Ingresar un nuevo articulo a factura:<br> 
             <label class="principal" id="label_8">Articulo:</label>
             <select name="input_8" id="input_8">
                 <option value="" selected=""></option>
             </select>
-        <div  id="div_11" id="info_div">
+        </div>
+        <div id="info_div">
             Informacion del producto: 
             <label class="principal" id="info_producto"></label>
         </div>

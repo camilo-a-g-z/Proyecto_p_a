@@ -208,7 +208,7 @@ function generarFactura(){
         },
         jsPDF: {
             unit: "in",
-            format: "a3",
+            format: "a2",
             orientation: 'portrait' // landscape o portrait
         }
     })
