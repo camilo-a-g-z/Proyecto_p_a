@@ -4,7 +4,8 @@
         <title>Facturacion Empleado</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="Recursos/favicon.ico" mce_href="Recursos/favicon.ico" type="image/x-icon" />
+        <link  rel="shortcut icon" href="Recursos/favicon.ico" mce_href="Recursos/favicon.ico" type="image/x-icon"  />
+        <link href="CSS/estilos3.css" rel="stylesheet"/>
         <script type="text/javascript" src="js/edit_ad.js"></script>
         <link rel="stylesheet" href="CSS/esttile.css">
         <script type="text/javascript" src="js/check_table.js"></script>
@@ -72,82 +73,79 @@
         </select>
     </center>
     <br>
-    <div>
-        <button onclick="window.location.href='index.html'">Logout</button>
-    </div>
     <div style="display:none" id="div_1">
-        <label id="principal_info">Ingrese nombre del articulo: </label>
+        <label id="principal_info" class="principal">Ingrese nombre del articulo: </label>
         <input type="text" id="Nombre" name="Nombre" placeholder="Escriba el nombre del articulo">
         <button id="boton" name="boton" onclick="enviar()" >Buscar</button>
     </div>
     <br>
     <div style="display:none" id="div_2">
-        <label id="informacion" ></label>
-        <label id="obtenido"></label>
+        <label id="informacion" class="principal" ></label>
+        <label id="obtenido" class="principal"></label>
     </div>
     <br>
     <div style="display:none" id="div_3">
-        <label id="label_1">Nombre:</label>
+        <label id="label_1" class="principal">Nombre:</label>
         <input type="text" id="input_1" name="input_1" placeholder="Escriba nuevo nombre articulo">
     </div>
     <br>
     <div style="display:none" id="div_4">
-        <label id="label_2">Cantidad en stock:</label>
+        <label id="label_2" class="principal">Cantidad en stock:</label>
         <input type="text" id="input_2" name="input_2" placeholder="Escriba cantidad">
     </div>
     <br>
     <div style="display:none" id="div_5">
-        <label id="label_3">Descripcion del producto:</label>
+        <label id="label_3" class="principal">Descripcion del producto:</label>
         <input type="text" id="input_3" name="input_3" placeholder="Escriba la descripcion del producto">
     </div>
     <br>
     <div style="display:none" id="div_6">
-        <label id="label_4">Categoria del producto:</label>
+        <label id="label_4" class="principal">Categoria del producto:</label>
         <input type="text" id="input_4" name="input_4" placeholder="Escriba id categoria">
     </div>
     <br>
     <div style="display:none" id="div_7">
-        <label id="label_5">Nuemero de celular:</label>
+        <label id="label_5" class="principal">Nuemero de celular:</label>
         <input type="text" id="input_5" name="input_5" placeholder="Escriba id categoria">
     </div>        
     <br>
     <div style="display:none" id="div_8">
-        <label id="label_6">Numero de cedula:</label>
+        <label id="label_6" class="principal">Numero de cedula:</label>
         <input type="text" id="input_6" name="input_6" placeholder="Escriba id categoria">
     </div>
     <br>
     <div style="display:none" id="div_MO">
-        <label id="label_MO">Escoja:</label>
+        <label id="label_MO" class="principal">Escoja:</label>
         <select name="input_MO" id="input_MO">
             <option value="" selected=""></option>
         </select>
     </div>
     <br>
     <div style="display:none" id="div_9">
-        <label id="label_7">ID ciudad:</label>
+        <label id="label_7" class="principal">ID ciudad:</label>
         <input type="text" id="input_7" name="input_7" placeholder="Escriba id categoria"> 
     </div>
     <br>
     <div style="display:none" id="div_11">
         Ingresar un nuevo articulo a factura:<br>
-        <label id="label_8">Articulo:</label>
+        <label id="label_8" class="principal">Articulo:</label>
         <select name="input_MO" id="input_8">
             <option value="" selected=""></option>
         </select>
     </div>
     <br>
     <div style="display:none" id="div_12">
-        <label id="label_9">Cantidad:</label>
+        <label id="label_9" class="principal">Cantidad:</label>
         <input type="text" id="input_9" name="input_9" placeholder="Escriba cantidad" onkeypress="return isNumberKey(event)"> 
     </div>
     <br>
     <div style="display:none" id="div_CT">
-        <label id="label_CT">Precio:</label>
-        <label id="input_CT"></label>
+        <label id="label_CT" class="principal">Precio:</label>
+        <label id="input_CT" class="principal"></label>
     </div>
     <br>
     <div style="display:none" id="div_13">
-        <label id="label_10">Descuento:</label>
+        <label id="label_10" class="principal">Descuento:</label>
         <input type="text" id="input_10" name="input_10" placeholder="Escriba Descuento" onkeypress="return isNumberKeyDecimal(event)">
         <br>
         <button id="boton_3" name="boton_3" onclick="veryfyAddFila()">Agregar</button>

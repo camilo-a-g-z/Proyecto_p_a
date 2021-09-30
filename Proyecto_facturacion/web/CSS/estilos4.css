@@ -1,5 +1,5 @@
 body{
-    background:  url("https://img.freepik.com/foto-gratis/mercado-de-compras-en-el-fondo-borroso_51764-11.jpg?size=626&ext=jpg");
+    background:  url("https://th.bing.com/th/id/R.95eeb202f5ba1154ef3602c6407a7450?rik=%2bHFkVkQ31vs4PA&pid=ImgRaw&r=0");
     background-size: cover; 
 }
 input[type=text]{
@@ -12,18 +12,18 @@ input[type=text]{
     outline: none;
     border-bottom: 2px solid #adadad;
     margin: 0px 40px;
-    color:#adadad;
+    
 }
 button{
     font: 100% Segoe UI;
-    border: #006666 1px solid;
+    border: #ffcc00 1px solid;
     cursor:pointer;
     margin: 15px 100px;
     width:10%;
     height: 50px;
     border-radius: 25px;
     font-size: 18px;
-    background:#006666;
+    background:#ffcc00;
     font-weight: 700;
     outline: none;
     color:#ffffff;
@@ -32,7 +32,7 @@ button{
 button[id=boton]{
     margin: 10px 20px;
 }
-label{text-align:left;
+label[class=principal]{text-align:left;
       width:2000px ;
       float:left;
       margin: 15px 40px;
@@ -41,14 +41,14 @@ label{text-align:left;
 }
 select{
     font: 100% Segoe UI;
-    border: #666600 1px solid;
+    border: #1f53c5 1px solid;
     cursor:pointer;
     margin: 15px 30px;
     width: 10%;
     height: 50px;
     border-radius: 25px;
     font-size: 18px;
-    background:#666600;
+    background:#1f53c5;
     font-weight: 700;
     outline: none;
     text-align:center;
@@ -69,4 +69,26 @@ div[id=div_0]{
     margin: 0px 100px;
     width: 300px;
     height: 500px;
+}
+div[id=div_11]{
+    margin: 15px 40px;
+    font: 120% Segoe UI;
+}
+label {text-align:left;
+      width:150px ;
+      float:left;
+      font: 120% Segoe UI;
+      color:#666666;
+}
+table{
+    margin: 15px 30px;
+    text-align:left;
+    border-collapse: collapse;
+}
+th,td{
+    padding:20px;
+}
+thead{
+    background-color: #246355;
+    border-bottom: solid 5px #0F362D;
 }
